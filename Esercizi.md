@@ -1,4 +1,68 @@
-# Laboratorio di algoritmi
+# Laboratorio per il corso di Algoritmi e Strutture Dati
+
+Nel seguito verranno descritti i tre esercizi da consegnare al fine di potere
+superare la prova di laboratorio per il corso di Algoritmi e Strutture Dati.
+
+Durante la scrittura del codice è richiesto di usare in modo appropriato il
+sistema di versioning ```Git```. Questa richiesta implica quanto segue:
+
+- il progetto di laboratorio va inizializzato "clonando" il repository:
+    git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git
+- come è prassi nei moderni ambienti di sviluppo, è richiesto di effettuare
+  commit frequenti. L'ideale è un commit per ogni blocco di lavoro terminato
+  (es. creazione e test di una nuova funzione, soluzione di un baco, creazione
+    di una nuova interfaccia, ...);
+- al termine del lavoro si dovrà consegnare l'intero repository.
+
+È lasciata libertà allo studente di implementare il codice usando Java o C.
+Come potrete verificare gli esercizi chiedono di realizzare
+strutture generiche. Nel caso del C è necessario capire come meglio approssimare
+l'idea di strutture generiche utilizzando quanto permesso dal linguaggio.
+
+*Suggerimenti per chi sceglie di utilizzare il linguaggio C*:
+
+  - spesso questo significherà realizzare strutture e funzioni, che lavorano con
+    puntatori a ```void```;
+  - chi è in grado di realizzare tipi di dato astratto tramite tipi opachi è
+    incoraggiato a procedere in questa direzione.
+
+È parte del mandato degli esercizi la realizzazione di codice di buona qualità.
+Per "buona qualità" intendiamo codice ben modularizzato, ben commentato e
+ben testato.
+
+*Alcuni suggerimenti*:
+
+- verificate che il codice sia suddiviso correttamente in package o moduli;
+- aggiungere un commento, prima di una definizione, che spiega il funzionamento
+  dell'oggetto definito. Evitare quando possibile di commentare direttamente
+  il codice in sé (se il codice è ben scritto, i commenti in genere non servono);
+- la lunghezza di un metodo/funzione è in genere un campanello di allarme:
+  se essa cresce troppo, probabilmente è necessario rifattorizzare il codice
+  spezzando la funzione in più parti. In linea di massima si può consigliare
+  di intervenire quando la funzione cresce sopra le 30 righe (considerando anche
+  commenti e spazi bianchi);
+- sono accettabili commenti in italiano, sebbene siano preferibili in inglese;
+- tutti i nomi (e.g., nomi di variabili, di metodi, di classi, etc.) devono
+  essere significativi e in inglese;
+- il codice deve essere correttamente indentato; impostare l'indentazione a
+  2 o 4 caratteri e impostare l'editor in modo che inserisca "soft tabs" (i.e.,
+  deve inserire il numero corretto di spazi invece che un carattere di tabulazione).
+- per dare i nomi agli identificatori, seguire le convenzioni in uso per il
+  linguaggio scelto:
+  - Java: i nomi dei  package sono tutti in minuscolo senza separazione fra le
+    parole; i nomi dei tipi (classi, interfacce, ecc.) iniziano con una lettera
+    maiuscola e proseguono in camel case (es. TheClass), i nomi dei metodi e
+    delle variabili iniziano con una lettera minuscola e proseguono in camel
+    case (es. theMethod), i nomi delle costanti sono tutti in maiuscolo e in
+    formato snake case (es. THE_CONSTANT);
+  - C (ref. convenzioni progetto GTK+):  macro e costanti sono tutti in maiuscolo
+    e in formato snake case (es. THE_MACRO, THE_CONSTANT); i nomi di tipo (e.g.
+    struct, typedefs, enums, ...) iniziano con una lettera maiuscola e proseguono
+    in camel case (e.g., TheType, TheStruct); i nomi di funzione iniziano con
+    una lettera minuscola e proseguono in snake case (e.g., the_function());
+- i file vanno salvati in formato UTF8.
+
+
 
 ## Esercizio 1
 
@@ -46,7 +110,7 @@ motivo per cui gli algoritmi non funzionano come vi aspettate e verificatele.
 
 ## Esercizio 2
 
-Si consideri la classe definizione del tipo di dato astratto Dizionario. Si
+Si consideri la definizione del tipo di dato astratto Dizionario. Si
 implementi il tipo di dato astratto utilizzando gli alberi di ricerca "semplici"
 e almeno una tra le seguenti strutture dati:
 
