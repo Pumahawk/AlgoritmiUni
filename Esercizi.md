@@ -82,7 +82,7 @@ un puntatore a funzione).
 ### Unit testing
 
 Implementare gli unit-test degli algoritmi secondo le indicazioni
-suggerite nel documento [Unit Testing](http://fixme.com).
+suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Confronti
 
@@ -123,7 +123,7 @@ sia per il tipo valore.
 ### Unit Testing
 
 Implementare gli unit-test degli algoritmi secondo le indicazioni
-suggerite nel documento [Unit Testing](http://fixme.com).
+suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Confronti
 
@@ -173,7 +173,7 @@ Ogni record contiene i seguenti dati:
 ### Unit Testing
 
 Implementare gli unit-test degli algoritmi secondo le indicazioni
-suggerite nel documento [Unit Testing](http://fixme.com).
+suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Analisi grafo e cammini minimi
 
