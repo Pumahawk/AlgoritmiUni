@@ -7,12 +7,15 @@ Durante la scrittura del codice è richiesto di usare in modo appropriato il
 sistema di versioning ```Git```. Questa richiesta implica quanto segue:
 
 - il progetto di laboratorio va inizializzato "clonando" il repository:
-    <git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git>
+    `git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git`
 - come è prassi nei moderni ambienti di sviluppo, è richiesto di effettuare
   commit frequenti. L'ideale è un commit per ogni blocco di lavoro terminato
   (es. creazione e test di una nuova funzione, soluzione di un baco, creazione
     di una nuova interfaccia, ...);
 - al termine del lavoro si dovrà consegnare l'intero repository.
+
+Il file `Git.md` contiene un esempio di come usare Git per los sviluppo degli
+esercizi proposti per questo laboratorio.
 
 È lasciata libertà allo studente di implementare il codice usando Java o C.
 Come potrete verificare gli esercizi chiedono di realizzare
@@ -86,8 +89,9 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Confronti
 
-Il file "Data/records.csv" contiene alcuni record da ordinare. Ogni record è
-descritto su una riga e contiene i seguenti campi:
+Il file `records.csv` che potete trovare seguendo il path
+`/usr/NFS/Linux/labalgoritmi/datasets/` contiene 20 milioni record da ordinare.
+Ogni record è descritto su una riga e contiene i seguenti campi:
 
 - id: (tipo:intero) identificatore univoco del record;
 - field1: tipo stringa (conterrà caratteri ascii standard, i valori possono contenere
@@ -98,7 +102,7 @@ descritto su una riga e contiene i seguenti campi:
 Il formato è un CSV standard: i campi sono separati da virgole; i record sono
 separati da "\n".
 
-Si ordinino i dati contenuti nel file `Data/sorting.csv` in ordine non decrescente,
+Si ordinino i dati contenuti nel file `records.csv` in ordine non decrescente,
 secondo i valori contenuti nei tre campi "field" (i.e., è necessario ripetere
 l'ordinamento tre volte, una volta per ciascun campo).
 
@@ -127,9 +131,9 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Confronti
 
-Si inseriscano i dati contenuti nel file `Data/records.csv` nei dizionari
-implementati. Si ripeta questa operazione usando come chiave i tre campi presenti
-nel file (in tutti i casi il "valore" è l'intero record).
+Si inseriscano i dati contenuti nel file `records.csv` nei dizionari
+implementati. Si ripeta questa operazione usando come chiave i tre campi
+presenti nel file (in tutti i casi il "valore" è l'intero record).
 
 Si misurino i tempi di risposta in modo da poter rispondere alle seguenti domande:
 
@@ -147,10 +151,11 @@ e verificatele.
 Si implementi la struttura dati Grafo diretto in modo che sia ottimale per
 dati sparsi.
 
-Il file "italian_dist_graph.csv" contiene le distanze in metri tra varie
-località italiane e una frazione delle località a loro più vicine.
-Il formato è un CSV standard: i campi sono separati da virgole; i record sono
-separati da "\n".
+Il file `italian_dist_graph.csv` che potete recuperare seguendo il path
+`/usr/NFS/Linux/labalgoritmi/datasets/` contiene le distanze in metri tra varie
+località italiane e una frazione delle località a loro più vicine. Il formato è
+un CSV standard: i campi sono separati da virgole; i record sono separati da
+"\n".
 
 Ogni record contiene i seguenti dati:
 
@@ -180,7 +185,7 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 Scrivere un programma che permetta di:
 
 - trovare il cammino minimo tra due località; si assuma che gli archi
-  riportati nel file "italian_dist_graph.csv" siano connessioni percorribili;
+  riportati nel file `italian_dist_graph.csv` siano connessioni percorribili;
 - determinare la dimensione di ogni componente fortemente connessa del grafo.
   Suggerimento: il problema è risolvibile banalmente se si sfrutta il fatto
   che il grafo in questione è, nella sostanza, non diretto.
