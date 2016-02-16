@@ -1,17 +1,43 @@
 # Unit Testing
 
-I test automatici sono pezzi di software che vengono scritti con l'obbiettivo
-di verificare  se una porzione di una applicazione è corretta (secondo qualche
-criterio di corretteza definito nel test stesso). Quando le porzioni testate
-sono piccole e autocontenute esse vengono chiamate "unit" e il test automatico
-di esse è detto "unit testing". Cosa sia una unit non è definito con precisione,
-in alcuni contesti può essere una classe, in altri può essere un metodo, etc.
+I test automatici sono "oggetti" software che vengono scritti con l'obbiettivo
+di verificare che una porzione di una applicazione sia corretta (secondo qualche
+criterio di corretteza definito nel test stesso). Quando gli oggetti testati
+sono "piccoli" e autocontenuti, essi vengono chiamati "unit" e il test automatico
+di essi è detto "unit testing". Cosa sia una unit non è definito con precisione,
+in alcuni contesti può essere una classe, in altri può essere un piccolo modulo,
+più spesso sono singoli metodi, etc.
 
 I test automatici in genere predispongono un input, invocano la unit e
 verificano che l'output (o l'eventuale side-effect) sia corretto. La verifica
 è fatta per mezzo di asserzioni che indicano quale sia il risultato atteso,
 quando tali asserzioni falliscono viene interrotto il test e restituito un
 messaggio d'errore appropriato.
+
+I vantaggi dello unit testing sono molteplici:
+
+- *debugging*: il testing indipendente di piccole unità di
+  codice permette di isolare la porzione di codice in cui è presente il bug,
+  semplificando così la soluzione del problema;
+
+- *qualità del codice*: l'avere una test suite che automaticamente verifica la
+  correttezza delle unit crea la serenità necessaria perché il codice venga
+  mantenuto e ripulito con la dovuta frequenza. Supponiamo ad esempio di avere
+  una funzione mal scritta, ma critica (ad esempio un suo problema potrebbe
+  portare a danni per migliaia di euro). Sappiamo che la funzione è corretta (ha
+  sempre funzionato perfettamente), ma è lunga, scritta male, e contiente tante
+  parti che sarebbe bene astrarre in modo che possano essere riutilizzate dal
+  resto dell'applicazione. Senza una suite di test affidabile difficilmente si
+  procederà agli interventi necessari a risolvere la situazione. L'avere una
+  suite di test non necessariamente garantisce di non introdurre bug, ne riduce
+  però drasticamente la probabilità.
+
+  Inoltre scrivere test è più semplice quando le unit sono piccole e ben
+  focalizzate e questo incoraggia un miglior stile di programmazione;
+
+- *documentazione*: i test di unità forniscono anche una (seppur limitata) fonte
+  di documentazione per il codice. Essi mostrano come si intende che le unit
+  vengano utilizzate e quale sia la relazione attesa tra input e output.
 
 Affinché gli unit test possano essere efficaci è necessario che godano delle
 seguenti proprietà:
@@ -31,8 +57,8 @@ seguenti proprietà:
     - test del funzionamento di più metodi contemporaneamente
 
   In genere un test poco focalizzato si riconosce perché contiene più asserzioni.
-  Prima di scrivere uno unit test contenente più asserzioni è bene verificare
-  l'opportunità di procedere in questa direzione.
+  Prima di scrivere un test di  unità che contenente più asserzioni è bene
+  verificare l'opportunità di procedere in questa direzione.
 
 - i test devono essere indipendenti: l'ordine di esecuzione dei test non deve
   influire sul loro risultato. JUnit impone questa caratteristica ricaricando
@@ -67,38 +93,37 @@ la correttezza del programma. Ad esempio:
 import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 
-class TestSorting {
+public class TestSorting {
   @Test
-  void testSortEmptyArray() {
+  public void testSortEmptyArray() {
     MySortingAlgorithm sorter = new MySortingAlgorithm();
     int[] a = {};
-    assertArrayEqual( {}, sorter.sort(a) );
+    assertArrayEquals( new int[]{}, sorter.sort(a) );
   }
 
   @Test
-  void testSortNullArray() {
+  public void testSortNullArray() {
     MySortingAlgorithm sorter = new MySortingAlgorithm();
     int[] a = null;
-    assertArrayEqual( null, sorter.sort(a) );
+    assertArrayEquals( null, sorter.sort(a) );
   }
-
-  ...
 }
 ```
 
 JUnit provvederà ad eseguire i test in ordine casuale ricaricando la classe
 prima di ogni singolo test. Nel caso in questione quest'ultima operazione non
-influisce sul risultato. Le cose sarebbero state però diverse caso la classe di
-test avesse memorizzato i dati in qualche variabile di istanza (o di classe).
+influisce sul risultato. Le cose sarebbero state però diverse nel caso la classe
+di test avesse memorizzato i dati in qualche variabile di istanza (o di classe).
 
 ## Unit test in C
 
-Purtroppo nel caso del C non c'è un'unica libreria che può essere definita
+Purtroppo nel caso del C non c'è una libreria che possa essere definita
 "standard" e in genere usare tali librerie richiede l'installazione di software
-aggiuntivo. Date queste difficoltà è ammesso utilizzare un programma ad-hoc
-per effettuare il test a patto che si scrivano le funzioni di test prestando
-attenzione ai punti indicati sopra. Chi volesse utilizzare qualche libreria
-è libero di farlo.
+aggiuntivo. Date queste difficoltà è ammesso utilizzare un programma ad-hoc per
+effettuare il test, a patto che si scrivano le funzioni di test prestando
+attenzione ai punti indicati sopra. Chi volesse utilizzare qualche libreria è
+libero di farlo, ma sarà sua responsabilità installare e utilizzare
+correttamente la libreria.
 
 Esempio di programma di test in C:
 
@@ -129,5 +154,5 @@ int main(int argc, char** argv) {
 
 Si noti che la funzione ```assert``` usata nell'esempio non è stata pensata per
 fare unit testing in C e fornisce solo funzionalità molto limitate in questo
-senso. Dati i vincoli e i problemi spiegati sopra un'implementazione lungo
-la linea mostrata sarà considerata pienamente accettabile.
+senso. Dati i vincoli e i problemi spiegati sopra, un'implementazione lungo
+la linea mostrata sarà comunque considerata pienamente accettabile.
