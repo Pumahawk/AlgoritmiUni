@@ -90,14 +90,14 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 ### Confronti
 
 Il file `records.csv` che potete trovare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` contiene 20 milioni record da ordinare.
-Ogni record è descritto su una riga e contiene i seguenti campi:
+`/usr/NFS/Linux/labalgoritmi/datasets/` contiene 20 milioni di record da
+ordinare. Ogni record è descritto su una riga e contiene i seguenti campi:
 
 - id: (tipo:intero) identificatore univoco del record;
-- field1: tipo stringa (conterrà caratteri ascii standard, i valori possono contenere
-  spazi, ma non virgole)
-- field2: (tipo intero)
-- field3: (tipo floating point)
+- field1: (tipo stringa) contiene parole estratte dalla divina commedia,
+  potete assumere che i valori non contengano spazi o virgole;
+- field2: (tipo intero);
+- field3: (tipo floating point);
 
 Il formato è un CSV standard: i campi sono separati da virgole; i record sono
 separati da "\n".
@@ -106,10 +106,15 @@ Si ordinino i dati contenuti nel file `records.csv` in ordine non decrescente,
 secondo i valori contenuti nei tre campi "field" (i.e., è necessario ripetere
 l'ordinamento tre volte, una volta per ciascun campo).
 
-Si misurino i tempi di risposta e si crei una breve relazione in cui si riportano
-i risultati ottenuti insieme a un loro commento. I risultati sono quelli
+Si misurino i tempi di risposta e si crei una breve relazione in cui si
+riportano i risultati ottenuti insieme a un loro commento. Nel caso
+l'ordinamento si  protragga per più di 10 minuti potete interrompere
+l'esecuzione e riportare un fallimento dell'operazione. I risultati sono quelli
 che vi sareste aspettati? Se sì, perché? Se no, fate delle ipotesi circa il
-motivo per cui gli algoritmi non funzionano come vi aspettate e verificatele.
+motivo per cui gli algoritmi non funzionano come vi aspettate, verificatele e
+riportate quanto scoperto nella relazione. *Opzionale:* avete qualche idea per
+risolvere gli eventuali problemi riscontrati? Se sì implementatela e verificate
+se e come la situazione migliora.
 
 
 ## Esercizio 2
@@ -133,11 +138,15 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 
 Si inseriscano i dati contenuti nel file `records.csv` nei dizionari
 implementati. Si ripeta questa operazione usando come chiave i tre campi
-presenti nel file (in tutti i casi il "valore" è l'intero record).
+presenti nel file (in tutti i casi il "valore" è l'intero record). Nel caso
+un record abbia chiave uguale a uno già presente è corretto sostituire l'istanza
+precedentemente memorizzata con il nuovo valore.
 
-Si misurino i tempi di risposta in modo da poter rispondere alle seguenti domande:
+Si misurino i tempi di risposta in modo da poter rispondere alle seguenti
+domande:
 
-  - come varia il tempo di inserimento al crescere del numero di record inseriti?
+  - come varia il tempo di inserimento al crescere del numero di record
+    inseriti?
   - come varia il tempo di accesso al crescere del numero di record inseriti?
 
 Si crei una breve relazione a commento dei risultati ottenuti. I risultati
@@ -182,7 +191,7 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 
 ### Analisi grafo e cammini minimi
 
-Scrivere un programma che permetta di:
+Scrivere un programma per rispondere a ciascuno dei seguenti problemi:
 
 - trovare il cammino minimo tra due località; si assuma che gli archi
   riportati nel file `italian_dist_graph.csv` siano connessioni percorribili;
@@ -195,4 +204,4 @@ Scrivere un programma che permetta di:
 Una implementazione corretta della ricerca del cammino minimo dovrebbe
 riportare un cammino minimo tra "torino" e "catania" lungo ~1207.68Km.
 
-Qual'è il cammino minimo tra "torino" e "borsoi"?
+Qual è il cammino minimo tra "torino" e "borsoi"?
