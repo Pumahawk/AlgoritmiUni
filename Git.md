@@ -24,7 +24,7 @@ git config --global user.email mario.rossi@di.unito.it
 ```
 
 Vi suggeriamo inoltre di attivare il supporto alla visualizzazione a colori dei
-risultati dei comandi git. Per far ciò usate i segueti comandi:
+risultati dei comandi git. Per far ciò usate il seguente comando:
 
 ```bash
 git config --global ui.color true
@@ -38,11 +38,16 @@ modo sicuro a GitLab via ssh. Per far questo è necessario creare una coppia di
 chiavi  crittografiche e inserire la chiave pubblica tra quelle accettate dal
 vostro utente su GitLab.
 
-Per far questo accedere alla vostra pagina su GitLab e cliccate sull'icona
-la cui caption è "Profile settings" (la terza a partire da in alto a destra).
+Per far questo accedere alla vostra pagina su GitLab e cliccate sul pulsante
+ "Edit Profile settings".
 Sulla pagina che si aprirà cliccate su "SSH Keys" e seguite le istruzioni
 a video (in particolare siate certi di consultare la sezione che spiega come
 [generare le chiavi ssh](https://gitlab.educ.di.unito.it/help/ssh/ssh.md).
+Nota: in GitLab esistono due tipi di chiavi crittografiche che si possono
+caricare. La chiave generica per accedere e modificare il repository e una
+chiave di "Deploy" che può venire usata in sistemi di "Continuous Integration".
+A voi serve seguire le istruzioni per creare quelle che sono chiamate
+semplicemente chiavi "SSH".
 
 ## Clonazione del progetto
 
@@ -64,9 +69,9 @@ cambiate questa impostazione, pena la possibilità di vedere l'elaorato annullat
 perché qualcuno ne ha copiato il contenuto.
 
 Aggiungete ora i membri del gruppo *e i docenti di laboratorio* al gruppo di
-sviluppo del progetto (trovate l'opzione seguendo i menù Settings -> Members a
-partire dalla pagina del vostro repository). I nick name dei docenti di
-laboratorio sono "esposito", "damfer" e "pozzato".
+sviluppo del progetto con ruolo "developer" (trovate l'opzione seguendo i menù
+Settings -> Members a partire dalla pagina del vostro repository). I nick name
+dei docenti di laboratorio sono "esposito", "damfer" e "pozzato".
 
 L'avere a disposizione una copia del laboratorio non è ancora sufficiente per
 poter iniziare a lavorare: è infatti necessario creare una copia locale alla
@@ -125,5 +130,5 @@ git push # aggiornamento della copia remota
 ```
 
 
-[Pro Git]: (https://progit.org)
+[Pro Git]: https://progit.org
 [commit]: http://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository

@@ -1,0 +1,30 @@
+# Laboratorio di Algoritmi - FAQs
+
+**Q: Come determino quale turno di laboratorio posso frequentare?**
+
+**A**: I turni di laboratorio sono suddivisi secondo due criteri:
+
+  1. secondo il corso di assegnazione:
+      - i turni 1 e 2 sono destinati agli studenti che frequentano il corso A
+      - i turni 3 e 4 sono destinati agli studenti che frequentano il corso B
+  2. secondo la parità del numero con cui termina il login assegnato allo studente (*n.b.*: login &ne; numero di matricola):
+      - login pari possono frequentare turni pari
+      - login dispari possono frequentare turni dispari
+
+  Riassumendo:
+    - studenti del corso A con login dispari saranno assegnati al turno 1
+    - studenti del corso A con login pari saranno assegnati al turno 2
+    - studenti del corso B con login dispari saranno assegnati al turno 3
+    - studenti del corso B con login pari saranno assegnati al turno 4
+
+**Q: Sono uno studente assegnato al turno X posso spostarmi al turno Y?**
+
+**A**: sì, a patto che trovi un collega del turno Y che accetta di frequentare il turno X. Il cambiamento va comunicato ai docenti *entro le prime settimane di corso*.
+
+**Q: Sono uno studente che ha già preparato il laboratorio dell'anno scorso. Posso sostenere la prova di laboratorio discutendo gli esercizi dello scorso a.a.?**
+
+**A**: sì, ma solo per le sessioni di Giugno e Settembre e a patto che il laboratorio sia stato consegnato entro il 4 Marzo 2016.
+
+**Q: Sono uno studente che ha frequentato nei precedenti anni accademici. Posso sostenere le prove di laboratorio nella configurazioni degli anni precedenti?**
+
+**A**: no, a meno che non riesca a completare il laboratorio e a consegnarlo entro il 4 Marzo 2016 (si veda anche la risposta precedente).

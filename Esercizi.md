@@ -6,12 +6,14 @@ superare la prova di laboratorio per il corso di Algoritmi e Strutture Dati.
 Durante la scrittura del codice è richiesto di usare in modo appropriato il
 sistema di versioning ```Git```. Questa richiesta implica quanto segue:
 
-- il progetto di laboratorio va inizializzato "clonando" il repository:
-    `git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git`
+- il progetto di laboratorio va inizializzato "clonando" il repository del
+  laboratorio come descritto nel file [Git](Git.md);
 - come è prassi nei moderni ambienti di sviluppo, è richiesto di effettuare
   commit frequenti. L'ideale è un commit per ogni blocco di lavoro terminato
   (es. creazione e test di una nuova funzione, soluzione di un baco, creazione
     di una nuova interfaccia, ...);
+- ogni membro del gruppo dovrebbe effettuare il commit delle modifiche che lo
+  hanno visto come principale sviluppatore;
 - al termine del lavoro si dovrà consegnare l'intero repository.
 
 Il file `Git.md` contiene un esempio di come usare Git per los sviluppo degli
