@@ -22,7 +22,12 @@ esercizi proposti per questo laboratorio.
 È lasciata libertà allo studente di implementare il codice usando Java o C.
 Come potrete verificare gli esercizi chiedono di realizzare
 strutture generiche. Nel caso del C è necessario capire come meglio approssimare
-l'idea di strutture generiche utilizzando quanto permesso dal linguaggio.
+l'idea di strutture generiche utilizzando quanto permesso dal linguaggio. Nel
+caso si scelga di utilizzare Java è possibile (e consigliato) usare gli
+ArrayList invece degli array nativi al fine di semplificare l'implementazione
+delle strutture generiche. A parte gli ArrayList è vietato usare altre classi
+container fornite da Java (è necessario implementare autonomamente eventuali
+container a supporto dell'implementazione).
 
 *Suggerimenti per chi sceglie di utilizzare il linguaggio C*:
 

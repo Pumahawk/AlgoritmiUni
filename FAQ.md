@@ -21,10 +21,10 @@
 
 **A**: sì, a patto che trovi un collega del turno Y che accetta di frequentare il turno X. Il cambiamento va comunicato ai docenti *entro le prime settimane di corso*.
 
-**Q: Sono uno studente che ha già preparato il laboratorio dell'anno scorso. Posso sostenere la prova di laboratorio discutendo gli esercizi dello scorso a.a.?**
+**Q: Sono uno studente che ha già preparato il laboratorio dell'anno accademico 2014/15. Posso sostenere la prova di laboratorio discutendo gli esercizi dello scorso a.a.?**
 
-**A**: sì, ma solo per le sessioni di Giugno e Settembre e a patto che il laboratorio sia stato consegnato entro il 4 Marzo 2016.
+**A**: sì, ma solo per le sessioni di Giugno e Settembre e a patto che il laboratorio venga consegnato entro il 4 Marzo 2016.
 
-**Q: Sono uno studente che ha frequentato nei precedenti anni accademici. Posso sostenere le prove di laboratorio nella configurazioni degli anni precedenti?**
+**Q: Sono uno studente del turno X vorrei lavorare in gruppo con uno studente del gruppo Y. Posso farlo?**
 
-**A**: no, a meno che non riesca a completare il laboratorio e a consegnarlo entro il 4 Marzo 2016 (si veda anche la risposta precedente).
+**A**: ???
