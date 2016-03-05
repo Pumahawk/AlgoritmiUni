@@ -16,7 +16,7 @@ sistema di versioning ```Git```. Questa richiesta implica quanto segue:
   hanno visto come principale sviluppatore;
 - al termine del lavoro si dovrà consegnare l'intero repository.
 
-Il file `Git.md` contiene un esempio di come usare Git per los sviluppo degli
+Il file `Git.md` contiene un esempio di come usare Git per lo sviluppo degli
 esercizi proposti per questo laboratorio.
 
 È lasciata libertà allo studente di implementare il codice usando Java o C.
@@ -42,7 +42,7 @@ ben testato.
 
 *Alcuni suggerimenti*:
 
-- verificate che il codice sia suddiviso correttamente in package o moduli;
+- verificare che il codice sia suddiviso correttamente in package o moduli;
 - aggiungere un commento, prima di una definizione, che spiega il funzionamento
   dell'oggetto definito. Evitare quando possibile di commentare direttamente
   il codice in sé (se il codice è ben scritto, i commenti in genere non servono);
@@ -100,7 +100,7 @@ Il file `records.csv` che potete trovare seguendo il path
 `/usr/NFS/Linux/labalgoritmi/datasets/` contiene 20 milioni di record da
 ordinare. Ogni record è descritto su una riga e contiene i seguenti campi:
 
-- id: (tipo:intero) identificatore univoco del record;
+- id: (tipo intero) identificatore univoco del record;
 - field1: (tipo stringa) contiene parole estratte dalla divina commedia,
   potete assumere che i valori non contengano spazi o virgole;
 - field2: (tipo intero);
@@ -110,7 +110,7 @@ Il formato è un CSV standard: i campi sono separati da virgole; i record sono
 separati da "\n".
 
 Si ordinino i dati contenuti nel file `records.csv` in ordine non decrescente,
-secondo i valori contenuti nei tre campi "field" (i.e., è necessario ripetere
+secondo i valori contenuti nei tre campi "field" (è necessario ripetere
 l'ordinamento tre volte, una volta per ciascun campo).
 
 Si misurino i tempi di risposta e si crei una breve relazione in cui si
@@ -168,7 +168,7 @@ Si implementi la struttura dati Grafo diretto in modo che sia ottimale per
 dati sparsi.
 
 Il file `italian_dist_graph.csv` che potete recuperare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` contiene le distanze in metri tra varie
+`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare il disco dedicato) contiene le distanze in metri tra varie
 località italiane e una frazione delle località a loro più vicine. Il formato è
 un CSV standard: i campi sono separati da virgole; i record sono separati da
 "\n".
@@ -179,14 +179,14 @@ Ogni record contiene i seguenti dati:
   contenere spazi, non può contenere virgole;
 - località 2: (tipo stringa) nome della località "destinazione". La stringa
   può contenere spazi, non può contenere virgole;
-- distanza: (tipo float) distanza in metri tra le due località
+- distanza: (tipo float) distanza in metri tra le due località.
 
 *Note:*
 
-- il file descrive un grafo non diretto come se fosse diretto:(per ogni coppia
+- il file descrive un grafo non diretto come se fosse diretto (per ogni coppia
   di località il file contiene con lo stesso peso l'arco di andata e l'arco
   di ritorno); questa informazione è importante da tener presente, ma non
-  dovrebbe avere implicazioni sulla vostra implementazione (i.e., potete
+  dovrebbe avere implicazioni sulla vostra implementazione (cioè, potete
   trattarlo come fosse un grafo diretto).
 - il file è stato creato a partire da un dataset poco accurato. I dati
   riportati contengono inesattezze e imprecisioni.
