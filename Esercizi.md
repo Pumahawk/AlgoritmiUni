@@ -168,10 +168,10 @@ Si implementi la struttura dati Grafo diretto in modo che sia ottimale per
 dati sparsi.
 
 Il file `italian_dist_graph.csv` che potete recuperare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare il disco dedicato) contiene le distanze in metri tra varie
-località italiane e una frazione delle località a loro più vicine. Il formato è
-un CSV standard: i campi sono separati da virgole; i record sono separati da
-"\n".
+`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare 
+il disco Y) contiene le distanze in metri tra varie località italiane e una frazione 
+delle località a loro più vicine. Il formato è un CSV standard: i campi sono 
+separati da virgole; i record sono separati da "\n".
 
 Ogni record contiene i seguenti dati:
 
