@@ -97,8 +97,9 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 ### Confronti
 
 Il file `records.csv` che potete trovare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` contiene 20 milioni di record da
-ordinare. Ogni record è descritto su una riga e contiene i seguenti campi:
+`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare 
+il disco Y) contiene 20 milioni di record da ordinare. Ogni record è descritto 
+su una riga e contiene i seguenti campi:
 
 - id: (tipo intero) identificatore univoco del record;
 - field1: (tipo stringa) contiene parole estratte dalla divina commedia,
