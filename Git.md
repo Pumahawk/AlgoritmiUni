@@ -33,10 +33,15 @@ git config --global ui.color true
 ## Configurazione GitLab
 
 Al fine di poter creare copie locali dei repository presenti su GitLab è
-necessario configurare la propria macchina in modo tale che possa accedere in
-modo sicuro a GitLab via ssh. Per far questo è necessario creare una coppia di
-chiavi  crittografiche e inserire la chiave pubblica tra quelle accettate dal
-vostro utente su GitLab.
+necessario configurare la propria macchina in modo tale che possa accedere al
+repository remoto. Git permette di accedere al repository remoto sia tramite
+ssh, sia tramite https.
+
+# Accesso via ssh (laboratorio Dijkstra)
+
+Per configurare l'accesso via ssh è necessario creare una coppia di chiavi
+crittografiche e inserire la chiave pubblica tra quelle accettate dal vostro
+utente su GitLab.
 
 Per far questo accedere alla vostra pagina su GitLab e cliccate sul pulsante
  "Edit Profile settings".
@@ -48,6 +53,15 @@ caricare. La chiave generica per accedere e modificare il repository e una
 chiave di "Deploy" che può venire usata in sistemi di "Continuous Integration".
 A voi serve seguire le istruzioni per creare quelle che sono chiamate
 semplicemente chiavi "SSH".
+
+# Accesso via https (laboratorio Dijkstra e Von Neumann)
+
+Per accedere via https, è necessario istruire git a utilizzare il proxy dei
+laboratori usando il seguente comando:
+
+```
+git config --global https.proxy username@172.16.0.254:3128
+```
 
 ## Clonazione del progetto
 
@@ -76,19 +90,27 @@ dei docenti di laboratorio sono "esposito", "damfer" e "pozzato".
 L'avere a disposizione una copia del laboratorio non è ancora sufficiente per
 poter iniziare a lavorare: è infatti necessario creare una copia locale alla
 vostra macchina. Ogni membro del gruppo di lavoro si annoti la stringa di
-accesso al repository che è stato clonato e effettui un
-clone locale alla propria macchina aprendo un terminale e eseguendo il seguente
-comando:
+accesso al repository che è stato clonato: è la stringa che potete leggere in
+alto a destra sulla pagina del repository che avete creato cliccando sul
+pulsante "Fork repository"; notate che potete scegliere tra  la visualizzazione
+della stringa di accesso ssh e https. Si effettui un clone locale alla propria
+macchina aprendo un terminale e eseguendo il seguente comando:
 
 ```bash
   git clone GIT_REPO_REF
 ```
 
-dove GIT_REPO_REF identifica il vostro repository su GitLab ed è la stringa che
-potete leggere in alto a destra sulla pagina del repository che avete creato
-cliccando sul pulsante "Fork repository" (nel caso del repository messo a
-disposizione dai docenti essa corrisponde a
-`git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git`).
+dove GIT_REPO_REF è la stringa menzionata di accesso menzionata.
+
+*Nota accesso https:* la versione di git installata nei laboratori richiede di
+inserire il proprio login seguito dal simbolo @ subito dopo l'indicazione del
+protocollo. A titolo di esempio, riportiamo La stringa di accesso per il
+repository proposto dai docenti diventa quindi (nel vostro caso dovrete
+sostituire l'URL con quello che vi siete annotati precedentemente):
+
+```
+ git clone https://esposito@gitlab.educ.di.unito.it/esposito/laboratorioalgoritmi-2015-16.git
+```
 
 ## Comandi di base per lavorare
 
