@@ -23,8 +23,12 @@
 
 **Q: Sono uno studente che ha già preparato il laboratorio dell'anno accademico 2014/15. Posso sostenere la prova di laboratorio discutendo gli esercizi dello scorso a.a.?**
 
-**A**: sì, ma solo per le sessioni di Giugno e Settembre e a patto che il laboratorio venga consegnato entro il 4 Marzo 2016.
+**A**: sì, ma solo per le sessioni di Giugno e Settembre e a patto che il laboratorio venga consegnato entro il 9 Marzo 2016.
 
 **Q: Sono uno studente del turno X vorrei lavorare in gruppo con uno studente del gruppo Y. Posso farlo?**
 
-**A**: ???
+**A**: No.
+
+**Q: Sono uno studente lavoratore, è prevista qualche regola particolare per chi non frequenta?**
+
+**A**: No.

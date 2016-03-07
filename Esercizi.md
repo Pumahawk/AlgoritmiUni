@@ -19,28 +19,41 @@ sistema di versioning ```Git```. Questa richiesta implica quanto segue:
 Il file `Git.md` contiene un esempio di come usare Git per lo sviluppo degli
 esercizi proposti per questo laboratorio.
 
+## Linguaggio in cui sviluppare il laboratorio
+
 È lasciata libertà allo studente di implementare il codice usando Java o C.
 Come potrete verificare gli esercizi chiedono di realizzare
-strutture generiche. Nel caso del C è necessario capire come meglio approssimare
-l'idea di strutture generiche utilizzando quanto permesso dal linguaggio. Nel
-caso si scelga di utilizzare Java è possibile (e consigliato) usare gli
-ArrayList invece degli array nativi al fine di semplificare l'implementazione
-delle strutture generiche. A parte gli ArrayList è vietato usare altre classi
-container fornite da Java (è necessario implementare autonomamente eventuali
-container a supporto dell'implementazione).
+strutture generiche. Seguono alcuni suggerimenti circa come realizzarle nei
+due linguaggi accettati.
 
-*Suggerimenti per chi sceglie di utilizzare il linguaggio C*:
+**Suggerimenti (C)**: Nel caso del C è necessario capire come meglio
+approssimare l'idea di strutture generiche utilizzando quanto permesso dal
+linguaggio. Un approccio comune è far sì che le funzioni che manipolano le
+strutture dati prendano in input puntatori a void e utilizzino qualche funzione
+fornita dall'utente per accedere alle componenti necessarie.  *Nota*: chi è in
+grado di realizzare tipi di dato astratto tramite tipi opachi è incoraggiato a
+procedere in questa direzione.
 
-  - spesso questo significherà realizzare strutture e funzioni, che lavorano con
-    puntatori a ```void```;
-  - chi è in grado di realizzare tipi di dato astratto tramite tipi opachi è
-    incoraggiato a procedere in questa direzione.
+**Suggerimenti (Java)**: Nel caso si scelga di utilizzare Java è possibile (e
+consigliato) usare gli ArrayList invece degli array nativi al fine di
+semplificare l'implementazione delle strutture generiche.
+
+## Uso di librerie esterne e/o native del linguaggio scelto
+
+A parte gli ArrayList è vietato usare altre strutture dati *di base* offerte dal
+linguaggio in uso (es. code, liste, stack, ...). È lecito (ma non obbligatorio)
+avvalersi di strutture dati più complesse quando la loro realizzazione non è
+richiesta da uno degli esercizi proposti. Ad esempio è lecito utilizzare una
+libreria che implementa le code con priorità, ma non una che implementa i
+dizionari (perché questi ultimi sono oggetto dell'Esercizio 2).
+
+## Qualità dell'implementazione
 
 È parte del mandato degli esercizi la realizzazione di codice di buona qualità.
 Per "buona qualità" intendiamo codice ben modularizzato, ben commentato e
 ben testato.
 
-*Alcuni suggerimenti*:
+**Alcuni suggerimenti**:
 
 - verificare che il codice sia suddiviso correttamente in package o moduli;
 - aggiungere un commento, prima di una definizione, che spiega il funzionamento
@@ -55,8 +68,9 @@ ben testato.
 - tutti i nomi (e.g., nomi di variabili, di metodi, di classi, etc.) devono
   essere significativi e in inglese;
 - il codice deve essere correttamente indentato; impostare l'indentazione a
-  2 o 4 caratteri e impostare l'editor in modo che inserisca "soft tabs" (i.e.,
-  deve inserire il numero corretto di spazi invece che un carattere di tabulazione).
+  2 caratteri (un'indentazione di 4 caratteri è ammessa ma scoraggiata) e
+  impostare l'editor in modo che inserisca "soft tabs" (i.e., deve inserire il
+  numero corretto di spazi invece che un carattere di tabulazione).
 - per dare i nomi agli identificatori, seguire le convenzioni in uso per il
   linguaggio scelto:
   - Java: i nomi dei  package sono tutti in minuscolo senza separazione fra le
@@ -65,11 +79,11 @@ ben testato.
     delle variabili iniziano con una lettera minuscola e proseguono in camel
     case (es. theMethod), i nomi delle costanti sono tutti in maiuscolo e in
     formato snake case (es. THE_CONSTANT);
-  - C (ref. convenzioni progetto GTK+):  macro e costanti sono tutti in maiuscolo
-    e in formato snake case (es. THE_MACRO, THE_CONSTANT); i nomi di tipo (e.g.
-    struct, typedefs, enums, ...) iniziano con una lettera maiuscola e proseguono
-    in camel case (e.g., TheType, TheStruct); i nomi di funzione iniziano con
-    una lettera minuscola e proseguono in snake case (e.g., the_function());
+  - C:  macro e costanti sono tutti in maiuscolo e in formato snake case (es.
+    THE_MACRO, THE_CONSTANT); i nomi di tipo (e.g.  struct, typedefs, enums, ...)
+    iniziano con una lettera maiuscola e proseguono in camel case (e.g., TheType,
+    TheStruct); i nomi di funzione iniziano con una lettera minuscola e
+    proseguono in snake case (e.g., the_function());
 - i file vanno salvati in formato UTF8.
 
 
@@ -110,9 +124,10 @@ su una riga e contiene i seguenti campi:
 Il formato è un CSV standard: i campi sono separati da virgole; i record sono
 separati da "\n".
 
-Si ordinino i dati contenuti nel file `records.csv` in ordine non decrescente,
-secondo i valori contenuti nei tre campi "field" (è necessario ripetere
-l'ordinamento tre volte, una volta per ciascun campo).
+Usando ciascuno degli algoritmi implementati, si ordinino i dati contenuti nel
+file `records.csv` in ordine non decrescente secondo i valori contenuti nei tre
+campi "field" (i.e., per ogni algoritmo è necessario ripetere l'ordinamento tre
+volte, una volta per ciascun campo).
 
 Si misurino i tempi di risposta e si crei una breve relazione in cui si
 riportano i risultati ottenuti insieme a un loro commento. Nel caso
@@ -153,15 +168,17 @@ precedentemente memorizzata con il nuovo valore.
 Si misurino i tempi di risposta in modo da poter rispondere alle seguenti
 domande:
 
-  - come varia il tempo di inserimento al crescere del numero di record
-    inseriti?
-  - come varia il tempo di accesso al crescere del numero di record inseriti?
+  - Qual'è il tempo di inserimento dei 20.000.000 di record nei due container?
+  - Una volta caricati i record nei container, misurate il tempo di accesso
+    a 1.000.000 di chiavi scelte a caso. Che differenza c'è nei tempi di
+    risposta dei due container realizzati?
+
+Rispondete alla domanda precedente cancellando i record invece di accedervi.
 
 Si crei una breve relazione a commento dei risultati ottenuti. I risultati
 sono quelli che vi sareste aspettati? Se sì, perché? Se no, fate delle
 ipotesi circa il motivo per cui gli algoritmi non funzionano come vi aspettate
 e verificatele.
-
 
 ## Esercizio 3
 
@@ -184,11 +201,9 @@ Ogni record contiene i seguenti dati:
 
 *Note:*
 
-- il file descrive un grafo non diretto come se fosse diretto (per ogni coppia
-  di località il file contiene con lo stesso peso l'arco di andata e l'arco
-  di ritorno); questa informazione è importante da tener presente, ma non
-  dovrebbe avere implicazioni sulla vostra implementazione (cioè, potete
-  trattarlo come fosse un grafo diretto).
+- potete intrepretare le informazioni presenti nelle righe del file come
+  archi **non diretti** (i.e., probabilmente vorrete inserire nel vostro grafo
+  sia l'arco di andata che quello di ritorno a fronte di ogni riga letta).
 - il file è stato creato a partire da un dataset poco accurato. I dati
   riportati contengono inesattezze e imprecisioni.
 
@@ -204,8 +219,6 @@ Scrivere un programma per rispondere a ciascuno dei seguenti problemi:
 - trovare il cammino minimo tra due località; si assuma che gli archi
   riportati nel file `italian_dist_graph.csv` siano connessioni percorribili;
 - determinare la dimensione di ogni componente fortemente connessa del grafo.
-  Suggerimento: il problema è risolvibile banalmente se si sfrutta il fatto
-  che il grafo in questione è, nella sostanza, non diretto.
 
 ### Controlli
 
