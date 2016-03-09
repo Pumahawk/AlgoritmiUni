@@ -115,6 +115,27 @@ prima di ogni singolo test. Nel caso in questione quest'ultima operazione non
 influisce sul risultato. Le cose sarebbero state però diverse nel caso la classe
 di test avesse memorizzato i dati in qualche variabile di istanza (o di classe).
 
+### Compilazione ed esecuzione
+
+Al fine di poter compilare ed eseguire le classi di test è necessario aggiungere
+le librerie JUnit al classpath di Java.
+
+Per recuperare le librerie in quesitone (junit e hamcrest-core) potete procedere
+in due modi:
+
+1) scaricare i file dal sito di JUnit salvandoli in una vostra area locale (
+  notate che tali file *non* dovrebbero essere aggiunti al repository);
+
+2) usare i file messi a disposizione dai docenti nella directory labalgoritmi/lib
+(radicata in /usr/NFS/Linux o nel disco Y: a seconda che si acceda via unix o
+via windows)
+
+Esempio (unix):
+
+```csh
+setenv CLASSPATH /usr/NFS/Linux/labalgoritmi/lib/junit-4.12.jar:/usr/NFS/Linux/labalgoritmi/lib/hamcrest-core-1.3.jar:.
+```
+
 ## Unit test in C
 
 Purtroppo nel caso del C non c'è una libreria che possa essere definita
