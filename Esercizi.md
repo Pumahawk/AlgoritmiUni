@@ -1,6 +1,6 @@
 # Laboratorio per il corso di Algoritmi e Strutture Dati
 
---- Nel seguito verranno descritti i tre esercizi da consegnare al fine di potere
+Nel seguito verranno descritti i tre esercizi da consegnare al fine di potere
 superare la prova di laboratorio per il corso di Algoritmi e Strutture Dati.
 
 Durante la scrittura del codice è richiesto di usare in modo appropriato il
@@ -111,8 +111,8 @@ suggerite nel documento [Unit Testing](UnitTesting.md).
 ### Confronti
 
 Il file `records.csv` che potete trovare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare 
-il disco Y) contiene 20 milioni di record da ordinare. Ogni record è descritto 
+`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare
+il disco Y) contiene 20 milioni di record da ordinare. Ogni record è descritto
 su una riga e contiene i seguenti campi:
 
 - id: (tipo intero) identificatore univoco del record;
@@ -186,9 +186,9 @@ Si implementi la struttura dati Grafo diretto in modo che sia ottimale per
 dati sparsi.
 
 Il file `italian_dist_graph.csv` che potete recuperare seguendo il path
-`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare 
-il disco Y) contiene le distanze in metri tra varie località italiane e una frazione 
-delle località a loro più vicine. Il formato è un CSV standard: i campi sono 
+`/usr/NFS/Linux/labalgoritmi/datasets/` (in laboratorio von Neumann, selezionare
+il disco Y) contiene le distanze in metri tra varie località italiane e una frazione
+delle località a loro più vicine. Il formato è un CSV standard: i campi sono
 separati da virgole; i record sono separati da "\n".
 
 Ogni record contiene i seguenti dati:
