@@ -60,7 +60,6 @@ Per accedere via https, è necessario istruire git a utilizzare il proxy dei
 laboratori usando il seguente comando:
 
 ```
-git config --global https.proxy username@172.16.0.254:3128
 git config --global http.proxy username@172.16.0.254:3128
 ```
 
