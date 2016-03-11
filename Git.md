@@ -61,6 +61,7 @@ laboratori usando il seguente comando:
 
 ```
 git config --global https.proxy username@172.16.0.254:3128
+git config --global http.proxy username@172.16.0.254:3128
 ```
 
 ## Clonazione del progetto
