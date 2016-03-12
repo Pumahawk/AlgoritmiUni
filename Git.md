@@ -19,7 +19,7 @@ fare questo aprite un terminale e eseguite i seguenti comandi (nel seguito
   mail `mario.rossi@di.unito.it`):
 
 ```bash
-git config --global user.name Mario Rossi
+git config --global user.name "Mario Rossi"
 git config --global user.email mario.rossi@di.unito.it
 ```
 
