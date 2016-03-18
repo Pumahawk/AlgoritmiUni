@@ -1,6 +1,6 @@
 # Laboratorio per il corso di Algoritmi e Strutture Dati
 
-Mel seguito verranno descritti i tre esercizi da consegnare al fine di potere
+Nel seguito verranno descritti i tre esercizi da consegnare al fine di potere
 superare la prova di laboratorio per il corso di Algoritmi e Strutture Dati.
 
 Durante la scrittura del codice è richiesto di usare in modo appropriato il
