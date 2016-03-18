@@ -44,4 +44,28 @@ public class SelectionSortTest {
     sorter.swap(array, 1, 1);
     assertEquals( arrayCopy, array );
   }
+
+  @Test
+  public void testSelect() {
+    assertEquals(1, sorter.select(array, 0));
+  }
+
+  @Test
+  public void testSelectAtEndArray() {
+    assertEquals(4, sorter.select(array, 4));
+  }
+
+  @Test
+  public void testSelectionSort() {
+    ArrayList<Integer> expected = new ArrayList<Integer>();
+    expected.add(1);
+    expected.add(7);
+    expected.add(8);
+    expected.add(10);
+    expected.add(21);
+
+    sorter.sort(array);
+    assertEquals(expected,array);
+  }
+
 }
