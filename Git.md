@@ -171,7 +171,8 @@ Passo 1: effettuare un pull del progetto dei docenti utilizzando il seguente
          comando:
 
 ```bash
-git pull git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git master```
+git pull git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git master
+```
 
 Passo 2: effettuare il push della propria versione locale sul proprio repository
          GitLab:
