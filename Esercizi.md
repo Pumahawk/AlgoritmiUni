@@ -26,6 +26,13 @@ Come potrete verificare gli esercizi chiedono di realizzare
 strutture generiche. Seguono alcuni suggerimenti circa come realizzarle nei
 due linguaggi accettati.
 
+**Nota importante**: Con "strutture dati generiche" si fa riferimento al fatto
+che le strutture dati realizzate devono poter essere utilizzate con tipi di dato
+non noti a tempo di compilazione. Sebbene in Java la soluzione più  in linea con
+il moderno utilizzo del linguaggio richiederebbe la creazione di classi
+parametriche, tutte le scelte implementative  (compresa la decisione di usare o
+meno classi parametriche) sono lasciate agli studenti.
+
 **Suggerimenti (C)**: Nel caso del C è necessario capire come meglio
 approssimare l'idea di strutture generiche utilizzando quanto permesso dal
 linguaggio. Un approccio comune è far sì che le funzioni che manipolano le
