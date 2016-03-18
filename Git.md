@@ -154,3 +154,28 @@ git push # aggiornamento della copia remota
 
 [Pro Git]: https://progit.org
 [commit]: http://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository
+
+## Aggiornamento della propria versione del progetto
+
+Il progetto fornito dai docenti può subire variazioni e miglioramenti. Per
+poter aggiornare la propria versione all'ultima pubblicata dai docenti è
+necessario procedere come segue. Si apra una shell e ci si posizioni nella
+directory che contiene la copia locale del proprio repository. Vogliamo
+effettuare le due seguenti operazioni (l'ordine è importante):
+
+1. aggiornare la propria copia locale a partire dalla copia del docente;
+2. aggiornare la nostra copia remota (su GitLab) a partire dalla nostra copia
+   locale.
+
+Passo 1: effettuare un pull del progetto dei docenti utilizzando il seguente
+         comando:
+
+```bash
+git pull git@gitlab.educ.di.unito.it:esposito/laboratorioalgoritmi-2015-16.git master```
+
+Passo 2: effettuare il push della propria versione locale sul proprio repository
+         GitLab:
+
+```bash
+git push
+```
