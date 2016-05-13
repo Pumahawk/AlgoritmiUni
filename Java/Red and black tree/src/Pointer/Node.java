@@ -1,4 +1,4 @@
-package Punter;
+package Pointer;
 
 public class Node<T> implements Pointer {
     public T value;

@@ -1,4 +1,4 @@
-package Punter;
+package Pointer;
 
 public class NodeTree<T> implements Pointer {
     protected T value;

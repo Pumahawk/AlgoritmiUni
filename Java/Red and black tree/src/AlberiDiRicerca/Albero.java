@@ -6,12 +6,17 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 
 public class Albero<K, T> extends Dictionary<K, T> {
+    private enum Direction {
+	NORD, EAST, WEST;
+    }
+
     private class Nodo {
 	public K chiave;
 	public T valore;
 
 	public Nodo sinistra;
 	public Nodo destra;
+	public Nodo father;
 
 	public Nodo(K chiave, T valore, Nodo sinistra, Nodo destra) {
 	    this.chiave = chiave;
@@ -28,38 +33,17 @@ public class Albero<K, T> extends Dictionary<K, T> {
 
     private class Lista<P> implements Enumeration<P> {
 
-	private class Nodo {
-	    private P valore;
-	    private Nodo next;
-
-	    public Nodo(P valore, Nodo next) {
-		this.valore = valore;
-		this.next = next;
-	    }
-
-	    public Nodo(P valore) {
-		this(valore, null);
-	    }
-	}
-
-	private Nodo sentinella = new Nodo(null, null);
-	private Nodo ultimo = sentinella;
-
-	public void put(P val) {
-	    ultimo.next = new Nodo(val);
-	    ultimo = ultimo.next;
-	}
+	Nodo punt;
+	Direction direction;
 
 	@Override
 	public boolean hasMoreElements() {
-	    return (sentinella.next != null);
+	    return punt != null;
 	}
 
 	@Override
 	public P nextElement() {
-	    P ret = sentinella.next.valore;
-	    sentinella.next = sentinella.next.next;
-	    return ret;
+	    return null;
 	}
 
     }
