@@ -25,7 +25,6 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
 	    this.rightChild = right;
 	}
 
-	@SuppressWarnings("unused")
 	public Node(V value, Color color) {
 	    this(value, color, null, null, null);
 	}
@@ -49,19 +48,27 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
 	this.size++;
     }
 
+    private void test(Node nodo) {
+	Node n = nodo.father;
+	if (n != null)
+	    System.out.println("si");
+	else
+	    System.out.println("no");
+    }
+
     private void leftRotate(Node nodo) {
 	// Sinistra: true
 	// Destra: false
 	boolean verso;
 	Node padre = nodo.father;
 
-	verso = padre.leftChild == nodo;
-	if (padre != null)
+	if (padre != null) {
+	    verso = padre.leftChild == nodo;
 	    if (verso)
 		padre.leftChild = nodo.rightChild;
 	    else
 		padre.rightChild = nodo.rightChild;
-	else
+	} else
 	    this.root = nodo.rightChild;
 	Node p = nodo.rightChild.leftChild;
 	nodo.rightChild.leftChild = nodo;
@@ -114,5 +121,4 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
 	// TODO Auto-generated method stub
 	return 0;
     }
-
 }
