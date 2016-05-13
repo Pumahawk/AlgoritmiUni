@@ -95,6 +95,8 @@ public class Albero<K, T> extends Dictionary<K, T> {
 	@Override
 	public T get(Object key) {
 		K chiave = (K) key;
+		if(key == null)
+		    throw new NullPointerException();
 
 		return null;
 	}
@@ -255,19 +257,5 @@ public class Albero<K, T> extends Dictionary<K, T> {
 				return val;
 		} else
 			return null;
-	}
-
-	public static void main(String args[]) {
-		Albero<Integer, String> al = new Albero<Integer, String>((Integer ar1, Integer ar2) -> ar1.compareTo(ar2));
-		al.put(0, "lorenzo");
-		al.put(1, "andrea");
-		al.put(1, "andrea");
-		al.put(2, "big");
-
-		for (Enumeration en = al.elements(); en.hasMoreElements();)
-			System.out.println(en.nextElement());
-		for (Enumeration en = al.keys(); en.hasMoreElements();)
-			System.out.println(en.nextElement());
-
 	}
 }
