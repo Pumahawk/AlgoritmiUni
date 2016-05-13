@@ -48,14 +48,6 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
 	this.size++;
     }
 
-    private void test(Node nodo) {
-	Node n = nodo.father;
-	if (n != null)
-	    System.out.println("si");
-	else
-	    System.out.println("no");
-    }
-
     private void leftRotate(Node nodo) {
 	// Sinistra: true
 	// Destra: false
@@ -77,7 +69,22 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
     }
 
     private void rightRotate(Node nodo) {
+	// Sinistra: true
+	// Destra: false
+	boolean verso;
+	Node padre = nodo.father;
 
+	if (padre != null) {
+	    verso = padre.leftChild == nodo;
+	    if (verso)
+		padre.leftChild = nodo.leftChild;
+	    else
+		padre.rightChild = nodo.leftChild;
+	} else
+	    this.root = nodo.leftChild;
+	Node p = nodo.rightChild.leftChild;
+	nodo.leftChild.leftChild = nodo;
+	nodo.leftChild = p;
     }
 
     @Override
@@ -102,6 +109,22 @@ public class RedAndBlackTree<K, V> extends Dictionary<K, V> {
     public V get(Object key) {
 	// TODO Auto-generated method stub
 	return null;
+    }
+    
+    private Node getNode(K key, Node node) {
+	if (node != null)
+	    if (comparator.compare(node.key, key) < 0)
+		return getNode(key, node.leftChild);
+	    else if (comparator.compare(node.key, key) == 0)
+		return node;
+	    else
+		return getNode(key, node.leftChild);
+	else
+	    return null;
+    }
+    
+    private Node getNode(K key){
+	return getNode(key, root);
     }
 
     @Override
