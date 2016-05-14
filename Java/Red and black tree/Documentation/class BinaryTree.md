@@ -1,4 +1,4 @@
-#Classe BinaryTree#
+#Classe BinaryTree<K,V> extends Dictionary<K,V>#
 
 La classe deve estendere la classe Dictionary.  
 L'albero deve essere rispettare le seguenti condizioni:
@@ -8,15 +8,24 @@ un puntatore ad un nodo sinistro, un puntatore ad un nodo destro.
 + Ogni nodo deve avere la chiave maggiore rispetto alla chiave puntata dal puntatore sinistro
 e minore o uguale alla chiave del nodo puntato dal puntatore destro.
 
-##Implementazione##
+##Inner private class Content##
+
+La classe content viene utilizzata per unire in un unico oggetto la chiave e il valore assegnato
+
+###Attributi
+
++ public K key;
++ public V value;
  
-*Attributi*:
+##Attributi##
 
-- int **size**; *Numero di nodi dell'albero*
-- Pointer **root** *Puntatore al nodo radice dell'albero*;
++ private int **size**;
++ private BinaryNode<Content, BinaryNode????> **root**; ???????????PROBLEMA CON BINARYNODE?????????????
 
-*Metodi:*
+##Metodi##
 
+- private **leftRotation(BinaryNode(K,V))**;
+- private **rightRotation(BinaryNode(K,V))**;
 - public Enumeration<V> **elements()**;
 - public V **get(Object)**;
 - public boolean **isEmpty()**;
@@ -24,3 +33,7 @@ e minore o uguale alla chiave del nodo puntato dal puntatore destro.
 - public V **put(K,V)**;
 - public V **remove(Object)**;
 - public int **size()**;
+
+##Descrizione degli attributi##
+
+##Descrizione dei metodi##
