@@ -58,23 +58,15 @@ public class Albero<K, T> extends Dictionary<K, T> {
 
     @Override
     public Enumeration<T> elements() {
-	Lista<T> lista = new Lista<>();
-	ArrayList<Nodo> nodi = new ArrayList<>();
-	if (root != null) {
-	    Nodo p;
-	    nodi.add(root);
-	    for (int i = 0; i < nodi.size(); i++) {
-		p = nodi.get(i);
-		lista.put(p.valore);
-		if (p.sinistra != null) {
-		    nodi.add(p.sinistra);
-		}
-		if (p.destra != null) {
-		    nodi.add(p.destra);
-		}
-	    }
-	}
-	return lista;
+	// TODO
+	/*
+	 * Lista<T> lista = new Lista<>(); ArrayList<Nodo> nodi = new
+	 * ArrayList<>(); if (root != null) { Nodo p; nodi.add(root); for (int i
+	 * = 0; i < nodi.size(); i++) { p = nodi.get(i); lista.put(p.valore); if
+	 * (p.sinistra != null) { nodi.add(p.sinistra); } if (p.destra != null)
+	 * { nodi.add(p.destra); } } } return lista;
+	 */
+	return null;
     }
 
     @Override
@@ -93,23 +85,15 @@ public class Albero<K, T> extends Dictionary<K, T> {
 
     @Override
     public Enumeration<K> keys() {
-	Lista<K> lista = new Lista<>();
-	ArrayList<Nodo> nodi = new ArrayList<>();
-	if (root != null) {
-	    Nodo p;
-	    nodi.add(root);
-	    for (int i = 0; i < nodi.size(); i++) {
-		p = nodi.get(i);
-		lista.put(p.chiave);
-		if (p.sinistra != null) {
-		    nodi.add(p.sinistra);
-		}
-		if (p.destra != null) {
-		    nodi.add(p.destra);
-		}
-	    }
-	}
-	return lista;
+	// TODO
+	/*
+	 * Lista<K> lista = new Lista<>(); ArrayList<Nodo> nodi = new
+	 * ArrayList<>(); if (root != null) { Nodo p; nodi.add(root); for (int i
+	 * = 0; i < nodi.size(); i++) { p = nodi.get(i); lista.put(p.chiave); if
+	 * (p.sinistra != null) { nodi.add(p.sinistra); } if (p.destra != null)
+	 * { nodi.add(p.destra); } } } return lista;
+	 */
+	return null;
     }
 
     @Override
