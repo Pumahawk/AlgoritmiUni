@@ -17,6 +17,7 @@ La classe content viene utilizzata per unire in un unico oggetto la chiave e il 
 + public K key;
 + public V value;
  
+ 
 ##Attributi##
 
 + private int **size**;
@@ -24,8 +25,8 @@ La classe content viene utilizzata per unire in un unico oggetto la chiave e il 
 
 ##Metodi##
 
-- private **leftRotation(BinaryNode(K,V))**;
-- private **rightRotation(BinaryNode(K,V))**;
+- private **leftRotation(BinaryNode<Content, BinaryNode>)**;
+- private **rightRotation(BinaryNode<Content, BinaryNode>)**;
 - public Enumeration<V> **elements()**;
 - public V **get(Object)**;
 - public boolean **isEmpty()**;
