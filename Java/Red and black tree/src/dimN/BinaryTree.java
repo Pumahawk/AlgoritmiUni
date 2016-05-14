@@ -9,7 +9,18 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	public V value;
     }
 
-    private BinaryNode<Content, ?> root;
+    protected int size = 0;
+    protected BinaryNode<Content, ?> root = null;
+
+    public BinaryTree() {
+    }
+
+    public BinaryTree(Dictionary<K, V> dictionary) {
+	Enumeration<K> keys = dictionary.keys();
+	for (K key; keys.hasMoreElements();)
+	    this.put(key = keys.nextElement(), dictionary.get(key));
+	this.size = dictionary.size();
+    }
 
     @Override
     public Enumeration<V> elements() {
@@ -24,8 +35,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     @Override
     public boolean isEmpty() {
-	// TODO Auto-generated method stub
-	return false;
+	return this.root == null;
     }
 
     @Override
