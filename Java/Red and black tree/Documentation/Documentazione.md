@@ -13,5 +13,11 @@ L'esercizio 2 è diviso in 2 parti:
 
 ### Parte 1, Alberi di ricerca ###
 Viene implementata la classe BinaryTree, documentata nel file `class BinaryTree.md`.  
-La classe BinaryTree ha bisogno del supporto della classe BinaryNode, documentata nel
-file `class BinaryNode.md`.
+Si crea una libreria contenente le strutture dinamiche per la realizzazione della classe
+BinaryTree.
+
+La libreria può chiamarsi **dimN** e deve contenere una classe che permette di racciudere in 
+un unico oggetto un valore e un puntatore ad una classe dello stesso tipo. 
+Per far questo si è deciso di creare la classe `Node<C>` e di estenderla per creare una classe
+utile alla struttura dinamica Lista e Albero.
+
