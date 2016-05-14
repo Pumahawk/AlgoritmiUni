@@ -9,6 +9,7 @@ pivate C **value**
 ##Costruttori
 
 public **(C)**
+public **()**
 
 ##Metodi
 
