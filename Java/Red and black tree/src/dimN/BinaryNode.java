@@ -2,25 +2,26 @@ package dimN;
 
 public class BinaryNode<C, P extends Node<C>> extends Node<C> {
 
+    private P father;
     private P left;
     private P right;
 
-    public BinaryNode(C val, P left, P right) {
+    public BinaryNode(C val, P father, P left, P right) {
 	super(val);
 	setLeft(left);
 	setRight(right);
     }
 
     public BinaryNode(C val) {
-	super(val);
-	setLeft(null);
-	setRight(null);
+	this(val, null, null, null);
     }
 
     public BinaryNode() {
-	super();
-	setLeft(left);
-	setRight(right);
+	this(null, null, null, null);
+    }
+
+    public P father() {
+	return this.father;
     }
 
     public P left() {
@@ -29,6 +30,10 @@ public class BinaryNode<C, P extends Node<C>> extends Node<C> {
 
     public P right() {
 	return this.right;
+    }
+
+    public void setFather(P father) {
+	this.left = father;
     }
 
     public void setLeft(P left) {
