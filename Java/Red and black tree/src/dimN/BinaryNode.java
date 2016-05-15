@@ -8,6 +8,7 @@ public class BinaryNode<C, P extends Node<C>> extends Node<C> {
 
     public BinaryNode(C val, P father, P left, P right) {
 	super(val);
+	setFather(father);
 	setLeft(left);
 	setRight(right);
     }
@@ -33,7 +34,7 @@ public class BinaryNode<C, P extends Node<C>> extends Node<C> {
     }
 
     public void setFather(P father) {
-	this.left = father;
+	this.father = father;
     }
 
     public void setLeft(P left) {
