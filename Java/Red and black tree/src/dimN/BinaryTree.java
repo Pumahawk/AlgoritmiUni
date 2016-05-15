@@ -54,6 +54,17 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	}
     }
 
+    private class PBinaryNode extends BinaryNode<Content, PBinaryNode> {
+
+	public PBinaryNode(Content val, PBinaryNode father, PBinaryNode left, PBinaryNode right) {
+	    super(val, father, left, right);
+	}
+
+	public PBinaryNode(Content val) {
+	    this(val, null, null, null);
+	}
+    }
+
     /**
      * Classe utilizzata per gestire la enumerazione e permettere di spostarsti
      * tra un nodo e l'altro dell'albero nella maniera piu corretta
@@ -62,10 +73,10 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      *
      */
     private class Enum implements Enumeration<V> {
-	public BinaryNode<Content, BinaryNode<Content, ?>> punt;
+	public PBinaryNode punt;
 	public Direction direction;
 
-	public Enum(BinaryNode<Content, BinaryNode<Content, ?>> punt) {
+	public Enum(PBinaryNode punt) {
 	    this.punt = punt;
 
 	}
@@ -90,7 +101,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
     /**
      * primo nodo dell'albero
      */
-    protected BinaryNode<Content, BinaryNode<Content, ?>> root = null;
+    protected PBinaryNode root = null;
     /**
      * Comparatore utilizzato per confrontare correttamente le chiavi
      */
@@ -111,7 +122,9 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      * un'altra struttura a dizionario
      * 
      * @param dictionary
+     *            Dizionario da cui creare l'albero
      * @param comp
+     *            Comparatore per confrontare le chiavi
      */
     public BinaryTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	Enumeration<K> keys = dictionary.keys();
@@ -131,19 +144,17 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	return get(arg0, root);
     }
 
-    private V get(Object key, BinaryNode<Content, BinaryNode<Content, ?>> punt) {
-	BinaryNode<Content, BinaryNode<Content, ?>> nodo = getNode((K) key, punt);
+    private V get(Object key, PBinaryNode punt) {
+	PBinaryNode nodo = getNode((K) key, punt);
 
 	return (nodo != null) ? nodo.value().value : null;
     }
 
-    private BinaryNode<Content, BinaryNode<Content, ?>> getNode(K key,
-	    BinaryNode<Content, BinaryNode<Content, ?>> punt) {
+    private PBinaryNode getNode(K key, PBinaryNode punt) {
 	if (punt != null)
 	    return (comparator.compare(punt.value().key, (K) key) == 0) ? punt
-		    : (comparator.compare((K) key, punt.value().key) < 0)
-			    ? getNode(key, (BinaryNode<Content, BinaryNode<Content, ?>>) punt.left())
-			    : getNode(key, (BinaryNode<Content, BinaryNode<Content, ?>>) punt.right());
+		    : (comparator.compare((K) key, punt.value().key) < 0) ? getNode(key, punt.left())
+			    : getNode(key, punt.right());
 	else
 	    return null;
     }
@@ -163,7 +174,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
     public V put(K key, V val) {
 
 	if (this.root == null) {
-	    this.root = new BinaryNode<Content, BinaryNode<Content, ?>>(new Content(key, val));
+	    this.root = new PBinaryNode(new Content(key, val));
 	    this.size++;
 	    return null;
 	} else
@@ -171,24 +182,23 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     }
 
-    private V put(K key, V value, BinaryNode<Content, BinaryNode<Content, ?>> node) {
+    private V put(K key, V value, PBinaryNode node) {
 	if (comparator.compare(key, node.value().key) == 0) {
 	    V ret = node.value().value;
 	    node.value().value = value;
 	    return ret;
 	} else if (comparator.compare(key, node.value().key) < 0)
 	    if (node.left() != null)
-		return put(key, value, (BinaryNode<Content, BinaryNode<Content, ?>>) node.left());
+		return put(key, value, node.left());
 	    else {
-		node.setLeft(
-			new BinaryNode<Content, BinaryNode<Content, ?>>(new Content(key, value), node, null, null));
+		node.setLeft(new PBinaryNode(new Content(key, value), node, null, null));
 		this.size++;
 		return null;
 	    }
 	else if (node.right() != null) {
-	    return put(key, value, (BinaryNode<Content, BinaryNode<Content, ?>>) node.right());
+	    return put(key, value, node.right());
 	} else {
-	    node.setRight(new BinaryNode<Content, BinaryNode<Content, ?>>(new Content(key, value), node, null, null));
+	    node.setRight(new PBinaryNode(new Content(key, value), node, null, null));
 	    this.size++;
 	    return null;
 	}
@@ -200,7 +210,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	// TODO
     }
 
-    private V remove(Object key, BinaryNode<Content, BinaryNode<Content, ?>> node) {
+    private V remove(Object key, PBinaryNode node) {
 	return null;
     }
 
@@ -209,11 +219,11 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	return size;
     }
 
-    private void print(BinaryNode<Content, BinaryNode<Content, ?>> node) {
+    private void print(PBinaryNode node) {
 	if (node != null) {
 	    System.out.println("Chiave: " + node.value().key + " Valore: " + node.value().value);
-	    print((BinaryNode<Content, BinaryNode<Content, ?>>) node.left());
-	    print((BinaryNode<Content, BinaryNode<Content, ?>>) node.right());
+	    print(node.left());
+	    print(node.right());
 	} else
 	    System.out.println("Fine.");
 
