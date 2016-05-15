@@ -15,8 +15,8 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
     }
 
     private class Enum implements Enumeration<V> {
-	BinaryNode<Content, ?> punt;
-	Direction direction;
+	public BinaryNode<Content, ?> punt;
+	public Direction direction;
 
 	@Override
 	public boolean hasMoreElements() {
