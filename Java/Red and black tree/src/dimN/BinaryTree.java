@@ -5,9 +5,29 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 
 public class BinaryTree<K, V> extends Dictionary<K, V> {
+    public enum Direction {
+	NORTH, EAST, WEST;
+    }
+
     private class Content {
 	public K key;
 	public V value;
+    }
+
+    private class Enum implements Enumeration<V> {
+	BinaryNode<Content, ?> punt;
+	Direction direction;
+
+	@Override
+	public boolean hasMoreElements() {
+	    return punt != null;
+	}
+
+	@Override
+	public V nextElement() {
+	    return null;
+	}
+
     }
 
     protected int size = 0;
