@@ -27,7 +27,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      *
      */
     public enum Direction {
-	NORTH_EAST, NORTH_WEST, SOUTH_EAST, SOUTH_WEST;
+	TOP, DOWN, LEFT, RIGHT;
     }
 
     /**
@@ -78,12 +78,15 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      * @author Lorenzo Gandino
      *
      */
-    private class Enum implements Enumeration<V> {
+    private class EnumNode implements Enumeration<PBinaryNode> {
 	public PBinaryNode punt;
-	public Direction direction;
+	public List<Direction> direction;
+	public Direction topDown = Direction.TOP;
 
-	public Enum(PBinaryNode punt) {
+	public EnumNode(PBinaryNode punt) {
 	    this.punt = punt;
+	    this.direction = new List<>();
+	    this.direction.put(Direction.LEFT);
 
 	}
 
@@ -93,9 +96,35 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	}
 
 	@Override
-	public V nextElement() {
-	    // TODO;
-	    return null;
+	public PBinaryNode nextElement() {
+	    PBinaryNode p = this.punt;
+
+	    if (this.punt.left() != null) {
+		this.direction.put(Direction.LEFT);
+		this.punt = this.punt.left();
+	    } else if (this.punt.right() != null) {
+		this.direction.put(Direction.RIGHT);
+		this.punt = this.punt.right();
+	    } else
+		top();
+
+	    return p;
+	}
+
+	private void top() {
+	    while (direction.next()) {
+		Direction dir = direction.pop();
+		this.punt = this.punt.father();
+		if (dir == Direction.LEFT && this.punt.right() != null) {
+		    this.direction.put(Direction.RIGHT);
+		    this.punt = this.punt.right();
+		    break;
+		}
+	    }
+	}
+
+	private void down() {
+	    // TODO
 	}
 
     }
@@ -137,6 +166,10 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	for (K key; keys.hasMoreElements();)
 	    this.put(key = keys.nextElement(), dictionary.get(key));
 	this.size = dictionary.size();
+    }
+
+    private Enumeration<PBinaryNode> nodes() {
+	return new EnumNode(root);
     }
 
     @Override
@@ -240,8 +273,15 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	albero.put(2, "Ciao");
 	albero.put(1, "A");
 	albero.put(3, "Tutti");
+	albero.put(4, "Brutti");
+	albero.put(5, "Coglioni");
 	albero.print(albero.root);
 	String parola = albero.get(2);
+	Enumeration<BinaryTree<Integer, String>.PBinaryNode> en = albero.nodes();
+	en.nextElement();
+	en.nextElement();
+	en.nextElement();
+	en.nextElement();
 	return;
     }
 
