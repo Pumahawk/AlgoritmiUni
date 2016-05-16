@@ -54,6 +54,12 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	}
     }
 
+    /**
+     * Rappresenta il nodo utilizzato in questa stuttura ad albero
+     * 
+     * @author Lorenzo Gandino
+     *
+     */
     private class PBinaryNode extends BinaryNode<Content, PBinaryNode> {
 
 	public PBinaryNode(Content val, PBinaryNode father, PBinaryNode left, PBinaryNode right) {

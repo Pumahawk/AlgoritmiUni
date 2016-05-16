@@ -2,21 +2,34 @@ package dimN;
 
 import java.util.Iterator;
 
+/**
+ * Rappresenta una struttura dinamica in cui l'ultimo dato sara il primo ad
+ * essere prelevato.
+ * 
+ * @author Lorenzo Gandino
+ *
+ * @param <T>
+ *            Tipo di variabile memorizzata nella lista.
+ */
 public class List<T> implements Iterable<T> {
-    private class PersonalNode extends NodeList<T, PersonalNode> {
-	public PersonalNode(T val) {
+    /**
+     * @author Lorenzo Gandino
+     *
+     */
+    private class PNode extends NodeList<T, PNode> {
+	public PNode(T val) {
 	    this(val, null);
 	}
 
-	public PersonalNode(T val, PersonalNode next) {
+	public PNode(T val, PNode next) {
 	    super(val, next);
 	}
     }
 
     private class IteratorList implements Iterator<T> {
-	public PersonalNode node;
+	public PNode node;
 
-	public IteratorList(PersonalNode node) {
+	public IteratorList(PNode node) {
 	    this.node = node;
 	}
 
@@ -35,7 +48,7 @@ public class List<T> implements Iterable<T> {
     }
 
     private int size;
-    private PersonalNode head;
+    private PNode head;
 
     @Override
     public Iterator<T> iterator() {
@@ -43,8 +56,8 @@ public class List<T> implements Iterable<T> {
     }
 
     public void put(T val) {
-	PersonalNode next = head;
-	head = new PersonalNode(val, next);
+	PNode next = head;
+	head = new PNode(val, next);
     }
 
     public T pop() {

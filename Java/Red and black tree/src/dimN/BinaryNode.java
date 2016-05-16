@@ -1,9 +1,30 @@
 package dimN;
 
+/**
+ * Rappresenta il nodo tipico di un albero. Possiede 3 puntatori: father per
+ * putare al nodo padre, left e right per puntare ai nodi figli. La classe
+ * permette di mischiare varie strutture e non necessariamene deve essere
+ * utilizzata soltanto negli alberi.
+ * 
+ * @author Lorenzo Gandino
+ *
+ * @param <C>
+ *            Valore informativo contenuto in un nodo
+ * @param <P>
+ *            Tipo di nodo a cui i puntatori sono rivolti
+ */
 public class BinaryNode<C, P extends Node<C>> extends Node<C> {
-
+    /**
+     * Puntatore al nodo padre.
+     */
     private P father;
+    /**
+     * Puntatore al nodo radice del sottoalbero sinistro.
+     */
     private P left;
+    /**
+     * Puntatore al nodo radice del sottoalbero destro
+     */
     private P right;
 
     public BinaryNode(C val, P father, P left, P right) {
