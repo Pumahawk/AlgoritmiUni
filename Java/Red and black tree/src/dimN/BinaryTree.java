@@ -26,8 +26,8 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      * @author Lorenzo Gandino
      *
      */
-    public enum Direction {
-	TOP, DOWN, LEFT, RIGHT;
+    private enum Direction {
+	LEFT, RIGHT;
     }
 
     /**
@@ -80,13 +80,13 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
      */
     private class EnumNode implements Enumeration<PBinaryNode> {
 	public PBinaryNode punt;
+	public PBinaryNode begin;
 	public List<Direction> direction;
-	public Direction topDown = Direction.TOP;
 
 	public EnumNode(PBinaryNode punt) {
 	    this.punt = punt;
+	    this.begin = punt;
 	    this.direction = new List<>();
-	    this.direction.put(Direction.LEFT);
 
 	}
 
@@ -105,8 +105,11 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	    } else if (this.punt.right() != null) {
 		this.direction.put(Direction.RIGHT);
 		this.punt = this.punt.right();
-	    } else
+	    } else {
 		top();
+		if (this.punt == this.begin)
+		    this.punt = null;
+	    }
 
 	    return p;
 	}
@@ -123,8 +126,42 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	    }
 	}
 
-	private void down() {
-	    // TODO
+    }
+
+    private class KEnum implements Enumeration<K> {
+
+	public EnumNode en;
+
+	public KEnum(PBinaryNode punt) {
+	    this.en = new EnumNode(punt);
+	}
+
+	public K nextElement() {
+	    return en.nextElement().value().key;
+	}
+
+	@Override
+	public boolean hasMoreElements() {
+	    return en.hasMoreElements();
+	}
+
+    }
+
+    private class VEnum implements Enumeration<V> {
+
+	public EnumNode en;
+
+	public VEnum(PBinaryNode punt) {
+	    this.en = new EnumNode(punt);
+	}
+
+	public V nextElement() {
+	    return en.nextElement().value().value;
+	}
+
+	@Override
+	public boolean hasMoreElements() {
+	    return en.hasMoreElements();
 	}
 
     }
@@ -174,8 +211,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     @Override
     public Enumeration<V> elements() {
-	// TODO
-	return null;
+	return new VEnum(root);
     }
 
     @Override
@@ -205,8 +241,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     @Override
     public Enumeration<K> keys() {
-	// TODO Auto-generated method stub
-	return null;
+	return new KEnum(this.root);
     }
 
     @Override
@@ -275,13 +310,10 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	albero.put(3, "Tutti");
 	albero.put(4, "Brutti");
 	albero.put(5, "Coglioni");
-	albero.print(albero.root);
-	String parola = albero.get(2);
-	Enumeration<BinaryTree<Integer, String>.PBinaryNode> en = albero.nodes();
-	en.nextElement();
-	en.nextElement();
-	en.nextElement();
-	en.nextElement();
+	// albero.print(albero.root);
+	Enumeration<Integer> str = albero.keys();
+	while (str.hasMoreElements())
+	    System.out.println(str.nextElement());
 	return;
     }
 
