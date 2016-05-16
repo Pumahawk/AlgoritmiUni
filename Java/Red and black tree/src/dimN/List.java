@@ -58,16 +58,22 @@ public class List<T> implements Iterable<T> {
     public void put(T val) {
 	PNode next = head;
 	head = new PNode(val, next);
+	this.size++;
     }
 
     public T pop() {
 	T ret = head.value();
 	head = head.next();
+	this.size--;
 	return ret;
     }
 
     public boolean next() {
 	return head != null;
+    }
+
+    public int size() {
+	return size;
     }
 
     public static void main(String args[]) {
