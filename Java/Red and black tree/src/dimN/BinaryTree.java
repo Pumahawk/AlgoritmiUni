@@ -24,6 +24,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	    this(null, null);
 	}
 
+	@Override
 	public String toString() {
 	    return "[" + key + "](" + value + ")";
 	}
@@ -38,6 +39,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	    it = tr.iterator();
 	}
 
+	@Override
 	public K nextElement() {
 	    return it.next().key;
 	}
@@ -59,6 +61,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	    it = tr.iterator();
 	}
 
+	@Override
 	public V nextElement() {
 	    return it.next().value;
 	}
@@ -116,11 +119,6 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
     public V remove(Object key) {
 	return null;
 	// TODO
-    }
-
-    private V remove(Object key, StaticBinaryNode<Content> node) {
-	// TODO
-	return null;
     }
 
     @Override

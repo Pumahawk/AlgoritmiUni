@@ -116,9 +116,53 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return this.size;
     }
 
-    public V remove(Object key) {
-	return null;
-	// TODO
+    public V remove(N node) {
+	if (node != null) {
+	    N myNode = getNode(node.value(), this.root);
+	    if (myNode != null) {
+		if (myNode.father() != null) {
+		    if (myNode.father().left() == myNode)
+			myNode.father().setLeft(null);
+		    else
+			myNode.father().setRight(null);
+		    putNode(myNode.left());
+		    putNode(myNode.right());
+		} else if (myNode.right() != null) {
+		    this.root = myNode.right();
+		    putNode(myNode.left());
+		} else
+		    this.root = myNode.left();
+		return myNode.value();
+	    } else
+		return null;
+	} else
+	    return null;
+    }
+
+    public void putNode(N node) {
+	if (node != null)
+	    if (this.root != null) {
+		if (node != null)
+		    putNode(node, this.root);
+	    } else {
+		this.root.setFather(node);
+	    }
+    }
+
+    private void putNode(N node, N root) {
+	if (comparator.compare(node.value(), root.value()) < 0) {
+	    if (root.left() != null) {
+		putNode(node, root.left());
+	    } else {
+		root.setLeft(node);
+	    }
+	} else {
+	    if (root.right() != null) {
+		putNode(node, root.right());
+	    } else {
+		root.setRight(node);
+	    }
+	}
     }
 
     public boolean isEmpty() {
