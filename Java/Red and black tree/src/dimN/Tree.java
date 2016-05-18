@@ -95,6 +95,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    return null;
     }
 
+    public void setComparator(Comparator<V> comparator) {
+	this.comparator = comparator;
+    }
+
     public V get(V arg0) {
 	return get(arg0, root);
     }

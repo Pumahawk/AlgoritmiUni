@@ -5,36 +5,18 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-public class BinaryTree<K, V> extends Dictionary<K, V> {
+public abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K, V>, StaticBinaryNode<ContainerDictionary<K, V>>>>
+	extends Dictionary<K, V> {
 
     private enum Direction {
 	LEFT, RIGHT;
     }
 
-    private class Content {
-	public K key;
-	public V value;
-
-	public Content(K key, V value) {
-	    this.key = key;
-	    this.value = value;
-	}
-
-	public Content() {
-	    this(null, null);
-	}
-
-	public String toString() {
-	    return "[" + key + "](" + value + ")";
-	}
-    }
-
     private class KEnum implements Enumeration<K> {
 
-	// public EnumNode en;
-	public Iterator<Content> it;
+	public Iterator<ContainerDictionary<K, V>> it;
 
-	public KEnum(NormalTree<Content> tr) {
+	public KEnum(T tr) {
 	    it = tr.iterator();
 	}
 
@@ -53,9 +35,9 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
 	// public EnumNode en;
 
-	public Iterator<Content> it;
+	public Iterator<ContainerDictionary<K, V>> it;
 
-	public VEnum(NormalTree<Content> tr) {
+	public VEnum(T tr) {
 	    it = tr.iterator();
 	}
 
@@ -70,13 +52,12 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     }
 
-    protected NormalTree<Content> tree;
+    protected T tree;
 
-    public BinaryTree(Comparator<K> comp) {
-	this.tree = new NormalTree<Content>((Content o1, Content o2) -> comp.compare(o1.key, o2.key));
+    public DictionaryTree(Comparator<K> comp) {
     }
 
-    public BinaryTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
+    public DictionaryTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();
 	for (K key; keys.hasMoreElements();) {
@@ -91,7 +72,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     @Override
     public V get(Object arg0) {
-	Content c = tree.get((Content) arg0);
+	ContainerDictionary<K, V> c = tree.get((ContainerDictionary<K, V>) arg0);
 	return (c != null) ? c.value : null;
     }
 
@@ -107,7 +88,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 
     @Override
     public V put(K key, V val) {
-	Content ret = tree.put(new Content(key, val));
+	ContainerDictionary<K, V> ret = tree.put(new ContainerDictionary<K, V>(key, val));
 	return (ret != null) ? ret.value : null;
 
     }
@@ -118,7 +99,7 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
 	// TODO
     }
 
-    private V remove(Object key, StaticBinaryNode<Content> node) {
+    private V remove(Object key, StaticBinaryNode<ContainerDictionary<K, V>> node) {
 	// TODO
 	return null;
     }
@@ -126,20 +107,6 @@ public class BinaryTree<K, V> extends Dictionary<K, V> {
     @Override
     public int size() {
 	return this.tree.size();
-    }
-
-    public static void main(String args[]) {
-	BinaryTree<Integer, String> albero = new BinaryTree<Integer, String>((Integer a, Integer b) -> a.compareTo(b));
-	albero.put(2, "Ciao");
-	albero.put(1, "A");
-	albero.put(3, "Tutti");
-	albero.put(4, "Br**ti");
-	albero.put(5, "Co****ni");
-	// albero.print(albero.root);
-	Enumeration<String> str = albero.elements();
-	while (str.hasMoreElements())
-	    System.out.println(": " + str.nextElement());
-	return;
     }
 
 }
