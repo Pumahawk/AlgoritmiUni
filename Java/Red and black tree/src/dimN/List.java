@@ -61,8 +61,7 @@ public class List<T> implements Iterable<T> {
     }
 
     public void put(T val) {
-	PNode next = head;
-	head = new PNode(val, next);
+	head = new PNode(val, head);
 	this.size++;
     }
 
