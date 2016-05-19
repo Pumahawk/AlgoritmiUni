@@ -1,11 +1,10 @@
 package dimN;
 
-import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-public abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K, V>, StaticBinaryNode<ContainerDictionary<K, V>>>>
+public class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K, V>, StaticBinaryNode<ContainerDictionary<K, V>>>>
 	extends Dictionary<K, V> {
 
     private enum Direction {
@@ -54,15 +53,8 @@ public abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K,
 
     protected T tree;
 
-    public DictionaryTree(Comparator<K> comp) {
-    }
-
-    public DictionaryTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
-	this(comp);
-	Enumeration<K> keys = dictionary.keys();
-	for (K key; keys.hasMoreElements();) {
-	    this.put(key = keys.nextElement(), dictionary.get(key));
-	}
+    public DictionaryTree(T tree) {
+	this.tree = tree;
     }
 
     @Override

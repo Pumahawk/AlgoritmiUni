@@ -6,10 +6,7 @@ import java.util.Enumeration;
 class DictionaryNormalTree<K, V> extends DictionaryTree<K, V, NormalTree<ContainerDictionary<K, V>>> {
 
     public DictionaryNormalTree(Comparator<K> comp) {
-	super(comp);
-
-	this.tree = new NormalTree<ContainerDictionary<K, V>>(ContainerDictionary.getComparator(comp));
-
+	super(new NormalTree<ContainerDictionary<K, V>>(ContainerDictionary.getComparator(comp)));
     }
 
     public static void main(String args[]) {
