@@ -5,7 +5,7 @@ public class NodeList<V, P extends Node<V>> extends Node<V> {
 
     public NodeList(V cont, P next) {
 	super(cont);
-	this.next = next;
+	setNext(next);
     }
 
     public NodeList(V cont) {
