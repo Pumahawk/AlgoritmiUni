@@ -65,6 +65,8 @@ public class List<T> implements Iterable<T> {
 	this.size++;
     }
 
+    // Aggiungere nella documentazione che in caso la lista sia vuota sara
+    // lanciato un null'pointer Exception
     public T pop() {
 	T ret = head.value();
 	head = head.next();
