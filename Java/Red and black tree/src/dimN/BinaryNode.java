@@ -13,7 +13,7 @@ package dimN;
  * @param <P>
  *            Tipo di nodo a cui i puntatori sono rivolti
  */
-public class BinaryNode<C, P extends Node<C>> extends Node<C> {
+public class BinaryNode<V, P extends Node<V>> extends Node<V> {
     /**
      * Puntatore al nodo padre.
      */
@@ -27,14 +27,14 @@ public class BinaryNode<C, P extends Node<C>> extends Node<C> {
      */
     private P right;
 
-    public BinaryNode(C val, P father, P left, P right) {
+    public BinaryNode(V val, P father, P left, P right) {
 	super(val);
 	setFather(father);
 	setLeft(left);
 	setRight(right);
     }
 
-    public BinaryNode(C val) {
+    public BinaryNode(V val) {
 	this(val, null, null, null);
     }
 
