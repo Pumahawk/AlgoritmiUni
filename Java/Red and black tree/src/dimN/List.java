@@ -1,6 +1,7 @@
 package dimN;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Rappresenta una struttura dinamica in cui l'ultimo dato sara il primo ad
@@ -40,9 +41,13 @@ public class List<T> implements Iterable<T> {
 
 	@Override
 	public T next() {
-	    T val = node.value();
-	    node = node.next();
-	    return val;
+	    if (!hasNext())
+		throw new NoSuchElementException();
+	    else {
+		T val = node.value();
+		node = node.next();
+		return val;
+	    }
 	}
 
     }
