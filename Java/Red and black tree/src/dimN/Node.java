@@ -4,7 +4,7 @@ public class Node<V> {
     private V value;
 
     public Node(V val) {
-	this.value = val;
+	setValue(val);
     }
 
     public Node() {
