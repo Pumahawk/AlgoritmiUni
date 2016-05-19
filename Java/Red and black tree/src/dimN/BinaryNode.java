@@ -39,7 +39,7 @@ public class BinaryNode<V, P extends Node<V>> extends Node<V> {
     }
 
     public BinaryNode() {
-	this(null, null, null, null);
+	this(null);
     }
 
     public P father() {
