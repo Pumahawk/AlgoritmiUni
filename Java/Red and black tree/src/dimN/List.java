@@ -74,7 +74,7 @@ public class List<T> implements Iterable<T> {
 	return ret;
     }
 
-    public boolean next() {
+    public boolean hasNext() {
 	return head != null;
     }
 

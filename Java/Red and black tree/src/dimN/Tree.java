@@ -46,7 +46,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	}
 
 	private void top() {
-	    while (direction.next()) {
+	    while (direction.hasNext()) {
 		Direction dir = direction.pop();
 		this.punt = this.punt.father();
 		if (dir == Direction.LEFT && this.punt.right() != null) {
