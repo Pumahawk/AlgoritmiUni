@@ -86,7 +86,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	this.comparator = comp;
     }
 
-    public N getNode(V val, N punt) {
+    protected N getNode(V val, N punt) {
 	if (punt != null)
 	    return (comparator.compare(punt.value(), val) == 0) ? punt
 		    : (comparator.compare(val, punt.value()) < 0) ? getNode(val, punt.left())
@@ -103,7 +103,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return get(arg0, root);
     }
 
-    private V get(V value, N punt) {
+    protected V get(V value, N punt) {
 	N nodo = getNode(value, punt);
 
 	return (nodo != null) ? nodo.value() : null;
