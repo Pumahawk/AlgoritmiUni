@@ -1,14 +1,14 @@
 package dimN;
 
-public class NodeList<C, P extends Node<C>> extends Node<C> {
+public class NodeList<V, P extends Node<V>> extends Node<V> {
     private P next;
 
-    public NodeList(C cont, P next) {
+    public NodeList(V cont, P next) {
 	super(cont);
 	this.next = next;
     }
 
-    public NodeList(C cont) {
+    public NodeList(V cont) {
 	this(cont, null);
     }
 
