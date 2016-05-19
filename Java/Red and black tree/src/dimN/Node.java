@@ -1,21 +1,21 @@
 package dimN;
 
-public class Node<C> {
-    private C value;
+public class Node<V> {
+    private V value;
 
-    public Node(C val) {
+    public Node(V val) {
 	this.value = val;
     }
 
     public Node() {
-	this.value = null;
+	this(null);
     }
 
-    public C value() {
+    public V value() {
 	return this.value;
     }
 
-    public void setValue(C val) {
+    public void setValue(V val) {
 	this.value = val;
     }
 }
