@@ -139,7 +139,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    return null;
     }
 
-    private N leaveFather(N node) {
+    protected N leaveFather(N node) {
 	N father = node.father();
 	if (father != null)
 	    if (father.left() == node)
@@ -149,17 +149,15 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return father;
     }
 
-    public void putNode(N node) {
+    protected void putNode(N node) {
 	if (node != null)
-	    if (this.root != null) {
-		if (node != null)
-		    putNode(node, this.root);
-	    } else {
-		this.root.setFather(node);
-	    }
+	    if (this.root != null)
+		putNode(node, this.root);
+	    else
+		this.root = node;
     }
 
-    private void putNode(N node, N root) {
+    protected void putNode(N node, N root) {
 	if (comparator.compare(node.value(), root.value()) < 0) {
 	    if (root.left() != null) {
 		putNode(node, root.left());
