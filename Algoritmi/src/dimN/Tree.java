@@ -174,6 +174,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     }
 
     public boolean isEmpty() {
-	return this == null;
+	return this.root == null;
     }
 }
