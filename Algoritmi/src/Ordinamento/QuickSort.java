@@ -1,6 +1,5 @@
 package Ordinamento;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class QuickSort<T> {
@@ -19,24 +18,18 @@ public class QuickSort<T> {
 	    int pivot = (start + end) / 2;
 	    T x = a[pivot];
 	    scambia(a, pivot, start);
-	    int leftPointer = start;
-	    int rightPointer = end;
+	    int leftPointer = start, rightPointer = end;
 	    while (leftPointer <= rightPointer) {
-		while (comparator.compare(a[leftPointer], x) < 0) {
+		while (comparator.compare(a[leftPointer], x) < 0)
 		    leftPointer++;
-		}
-
-		while (comparator.compare(a[rightPointer], x) > 0) {
+		while (comparator.compare(a[rightPointer], x) > 0)
 		    rightPointer--;
-		}
-
 		if (leftPointer <= rightPointer) {
 		    scambia(a, leftPointer, rightPointer);
 		    leftPointer++;
 		    rightPointer--;
 		}
 	    }
-
 	    partition(a, start, rightPointer);
 	    partition(a, leftPointer, end);
 	}
@@ -49,16 +42,12 @@ public class QuickSort<T> {
 	a[j] = temp;
     }
 
-    public void print(T[] arr) {
-	for (int i = 0; i < arr.length - 1; i++)
-	    System.out.println(arr[i]);
-
+    public static void main(String args[]) {
+	Integer[] arr = new Integer[1000000];
+	for (int i = 0; i < arr.length; i++)
+	    arr[i] = (int) (Math.random() * 100000 - 1000);
+	QuickSort<Integer> qs = new QuickSort<Integer>((Integer a, Integer b) -> (a < b) ? -1 : (a == b) ? 0 : 1);
+	qs.partition(arr, 0, arr.length - 1);
+	return;
     }
-
-    public void print2(ArrayList<T> arr) {
-	for (int i = 0; i < arr.size(); i++)
-	    System.out.println(arr.get(i));
-
-    }
-
 }
