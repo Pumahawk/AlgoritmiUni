@@ -1,14 +1,11 @@
 package Ordinamento;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Comparator;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import Ordinamento.RecordCSV.Type;
 
 public class QuickSortTest {
     public static class IntegerComparator implements Comparator<Integer> {
@@ -18,18 +15,78 @@ public class QuickSortTest {
 	}
     }
 
-    public static ReadCVS cvs;
+    @Test
+    public void testQuickSortBasic() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(4);
+	arrayTest.add(7);
+	arrayTest.add(5);
+	arrayTest.add(9);
+	arrayTest.add(11);
+	arrayTest.add(3);
+	arrayTest.add(5);
+	arrayTest.add(2);
+	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(2);
+	expected.add(3);
+	expected.add(4);
+	expected.add(5);
+	expected.add(5);
+	expected.add(7);
+	expected.add(9);
+	expected.add(11);
+	assertEquals(arrayTest, expected);
 
-    @BeforeClass
-    public static void loadCVS() throws FileNotFoundException {
-	cvs = new ReadCVS(0, 4000000);
     }
 
     @Test
-    public void heapSortTest() throws FileNotFoundException {
-	QuickSort<RecordCSV> a = new QuickSort<RecordCSV>(RecordCSV.getComparator(Type.STRING));
-	a.quickSort(cvs.getTable());
-	assertTrue(Sort.isSorted(cvs.getTable().iterator(), RecordCSV.getComparator(Type.STRING)));
+    public void testQuickSortOrdered() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(2);
+	arrayTest.add(3);
+	arrayTest.add(4);
+	arrayTest.add(5);
+	arrayTest.add(5);
+	arrayTest.add(7);
+	arrayTest.add(9);
+	arrayTest.add(11);
+	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(2);
+	expected.add(3);
+	expected.add(4);
+	expected.add(5);
+	expected.add(5);
+	expected.add(7);
+	expected.add(9);
+	expected.add(11);
+	assertEquals(arrayTest, expected);
+
+    }
+
+    @Test
+    public void testQuickSortEmpty() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	MergeSort<Integer> a = new MergeSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	assertEquals(arrayTest, expected);
+
+    }
+
+    @Test
+    public void testQuickSortBasicOneElement() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(4);
+	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(4);
+	assertEquals(arrayTest, expected);
+
     }
 
 }
