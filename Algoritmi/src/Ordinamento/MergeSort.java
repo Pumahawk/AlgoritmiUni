@@ -10,6 +10,10 @@ public class MergeSort<T> {
 	this.comparator = comparator;
     }
 
+    void sort(ArrayList<T> a) {
+	msortBasicEcologic(a);
+    }
+
     void msortBasicEcologic(ArrayList<T> a) {
 	ArrayList<T> old = (ArrayList<T>) a.clone();
 	msortBasic(a, 0, a.size() - 1, old);
