@@ -20,7 +20,7 @@ public class SortTest {
     @BeforeClass
     public static void loadCVS() throws FileNotFoundException {
 	System.out.println("Caricamento file:");
-	cvs = new ReadCVS(0, 5000000);
+	cvs = new ReadCVS(0, 500);
 	System.out.println("Copia dati per InsertionSort.");
 	cvsInsertionSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
 	System.out.println("Copia dati per HeapSort.");
@@ -52,55 +52,55 @@ public class SortTest {
 
     @Test(timeout = 30000)
     public void testQuickSortString() {
-	Sort.sortQuickSort(cvsInsertionSort, RecordCSV.getComparator(Type.STRING));
+	Sort.sortQuickSort(cvsQuickSort, RecordCSV.getComparator(Type.STRING));
 	assertTrue(Sort.isSorted(cvsQuickSort.iterator(), RecordCSV.getComparator(Type.STRING)));
     }
 
     @Test(timeout = 30000)
     public void testQuickSortInteger() {
-	Sort.sortQuickSort(cvsInsertionSort, RecordCSV.getComparator(Type.INTEGER));
+	Sort.sortQuickSort(cvsQuickSort, RecordCSV.getComparator(Type.INTEGER));
 	assertTrue(Sort.isSorted(cvsQuickSort.iterator(), RecordCSV.getComparator(Type.INTEGER)));
     }
 
     @Test(timeout = 30000)
     public void testQuickSortFloat() {
-	Sort.sortQuickSort(cvsInsertionSort, RecordCSV.getComparator(Type.FLOAT));
+	Sort.sortQuickSort(cvsQuickSort, RecordCSV.getComparator(Type.FLOAT));
 	assertTrue(Sort.isSorted(cvsQuickSort.iterator(), RecordCSV.getComparator(Type.FLOAT)));
     }
 
     @Test(timeout = 30000)
     public void testHeapSortString() {
-	Sort.sortHeapSort(cvsInsertionSort, RecordCSV.getComparator(Type.STRING));
+	Sort.sortHeapSort(cvsHeapSort, RecordCSV.getComparator(Type.STRING));
 	assertTrue(Sort.isSorted(cvsHeapSort.iterator(), RecordCSV.getComparator(Type.STRING)));
     }
 
     @Test(timeout = 30000)
     public void testHeapSortInteger() {
-	Sort.sortHeapSort(cvsInsertionSort, RecordCSV.getComparator(Type.INTEGER));
+	Sort.sortHeapSort(cvsHeapSort, RecordCSV.getComparator(Type.INTEGER));
 	assertTrue(Sort.isSorted(cvsHeapSort.iterator(), RecordCSV.getComparator(Type.INTEGER)));
     }
 
     @Test(timeout = 30000)
     public void testHeapSortFloat() {
-	Sort.sortHeapSort(cvsInsertionSort, RecordCSV.getComparator(Type.FLOAT));
+	Sort.sortHeapSort(cvsHeapSort, RecordCSV.getComparator(Type.FLOAT));
 	assertTrue(Sort.isSorted(cvsHeapSort.iterator(), RecordCSV.getComparator(Type.FLOAT)));
     }
 
     @Test(timeout = 30000)
     public void testMergeSortString() {
-	Sort.sortMergeSort(cvsInsertionSort, RecordCSV.getComparator(Type.STRING));
+	Sort.sortMergeSort(cvsMergeSort, RecordCSV.getComparator(Type.STRING));
 	assertTrue(Sort.isSorted(cvsMergeSort.iterator(), RecordCSV.getComparator(Type.STRING)));
     }
 
     @Test(timeout = 30000)
     public void testMergeSortInteger() {
-	Sort.sortMergeSort(cvsInsertionSort, RecordCSV.getComparator(Type.INTEGER));
+	Sort.sortMergeSort(cvsMergeSort, RecordCSV.getComparator(Type.INTEGER));
 	assertTrue(Sort.isSorted(cvsMergeSort.iterator(), RecordCSV.getComparator(Type.INTEGER)));
     }
 
     @Test(timeout = 30000)
     public void testMergeSortFloat() {
-	Sort.sortMergeSort(cvsInsertionSort, RecordCSV.getComparator(Type.FLOAT));
+	Sort.sortMergeSort(cvsMergeSort, RecordCSV.getComparator(Type.FLOAT));
 	assertTrue(Sort.isSorted(cvsMergeSort.iterator(), RecordCSV.getComparator(Type.FLOAT)));
     }
 }
