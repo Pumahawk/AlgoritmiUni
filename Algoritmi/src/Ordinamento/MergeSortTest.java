@@ -42,6 +42,42 @@ public class MergeSortTest {
     }
 
     @Test
+    public void testMergeSortOrdered() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(2);
+	arrayTest.add(3);
+	arrayTest.add(4);
+	arrayTest.add(5);
+	arrayTest.add(5);
+	arrayTest.add(7);
+	arrayTest.add(9);
+	arrayTest.add(11);
+	MergeSort<Integer> a = new MergeSort<Integer>(new IntegerComparator());
+	a.msortBasicEcologic(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(2);
+	expected.add(3);
+	expected.add(4);
+	expected.add(5);
+	expected.add(5);
+	expected.add(7);
+	expected.add(9);
+	expected.add(11);
+	assertEquals(arrayTest, expected);
+
+    }
+
+    @Test
+    public void testMergeSortEmpty() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	MergeSort<Integer> a = new MergeSort<Integer>(new IntegerComparator());
+	a.msortBasicEcologic(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	assertEquals(arrayTest, expected);
+
+    }
+
+    @Test
     public void testMergeSortBasicOneElement() {
 	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
 	arrayTest.add(4);
@@ -52,15 +88,5 @@ public class MergeSortTest {
 	assertEquals(arrayTest, expected);
 
     }
-
-    /*
-     * public static void main(String[] args) { ArrayList<Integer> arrlist = new
-     * ArrayList<Integer>(); arrlist.add(4); arrlist.add(7); arrlist.add(5);
-     * arrlist.add(2); MergeSort<Integer> a = new MergeSort<Integer>(new
-     * IntegerComparator()); // a.print(arrlist); a.msortBasicEcologic(arrlist);
-     * a.print(arrlist);
-     * 
-     * }
-     */
 
 }
