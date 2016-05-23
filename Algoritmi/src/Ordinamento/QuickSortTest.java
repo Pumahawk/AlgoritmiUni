@@ -1,10 +1,14 @@
 package Ordinamento;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.io.FileNotFoundException;
 import java.util.Comparator;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import Ordinamento.RecordCSV.Type;
 
 public class QuickSortTest {
     public static class IntegerComparator implements Comparator<Integer> {
@@ -14,50 +18,18 @@ public class QuickSortTest {
 	}
     }
 
-    @Test
-    public void heapSortTest() {
-	Integer[] arrayTest = { 4, 7, 9, 2, 3, 1, 66, 33, 22, 63, 2 };
-	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
-	a.quickSort(arrayTest);
-	Integer[] expected = { 1, 2, 2, 3, 4, 7, 9, 22, 33, 63, 66 };
-	assertEquals(expected, arrayTest);
+    public static ReadCVS cvs;
+
+    @BeforeClass
+    public static void loadCVS() throws FileNotFoundException {
+	cvs = new ReadCVS(0, 4000000);
     }
 
     @Test
-    public void heapSortTestEmpty() {
-	Integer[] arrayTest = {};
-	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
-	a.quickSort(arrayTest);
-	Integer[] expected = {};
-	assertEquals(expected, arrayTest);
+    public void heapSortTest() throws FileNotFoundException {
+	QuickSort<RecordCSV> a = new QuickSort<RecordCSV>(RecordCSV.getComparator(Type.STRING));
+	a.quickSort(cvs.getTable());
+	assertTrue(Sort.isSorted(cvs.getTable().iterator(), RecordCSV.getComparator(Type.STRING)));
     }
-
-    @Test
-    public void heapSortTestOneElement() {
-	Integer[] arrayTest = { 5 };
-	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
-	a.quickSort(arrayTest);
-	Integer[] expected = { 5 };
-	assertEquals(expected, arrayTest);
-    }
-
-    @Test
-    public void heapSortTestTwoElement() {
-	Integer[] arrayTest = { 5, 0 };
-	QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
-	a.quickSort(arrayTest);
-	Integer[] expected = { 0, 5 };
-	assertEquals(expected, arrayTest);
-    }
-
-    /*
-     * public static void main(String[] args) { Integer[] integ = { 4, 7, 9, 2,
-     * 3, 1, 66, 33, 22, 63, 2 };
-     * 
-     * QuickSort<Integer> a = new QuickSort<Integer>(new IntegerComparator());
-     * a.print(integ); a.sort(integ); a.print(integ);
-     * 
-     * }
-     */
 
 }
