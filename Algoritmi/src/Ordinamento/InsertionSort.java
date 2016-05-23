@@ -15,7 +15,7 @@ class InsertionSort<T> {
 	for (int i = 1; i < arr.size(); i++) {
 	    T p = arr.get(i);
 	    int j;
-	    for (j = i - 1; j != 0 && comparator.compare(arr.get(j), p) > 0; j--)
+	    for (j = i - 1; j >= 0 && comparator.compare(arr.get(j), p) > 0; j--)
 		arr.set(j + 1, arr.get(j));
 	    arr.set(j + 1, p);
 	}
