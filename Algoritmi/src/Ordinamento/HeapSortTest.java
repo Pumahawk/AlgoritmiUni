@@ -1,34 +1,87 @@
 package Ordinamento;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class HeapSortTest {
 
-    public static void main(String[] args) {
-	class IntegerComparator implements Comparator<Integer> {
+    class IntegerComparator implements Comparator<Integer> {
 
-	    @Override
-	    public int compare(Integer arg0, Integer arg1) {
-		return arg0.compareTo(arg1);
-	    }
+	@Override
+	public int compare(Integer arg0, Integer arg1) {
+	    return arg0.compareTo(arg1);
 	}
+    }
 
-	HeapSort<Integer> sort = new HeapSort<>(new IntegerComparator());
-	ArrayList<Integer> arr = new ArrayList<Integer>();
-	arr.add(19);
-	arr.add(3);
-	arr.add(25);
-	arr.add(36);
-	arr.add(100);
-	arr.add(17);
-	arr.add(2);
-	arr.add(7);
-	arr.add(1);
-	sort.printArr(arr);
-	sort.sort(arr);
-	System.out.println("--------------");
-	sort.printArr(arr);
+    public void testHeapSortBasic() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(4);
+	arrayTest.add(7);
+	arrayTest.add(5);
+	arrayTest.add(9);
+	arrayTest.add(11);
+	arrayTest.add(3);
+	arrayTest.add(5);
+	arrayTest.add(2);
+	HeapSort<Integer> a = new HeapSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(2);
+	expected.add(3);
+	expected.add(4);
+	expected.add(5);
+	expected.add(5);
+	expected.add(7);
+	expected.add(9);
+	expected.add(11);
+	assertEquals(arrayTest, expected);
+
+    }
+
+    public void testHeapSortOrdered() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(2);
+	arrayTest.add(3);
+	arrayTest.add(4);
+	arrayTest.add(5);
+	arrayTest.add(5);
+	arrayTest.add(7);
+	arrayTest.add(9);
+	arrayTest.add(11);
+	HeapSort<Integer> a = new HeapSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(2);
+	expected.add(3);
+	expected.add(4);
+	expected.add(5);
+	expected.add(5);
+	expected.add(7);
+	expected.add(9);
+	expected.add(11);
+	assertEquals(arrayTest, expected);
+
+    }
+
+    public void testHeapSortEmpty() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	HeapSort<Integer> a = new HeapSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	assertEquals(arrayTest, expected);
+
+    }
+
+    public void testHeapSortOneElement() {
+	ArrayList<Integer> arrayTest = new ArrayList<Integer>();
+	arrayTest.add(7);
+	HeapSort<Integer> a = new HeapSort<Integer>(new IntegerComparator());
+	a.sort(arrayTest);
+	ArrayList<Integer> expected = new ArrayList<Integer>();
+	expected.add(7);
+	assertEquals(arrayTest, expected);
 
     }
 
