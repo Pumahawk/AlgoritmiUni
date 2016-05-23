@@ -13,10 +13,6 @@ public class ReadCVS {
     private ArrayList<RecordCSV> table;
 
     public ReadCVS(File fileCVS, int min, int max) throws FileNotFoundException {
-	/*
-	 * if (max - min > 0) table = new ArrayList<>(max - min); else table =
-	 * new ArrayList<>(20000000);
-	 */
 	table = new ArrayList<>();
 	Scanner sc = new Scanner(fileCVS);
 	for (int i = 0; i < min && sc.hasNextLine(); i++)
@@ -26,6 +22,10 @@ public class ReadCVS {
 	    table.add(new RecordCSV(line[1], Integer.parseInt(line[2]), Float.parseFloat(line[3])));
 	}
 	sc.close();
+    }
+
+    public ReadCVS(int min, int max) throws FileNotFoundException {
+	this(new File("Data" + File.separator + "records.csv"), min, max);
     }
 
     public ArrayList<RecordCSV> getTable() {
