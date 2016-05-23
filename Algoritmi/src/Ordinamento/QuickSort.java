@@ -10,6 +10,10 @@ public class QuickSort<T> {
 	this.comparator = comparator;
     }
 
+    public void sort(ArrayList<T> a) {
+	quickSort(a);
+    }
+
     public void quickSort(ArrayList<T> a) {
 	partition(a, 0, a.size() - 1);
     }
