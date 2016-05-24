@@ -2,7 +2,14 @@ package dimN;
 
 import java.util.Comparator;
 
+import dimN.ColoredNode.Color;
+
 public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
+    // TODO Controllare i null pointer exception
+
+    public enum Case {
+	ONE, TWO, THREE, FOUR, FIVE
+    }
 
     public RedAndBlackTree(Comparator<V> comp) {
 	super(comp);
@@ -10,8 +17,114 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 
     @Override
     public V put(V val) {
-	// TODO Auto-generated method stub
-	return null;
+	V ret = null;
+	ColoredNode<V> node = getNodeForValue(val);
+	if (node.value() != null)
+	    ret = node.value();
+	node.setValue(val);
+	solveCase(node, findCase(node));
+	return ret;
+    }
+
+    protected Case findCase(ColoredNode<V> node) {
+	// TODO
+	// TODO controllare i null pointer exception
+	if (node.father() == null)
+	    return Case.ONE;
+	else if (node.father().getColor() == Color.BLACK)
+	    return Case.TWO;
+	else {
+	    ColoredNode<V> father, uncle;
+	    father = node.father();
+	    uncle = (father.father().left() != father) ? father.father().left() : father.father().right();
+	    if (uncle != null && uncle.getColor() == Color.RED)
+		return Case.THREE;
+	    else if ((node == node.father().right() && node.father() == node.father().father().left())
+		    || (node == node.father().left() && node.father() == node.father().father().right()))
+		return Case.FOUR;
+	    else
+		return Case.FIVE;
+	}
+    }
+
+    protected void solveCase(ColoredNode<V> node, Case caso) {
+	switch (caso) {
+	case ONE:
+	    solveCaseOne(node);
+	    break;
+	case TWO:
+	    solveCaseTwo(node);
+	    break;
+	case THREE:
+	    solveCaseThree(node);
+	    break;
+	case FOUR:
+	    solveCaseFour(node);
+	    break;
+	case FIVE:
+	    solveCaseFive(node);
+	    break;
+	}
+    }
+
+    protected void solveCaseOne(ColoredNode<V> node) {
+	this.root.setColor(Color.BLACK);
+    }
+
+    protected void solveCaseTwo(ColoredNode<V> node) {
+	return;
+    }
+
+    protected void solveCaseThree(ColoredNode<V> node) {
+	ColoredNode<V> gParent = node.father().father();
+	gParent.setColor(Color.RED);
+	gParent.left().setColor(Color.BLACK);
+	gParent.right().setColor(Color.BLACK);
+
+	solveCase(gParent, findCase(gParent));
+
+    }
+
+    protected void solveCaseFour(ColoredNode<V> node) {
+	ColoredNode<V> father = node.father();
+	if (node == node.father().right() && node.father() == node.father().father().left()) {
+	    leftRotate(node.father());
+	    node = node.left();
+	} else if (node == node.father().left() && node.father() == node.father().father().right()) {
+	    rightRotate(node.father());
+	    node = node.right();
+	}
+	solveCaseFive(father);
+    }
+
+    protected void solveCaseFive(ColoredNode<V> node) {
+	rightRotate(node.father().father());
+    }
+
+    protected ColoredNode<V> getNodeForValue(V value) {
+	if (root == null) {
+	    root = new ColoredNode<>(null, Color.BLACK);
+	    return root;
+	} else
+	    return getNodeForValue(value, root);
+    }
+
+    protected ColoredNode<V> getNodeForValue(V value, ColoredNode<V> node) {
+	if (comparator.compare(value, node.value()) == 0)
+	    return node;
+	else if (comparator.compare(value, node.value()) < 0)
+	    if (node.left() != null)
+		return getNodeForValue(value, node.left());
+	    else {
+		node.setLeft(new ColoredNode<>(null, Color.RED, node, null, null));
+		return node.left();
+	    }
+	else if (node.right() != null)
+	    return getNodeForValue(value, node.right());
+	else {
+	    node.setRight(new ColoredNode<>(null, Color.RED, node, null, null));
+	    return node.right();
+	}
     }
 
     @Override
