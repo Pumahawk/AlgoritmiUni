@@ -120,7 +120,51 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return this.size;
     }
 
-    public V remove(N node) {
+    protected void remove(V value) {
+	N node = getNode(value, root);
+	if (node != null) {
+	    if (node.left() == null)
+		if (node == root)
+		    root = root.right();
+		else
+		    leaveFather(node, node.right());
+	    else if (node.right() == null)
+		if (node == root)
+		    root = root.left();
+		else
+		    leaveFather(node, root.left());
+	    else {
+		N minOfMax = findMinOfMax(node);
+		if (minOfMax == node)
+		    if (node == root)
+			root = null;
+		    else
+			leaveFather(node);
+		else {
+		    node.setValue(minOfMax.value());
+		    if (minOfMax.left() != null)
+			leaveFather(minOfMax, minOfMax.left());
+		    else
+			leaveFather(minOfMax, minOfMax.right());
+		}
+	    }
+	    this.size--;
+	}
+    }
+
+    protected N findMinOfMax(N node) {
+	N ret = node;
+	if (ret.right() != null) {
+	    ret = ret.right();
+	    while (ret.left() != null)
+		ret = ret.left();
+	} else if (ret.left() != null)
+	    ret = ret.left();
+	return ret;
+
+    }
+
+    protected V removeNode(N node) {
 	if (node != null) {
 	    N myNode = getNode(node.value(), this.root);
 	    if (myNode != null) {
@@ -140,12 +184,16 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     }
 
     protected N leaveFather(N node) {
+	return leaveFather(node, null);
+    }
+
+    protected N leaveFather(N node, N child) {
 	N father = node.father();
 	if (father != null)
 	    if (father.left() == node)
-		father.setLeft(null);
+		father.setLeft(child);
 	    else
-		father.setRight(null);
+		father.setRight(child);
 	return father;
     }
 
@@ -158,19 +206,16 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     }
 
     protected void putNode(N node, N root) {
-	if (comparator.compare(node.value(), root.value()) < 0) {
-	    if (root.left() != null) {
+	if (comparator.compare(node.value(), root.value()) < 0)
+	    if (root.left() != null)
 		putNode(node, root.left());
-	    } else {
+	    else
 		root.setLeft(node);
-	    }
-	} else {
-	    if (root.right() != null) {
-		putNode(node, root.right());
-	    } else {
-		root.setRight(node);
-	    }
-	}
+	else if (root.right() != null)
+	    putNode(node, root.right());
+	else
+	    root.setRight(node);
+
     }
 
     public boolean isEmpty() {

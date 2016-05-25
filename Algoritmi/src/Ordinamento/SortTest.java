@@ -20,7 +20,7 @@ public class SortTest {
     @BeforeClass
     public static void loadCVS() throws FileNotFoundException {
 	System.out.println("Caricamento file:");
-	cvs = new ReadCVS(0, 500);
+	cvs = new ReadCVS(0, 20000);
 	System.out.println("Copia dati per InsertionSort.");
 	cvsInsertionSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
 	System.out.println("Copia dati per HeapSort.");

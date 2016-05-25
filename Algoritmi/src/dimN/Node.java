@@ -18,4 +18,9 @@ public class Node<V> {
     public void setValue(V val) {
 	this.value = val;
     }
+
+    @Override
+    public String toString() {
+	return value.toString();
+    }
 }
