@@ -13,7 +13,7 @@ public class TestRedAndBlackTree {
     public RedAndBlackTree<Integer> getTreeForTest() {
 	RedAndBlackTree<Integer> tree = new RedAndBlackTree<Integer>((Integer a, Integer b) -> a.compareTo(b));
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 10000; i++)
 	    tree.put(i);
 	return tree;
     }

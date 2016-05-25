@@ -5,7 +5,6 @@ import java.util.Comparator;
 import dimN.ColoredNode.Color;
 
 public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
-    // TODO Controllare i null pointer exception
 
     public enum Case {
 	ONE, TWO, THREE, FOUR, FIVE
@@ -22,13 +21,11 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	if (node.value() != null)
 	    ret = node.value();
 	node.setValue(val);
-	solveCase(node, findCase(node));
+	solveCasePut(node, findCase(node));
 	return ret;
     }
 
     protected Case findCase(ColoredNode<V> node) {
-	// TODO
-	// TODO controllare i null pointer exception
 	if (node.father() == null)
 	    return Case.ONE;
 	else if (node.father().getColor() == Color.BLACK)
@@ -47,7 +44,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    protected void solveCase(ColoredNode<V> node, Case caso) {
+    protected void solveCasePut(ColoredNode<V> node, Case caso) {
 	switch (caso) {
 	case ONE:
 	    solveCaseOne(node);
@@ -81,7 +78,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	gParent.left().setColor(Color.BLACK);
 	gParent.right().setColor(Color.BLACK);
 
-	solveCase(gParent, findCase(gParent));
+	solveCasePut(gParent, findCase(gParent));
 
     }
 
@@ -128,6 +125,132 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	else {
 	    node.setRight(new ColoredNode<>(null, Color.RED, node, null, null));
 	    return node.right();
+	}
+    }
+
+    public void remove(V value) {
+	ColoredNode<V> node = getNode(value, root);
+	if (node.left() == null)
+	    removeOneChild(node, node.right());
+	else if (node.right() == null)
+	    removeOneChild(node, node.left());
+	else {
+	    ColoredNode<V> minOfMax = findMinOfMax(node);
+	    if (minOfMax == node)
+		minOfMaxIsNode(node);
+	    else
+		minOfMaxIsNotNode(node, minOfMax);
+	}
+    }
+
+    private void removeOneChild(ColoredNode<V> node, ColoredNode<V> child) {
+	child.setValue(root.value());
+	if (node == root)
+	    if (node.getColor() == Color.RED) {
+		root = child;
+	    } else if (child.getColor() == Color.RED) {
+		child.setColor(Color.BLACK);
+		root = child;
+	    } else {
+		root = child;
+		solveCaseOneRemove(root);
+	    }
+	else if (node.getColor() == Color.RED)
+	    leaveFather(node, child);
+	else if (child.getColor() == Color.RED) {
+	    child.setColor(Color.BLACK);
+	    leaveFather(node, child);
+	} else {
+	    leaveFather(node, child);
+	    solveCaseOneRemove(child);
+	}
+
+    }
+
+    private void minOfMaxIsNode(ColoredNode<V> node) {
+	if (node == root)
+	    root = null;
+	else
+	    leaveFather(node);
+    }
+
+    private void minOfMaxIsNotNode(ColoredNode<V> node, ColoredNode<V> minOfMax) {
+	node.setValue(minOfMax.value());
+	if (minOfMax.right() != null)
+	    removeOneChild(minOfMax, minOfMax.right());
+	else if (minOfMax.left() != null)
+	    removeOneChild(minOfMax, minOfMax.left());
+	else
+	    leaveFather(minOfMax);
+    }
+
+    ColoredNode<V> brother(ColoredNode<V> node) {
+	return (node.father().left() != node) ? node.father().left() : node.father().right();
+    }
+
+    private void solveCaseOneRemove(ColoredNode<V> node) {
+	if (node.father() == null)
+	    return;
+	else
+	    solveCaseTwoRemove(node);
+    }
+
+    private void solveCaseTwoRemove(ColoredNode<V> node) {
+	if (brother(node).getColor() == Color.RED) {
+	    node.father().setColor(Color.RED);
+	    brother(node).setColor(Color.BLACK);
+	    if (node == node.father().left())
+		leftRotate(node.father());
+	    else
+		rightRotate(node.father());
+	}
+	solveCaseThreeRemove(node);
+    }
+
+    private void solveCaseThreeRemove(ColoredNode<V> node) {
+
+	if (node.father().getColor() == Color.BLACK && brother(node).getColor() == Color.BLACK
+		&& brother(node).left().getColor() == Color.BLACK && brother(node).right().getColor() == Color.BLACK) {
+	    brother(node).setColor(Color.RED);
+	    solveCaseOneRemove(node.father());
+	} else
+	    solveCaseFourRemove(node);
+
+    }
+
+    private void solveCaseFourRemove(ColoredNode<V> node) {
+	if (node.father().getColor() == Color.RED && brother(node).getColor() == Color.BLACK
+		&& brother(node).left().getColor() == Color.BLACK && brother(node).right().getColor() == Color.BLACK) {
+	    brother(node).setColor(Color.RED);
+	    node.father().setColor(Color.BLACK);
+	} else
+	    solveCaseFiveRemove(node);
+    }
+
+    private void solveCaseFiveRemove(ColoredNode<V> node) {
+	if (node == node.father().left() && brother(node).getColor() == Color.BLACK
+		&& brother(node).left().getColor() == Color.RED && brother(node).right().getColor() == Color.BLACK) {
+	    brother(node).setColor(Color.RED);
+	    brother(node).left().setColor(Color.BLACK);
+	    rightRotate(brother(node));
+	} else if (node == node.father().right() && brother(node).getColor() == Color.BLACK
+		&& brother(node).right().getColor() == Color.RED && brother(node).left().getColor() == Color.BLACK) {
+	    brother(node).setColor(Color.RED);
+	    brother(node).right().setColor(Color.BLACK);
+	    leftRotate(brother(node));
+	}
+	solveCaseSixRemove(node);
+    }
+
+    private void solveCaseSixRemove(ColoredNode<V> node) {
+	brother(node).setColor(node.father().getColor());
+	node.father().setColor(Color.BLACK);
+	if (node == node.father().left()) {
+	    brother(node).right().setColor(Color.BLACK);
+	    leftRotate(node.father());
+	} else {
+	    brother(node).left().setColor(Color.BLACK);
+	    rightRotate(node.father());
 	}
     }
 
