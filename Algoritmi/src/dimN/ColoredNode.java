@@ -17,7 +17,7 @@ public class ColoredNode<T> extends BinaryNode<T, ColoredNode<T>> {
     }
 
     public ColoredNode(T val) {
-	this(val, Color.BLACK);
+	this(val, Color.RED);
     }
 
     public void setColor(Color color) {
@@ -26,5 +26,10 @@ public class ColoredNode<T> extends BinaryNode<T, ColoredNode<T>> {
 
     public Color getColor() {
 	return this.color;
+    }
+
+    @Override
+    public String toString() {
+	return super.toString() + ":" + color;
     }
 }

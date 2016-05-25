@@ -86,7 +86,6 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
     }
 
     protected void solveCaseFour(ColoredNode<V> node) {
-	ColoredNode<V> father = node.father();
 	if (node == node.father().right() && node.father() == node.father().father().left()) {
 	    leftRotate(node.father());
 	    node = node.left();
@@ -94,16 +93,21 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	    rightRotate(node.father());
 	    node = node.right();
 	}
-	solveCaseFive(father);
+	solveCaseFive(node);
     }
 
     protected void solveCaseFive(ColoredNode<V> node) {
-	rightRotate(node.father().father());
+	node.father().setColor(Color.BLACK);
+	node.father().father().setColor(Color.RED);
+	if (node == node.father().left() && node.father() == node.father().father().left())
+	    rightRotate(node.father().father());
+	else
+	    leftRotate(node.father().father());
     }
 
     protected ColoredNode<V> getNodeForValue(V value) {
 	if (root == null) {
-	    root = new ColoredNode<>(null, Color.BLACK);
+	    root = new ColoredNode<>(null, Color.RED);
 	    return root;
 	} else
 	    return getNodeForValue(value, root);
@@ -128,24 +132,24 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
     }
 
     @Override
-    public V remove(ColoredNode<V> val) {
+    public V removeNode(ColoredNode<V> val) {
 	// TODO fare l'override
 	return null;
     }
 
     private void leftRotate(ColoredNode<V> nodo) {
-	// Sinistra: true
-	// Destra: false
-	boolean verso;
-	ColoredNode<V> padre = nodo;
+	ColoredNode<V> padre = nodo.father();
+	nodo.right().setFather(nodo.father());
+	nodo.setFather(nodo.right());
+	if (nodo.right().left() != null)
+	    nodo.right().left().setFather(nodo);
 
-	if (padre != null) {
-	    verso = padre.left() == nodo;
-	    if (verso)
+	if (padre != null)
+	    if (padre.left() == nodo)
 		padre.setLeft(nodo.right());
 	    else
 		padre.setRight(nodo.right());
-	} else
+	else
 	    this.root = nodo.right();
 	ColoredNode<V> p = nodo.right().left();
 	nodo.right().setLeft(nodo);
@@ -154,21 +158,21 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
     }
 
     private void rightRotate(ColoredNode<V> nodo) {
-	// Sinistra: true
-	// Destra: false
-	boolean verso;
-	ColoredNode<V> padre = nodo;
+	ColoredNode<V> padre = nodo.father();
+	nodo.left().setFather(nodo.father());
+	nodo.setFather(nodo.left());
+	if (nodo.left().right() != null)
+	    nodo.left().right().setFather(nodo);
 
-	if (padre != null) {
-	    verso = padre.left() == nodo;
-	    if (verso)
+	if (padre != null)
+	    if (padre.left() == nodo)
 		padre.setLeft(nodo.left());
 	    else
 		padre.setRight(nodo.left());
-	} else
+	else
 	    this.root = nodo.left();
-	ColoredNode<V> p = nodo.right().left();
-	nodo.left().setLeft(nodo);
+	ColoredNode<V> p = nodo.left().right();
+	nodo.left().setRight(nodo);
 	nodo.setLeft(p);
     }
 
