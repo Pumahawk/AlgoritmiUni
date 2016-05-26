@@ -120,9 +120,11 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return this.size;
     }
 
-    protected void remove(V value) {
+    protected V remove(V value) {
+	V ret = null;
 	N node = getNode(value, root);
 	if (node != null) {
+	    ret = node.value();
 	    if (node.left() == null)
 		if (node == root)
 		    root = root.right();
@@ -150,6 +152,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    }
 	    this.size--;
 	}
+	return ret;
     }
 
     protected N findMinOfMax(N node) {
