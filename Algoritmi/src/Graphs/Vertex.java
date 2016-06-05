@@ -8,10 +8,9 @@ public class Vertex<V> {
     private ArrayList<Edge<V>> neighbors;
     private Comparator<V> compare;
 
-    public Vertex(V value, Comparator compare) {
+    public Vertex(V value) {
 	this.value = value;
 	this.neighbors = new ArrayList<Edge<V>>();
-	this.compare = compare;
     }
 
     public V getValue() {
@@ -36,11 +35,7 @@ public class Vertex<V> {
     }
 
     public int hasNeighbors() {
-	int n = 0;
-	for (Edge<V> iter : this.neighbors)
-	    n++;
-
-	return n;
+	return this.neighbors.size();
     }
 
     public Edge<V> remove(Edge<V> edge) {
