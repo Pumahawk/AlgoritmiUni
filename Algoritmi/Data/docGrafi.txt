@@ -28,4 +28,13 @@
 + public Vertex<V> getNeighbor() 
 + public setValue(V) 
 + public addNeighbor(Vertex) 
-+ public Vertex remove(Vertex)   
++ public Vertex remove(Vertex) 
+
+## Metodi classe Edge<V>:
+
++ public Vertex getFirstVertex() 
++ public Vertex getSecondVertex() 
++ public set getFirstVertex() 
++ public set getSecondVertex() 
++ public Integer getWeight() 
++ public setWeight() 
