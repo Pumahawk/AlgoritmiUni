@@ -34,7 +34,7 @@
 
 + public Vertex getFirstVertex() 
 + public Vertex getSecondVertex() 
-+ public set getFirstVertex() 
-+ public set getSecondVertex() 
++ public setFirstVertex() 
++ public setSecondVertex() 
 + public Integer getWeight() 
 + public setWeight() 
