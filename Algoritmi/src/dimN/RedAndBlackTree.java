@@ -21,7 +21,9 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	if (node.value() != null)
 	    ret = node.value();
 	node.setValue(val);
-	solveCasePut(node, findCase(node));
+	// TODO controllare che la condizione sia corretta e sarvi a qualcosa!
+	if (ret == null)
+	    solveCasePut(node, findCase(node));
 	return ret;
     }
 
@@ -128,42 +130,52 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    public void remove(V value) {
+    public V remove(V value) {
 	ColoredNode<V> node = getNode(value, root);
-	if (node.left() == null)
-	    removeOneChild(node, node.right());
-	else if (node.right() == null)
-	    removeOneChild(node, node.left());
-	else {
-	    ColoredNode<V> minOfMax = findMinOfMax(node);
-	    if (minOfMax == node)
-		minOfMaxIsNode(node);
-	    else
-		minOfMaxIsNotNode(node, minOfMax);
+	V ret = null;
+	if (node != null) {
+	    ret = node.value();
+	    if (node.left() == null)
+		removeOneChild(node, node.right());
+	    else if (node.right() == null)
+		removeOneChild(node, node.left());
+	    else {
+		ColoredNode<V> minOfMax = findMinOfMax(node);
+		if (minOfMax == node)
+		    minOfMaxIsNode(node);
+		else
+		    minOfMaxIsNotNode(node, minOfMax);
+	    }
 	}
+	return ret;
     }
 
     private void removeOneChild(ColoredNode<V> node, ColoredNode<V> child) {
-	child.setValue(root.value());
-	if (node == root)
-	    if (node.getColor() == Color.RED) {
-		root = child;
-	    } else if (child.getColor() == Color.RED) {
+	if (child != null) {
+	    child.setValue(root.value());
+	    if (node == root)
+		if (node.getColor() == Color.RED) {
+		    root = child;
+		} else if (child.getColor() == Color.RED) {
+		    child.setColor(Color.BLACK);
+		    root = child;
+		} else {
+		    root = child;
+		    solveCaseOneRemove(root);
+		}
+	    else if (node.getColor() == Color.RED)
+		leaveFather(node, child);
+	    else if (child.getColor() == Color.RED) {
 		child.setColor(Color.BLACK);
-		root = child;
+		leaveFather(node, child);
 	    } else {
-		root = child;
-		solveCaseOneRemove(root);
+		leaveFather(node, child);
+		solveCaseOneRemove(child);
 	    }
-	else if (node.getColor() == Color.RED)
-	    leaveFather(node, child);
-	else if (child.getColor() == Color.RED) {
-	    child.setColor(Color.BLACK);
-	    leaveFather(node, child);
-	} else {
-	    leaveFather(node, child);
-	    solveCaseOneRemove(child);
-	}
+	} else if (node == root)
+	    root = null;
+	else
+	    leaveFather(node);
 
     }
 
