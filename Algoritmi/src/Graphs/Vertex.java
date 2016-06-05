@@ -1,34 +1,58 @@
 package Graphs;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Vertex<V> {
     private V value;
     private ArrayList<Edge<V>> neighbors;
+    private Comparator<V> compare;
 
-    public Vertex(V value) {
+    public Vertex(V value, Comparator compare) {
 	this.value = value;
 	this.neighbors = new ArrayList<Edge<V>>();
+	this.compare = compare;
     }
 
     public V getValue() {
 	return this.value;
     }
 
-    public Vertex<V> getNeighbor() {
+    public ArrayList<Vertex<V>> getNeighbors() {
+	ArrayList<Vertex<V>> myNeighbors = new ArrayList<Vertex<V>>();
+	for (Edge<V> iter : this.neighbors)
+	    myNeighbors.add((iter.getFirstVertex() == this) ? iter.getSecondVertex() : iter.getFirstVertex());
+	return myNeighbors;
     }
 
     public void setValue(V val) {
 	this.value = val;
     }
 
-    public void addNeighbor(Vertex<V> ver) {
-	if (this.neighbors.contains(ver))
+    public void addNeighbor(Edge<V> edge, Integer weight) {
+	if (this.neighbors.contains(edge))
 	    return;
-	this.neighbors.add(ver);
+	this.neighbors.add(edge);
     }
 
-    public Integer hasNeighbors(){}
+    public int hasNeighbors() {
+	int n = 0;
+	for (Edge<V> iter : this.neighbors)
+	    n++;
 
-    public Vertex remove(Vertex){}
+	return n;
+    }
+
+    public Edge<V> remove(Edge<V> edge) {
+	int i = 0;
+	for (Edge<V> iter : this.neighbors)
+	    if (iter != edge)
+		i++;
+	if (this.neighbors.get(i) == edge) {
+	    this.neighbors.remove(i);
+	    return edge;
+	} else
+	    return null;
+
+    }
 }
