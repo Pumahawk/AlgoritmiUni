@@ -1,5 +1,5 @@
 package Graphs;
 
-public class Edge {
+public class Edge<V> {
 
 }
