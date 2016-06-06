@@ -38,7 +38,11 @@ public class Vertex<V> {
 	return this.neighbors.size();
     }
 
-    public Edge<V> remove(Edge<V> edge) {
+    public boolean hasNeighbor(Vertex<V> v) {
+	return this.neighbors.contains(v);
+    }
+
+    public Edge<V> removeEdge(Edge<V> edge) {
 	int i = 0;
 	for (Edge<V> iter : this.neighbors)
 	    if (iter != edge)
@@ -48,6 +52,5 @@ public class Vertex<V> {
 	    return edge;
 	} else
 	    return null;
-
     }
 }
