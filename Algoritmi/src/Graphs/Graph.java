@@ -81,18 +81,52 @@ public class Graph<V> {
     public static void main(String args[]) {
 	System.out.println("Inizio");
 	Graph<String> citta = new Graph<>();
+
 	citta.addVertex("torino");
 	citta.addVertex("asti");
 	citta.addVertex("alessandria");
 	citta.addVertex("milano");
 	citta.addVertex("cuneo");
-	citta.link("torino", "asti", 100);
+	citta.addVertex("vercelli");
+
+	citta.link("torino", "asti", 57);
+	citta.link("asti", "torino", 57);
+
 	citta.link("torino", "cuneo", 100);
-	citta.link("cuneo", "milano", 100);
-	citta.link("asti", "alessandria", 100);
-	citta.link("alessandria", "milano", 100);
-	for (String nome : citta.minPath("torino", "milano"))
-	    System.out.println(nome);
+	citta.link("cuneo", "torino", 100);
+
+	citta.link("asti", "alessandria", 39);
+	citta.link("alessandria", "asti", 39);
+
+	citta.link("alessandria", "milano", 92);
+	citta.link("milano", "alessandria", 92);
+
+	citta.link("alessandria", "vercelli", 56);
+	citta.link("vercelli", "alessandria", 56);
+
+	citta.link("vercelli", "torino", 78);
+	citta.link("torino", "vercelli", 78);
+
+	citta.link("vercelli", "milano", 83);
+	citta.link("milano", "vercelli", 83);
+
+	System.out.println("---------------");
+	citta.stampaPercorso("torino", "milano");
+	System.out.println("---------------");
+
+	System.out.println("---------------");
+	citta.stampaPercorso("torino", "vercelli");
+	System.out.println("---------------");
+
+	System.out.println("---------------");
+	citta.stampaPercorso("vercelli", "cuneo");
+	System.out.println("---------------");
 	System.out.println("Fine");
+    }
+
+    public void stampaPercorso(V a, V b) {
+	System.out.println(a + " + " + b);
+	for (V nome : this.minPath(a, b))
+	    System.out.println(nome);
     }
 }
