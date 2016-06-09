@@ -1,56 +1,48 @@
 package Graphs;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.HashMap;
 
 public class Vertex<V> {
+    public class Edge {
+	public Vertex<V> vertex;
+	public int weight;
+
+	public Edge(Vertex<V> vertex, int weight) {
+	    this.vertex = vertex;
+	    this.weight = weight;
+	}
+    }
+
     private V value;
-    private ArrayList<Edge<V>> neighbors;
-    private Comparator<V> compare;
+    private HashMap<Vertex<V>, Edge> neightbor;
 
     public Vertex(V value) {
 	this.value = value;
-	this.neighbors = new ArrayList<Edge<V>>();
+	this.neightbor = new HashMap<>();
     }
 
     public V getValue() {
 	return this.value;
     }
 
-    public ArrayList<Vertex<V>> getNeighbors() {
-	ArrayList<Vertex<V>> myNeighbors = new ArrayList<Vertex<V>>();
-	for (Edge<V> iter : this.neighbors)
-	    myNeighbors.add((iter.getFirstVertex() == this) ? iter.getSecondVertex() : iter.getFirstVertex());
-	return myNeighbors;
+    public boolean hasNeightbor(Vertex<V> neightbor) {
+	return this.neightbor.containsKey(neightbor);
     }
 
-    public void setValue(V val) {
-	this.value = val;
+    public int getWeight(Vertex<V> neightbor) {
+	return this.neightbor.get(neightbor).weight;
     }
 
-    public void addNeighbor(Edge<V> edge, Integer weight) {
-	if (this.neighbors.contains(edge))
-	    return;
-	this.neighbors.add(edge);
+    public void setWeight(Vertex<V> neightbor, int weight) {
+	this.neightbor.get(neightbor).weight = weight;
     }
 
-    public int hasNeighbors() {
-	return this.neighbors.size();
+    public void setNeigthBor(Vertex<V> neightbor, int weight) {
+	if (this != neightbor)
+	    this.neightbor.put(neightbor, new Edge(neightbor, weight));
     }
 
-    public boolean hasNeighbor(Vertex<V> v) {
-	return this.neighbors.contains(v);
-    }
-
-    public Edge<V> removeEdge(Edge<V> edge) {
-	int i = 0;
-	for (Edge<V> iter : this.neighbors)
-	    if (iter != edge)
-		i++;
-	if (this.neighbors.get(i) == edge) {
-	    this.neighbors.remove(i);
-	    return edge;
-	} else
-	    return null;
+    public HashMap<Vertex<V>, Edge> getNeightbor() {
+	return this.neightbor;
     }
 }
