@@ -21,6 +21,16 @@ public class Graph<V> {
 	}
     }
 
+    public class Path {
+	public V vertex;
+	public int weight;
+
+	public Path(V vertex, int weight) {
+	    this.vertex = vertex;
+	    this.weight = weight;
+	}
+    }
+
     private HashMap<V, Vertex<V>> vertex;
 
     public Graph() {
@@ -39,7 +49,17 @@ public class Graph<V> {
 	this.vertex.get(a).setNeigthBor(this.vertex.get(b), weight);
     }
 
-    public LinkedList<V> minPath(V a, V b) {
+    public void unlink(V a, V b) {
+	this.vertex.get(a).getNeightbor().remove(this.vertex.get(b));
+    }
+
+    public void remove(V vertex) {
+	for (Vertex<V> vert : this.vertex.values())
+	    unlink(vert.getValue(), vertex);
+	this.vertex.remove(vertex);
+    }
+
+    public LinkedList<Path> minPath(V a, V b) {
 	HashMap<Vertex<V>, Tag> visitati = new HashMap<>();
 	HashMap<Vertex<V>, Tag> daVisitare = new HashMap<>();
 
@@ -57,11 +77,11 @@ public class Graph<V> {
 	    daVisitare.remove(minTag.vertex);
 	    visitati.put(minTag.vertex, minTag);
 	}
-	LinkedList<V> ret = new LinkedList<>();
+	LinkedList<Path> ret = new LinkedList<>();
 	visitati.get(this.vertex.get(b));
 	Tag tagList = visitati.get(this.vertex.get(b));
 	while (tagList != null) {
-	    ret.add(tagList.vertex.getValue());
+	    ret.add(0, new Path(tagList.vertex.getValue(), tagList.weight));
 	    tagList = visitati.get(tagList.before);
 	}
 	return ret;
@@ -110,23 +130,34 @@ public class Graph<V> {
 	citta.link("vercelli", "milano", 83);
 	citta.link("milano", "vercelli", 83);
 
-	System.out.println("---------------");
 	citta.stampaPercorso("torino", "milano");
-	System.out.println("---------------");
 
-	System.out.println("---------------");
-	citta.stampaPercorso("torino", "vercelli");
-	System.out.println("---------------");
+	citta.unlink("vercelli", "milano");
+	System.out.println();
+	System.out.println("Strada Vercelli -> Milano chiusa");
+	System.out.println();
 
-	System.out.println("---------------");
-	citta.stampaPercorso("vercelli", "cuneo");
-	System.out.println("---------------");
-	System.out.println("Fine");
+	citta.stampaPercorso("torino", "milano");
+	System.out.println();
+
+	citta.disegnaGrafo();
     }
 
     public void stampaPercorso(V a, V b) {
-	System.out.println(a + " + " + b);
-	for (V nome : this.minPath(a, b))
-	    System.out.println(nome);
+	System.out.println(a + " -> " + b);
+	for (Path path : this.minPath(a, b))
+	    System.out.println("Citta: " + path.vertex + "\tDistanza: " + path.weight);
+    }
+
+    public void disegnaGrafo() {
+	int i, j;
+	i = 0;
+	for (Vertex<V> vert : this.vertex.values()) {
+	    System.out.println("Nodo " + (i++) + ": " + vert.getValue());
+	    j = 0;
+	    for (Vertex<V>.Edge edge : vert.getNeightbor().values())
+		System.out.println(
+			"\tNodo vicino " + (j++) + ": " + edge.vertex.getValue() + ",\t distanza: " + edge.weight);
+	}
     }
 }
