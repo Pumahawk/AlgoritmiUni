@@ -16,9 +16,9 @@ public class Vertex<V> {
     private V value;
     private HashMap<Vertex<V>, Edge> neightbor;
 
-    public Vertex(V value) {
+    public Vertex(V value, HashMap<Vertex<V>, Edge> edge) {
 	this.value = value;
-	this.neightbor = new HashMap<>();
+	this.neightbor = edge;
     }
 
     public V getValue() {
