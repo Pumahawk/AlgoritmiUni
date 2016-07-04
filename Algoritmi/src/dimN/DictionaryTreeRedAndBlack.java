@@ -92,7 +92,7 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 
     @Override
     public V get(Object arg0) {
-	ContainerDictionary<K, V> c = tree.get((ContainerDictionary<K, V>) arg0);
+	ContainerDictionary<K, V> c = tree.get(new ContainerDictionary<K, V>((K) arg0, null));
 	return (c != null) ? c.value : null;
     }
 
