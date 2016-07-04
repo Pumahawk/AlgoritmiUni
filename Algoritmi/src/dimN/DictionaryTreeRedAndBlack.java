@@ -124,8 +124,8 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
     }
 
     private V remove(Object key, StaticBinaryNode<ContainerDictionary<K, V>> node) {
-	// TODO
-	return null;
+	ContainerDictionary<K, V> ret = tree.remove(new ContainerDictionary<>((K) key, null));
+	return (ret != null) ? ret.value : null;
     }
 
     @Override
