@@ -5,6 +5,11 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 
+/**
+ * @param <K>
+ * @param <V>
+ * @param <T>
+ */
 public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDictionary<K, V>, ColoredNode<ContainerDictionary<K, V>>>>
 	extends Dictionary<K, V> {
 
@@ -16,10 +21,14 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 
 	public Iterator<ContainerDictionary<K, V>> it;
 
+	/**
+	 * @param tr
+	 */
 	public KEnum(T tr) {
 	    it = tr.iterator();
 	}
 
+	@Override
 	public K nextElement() {
 	    return it.next().key;
 	}
@@ -37,10 +46,14 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 
 	public Iterator<ContainerDictionary<K, V>> it;
 
+	/**
+	 * @param tr
+	 */
 	public VEnum(T tr) {
 	    it = tr.iterator();
 	}
 
+	@Override
 	public V nextElement() {
 	    return it.next().value;
 	}
@@ -54,9 +67,16 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 
     protected T tree;
 
+    /**
+     * @param comp
+     */
     public DictionaryTreeRedAndBlack(Comparator<K> comp) {
     }
 
+    /**
+     * @param dictionary
+     * @param comp
+     */
     public DictionaryTreeRedAndBlack(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();
@@ -101,7 +121,6 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 	    return cont.value;
 	else
 	    return null;
-	// TODO
     }
 
     private V remove(Object key, StaticBinaryNode<ContainerDictionary<K, V>> node) {

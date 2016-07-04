@@ -11,12 +11,21 @@ public class RecordCSV {
 	STRING, INTEGER, FLOAT
     }
 
+    /**
+     * @param string
+     * @param integer
+     * @param fl
+     */
     public RecordCSV(String string, Integer integer, Float fl) {
 	this.s = string;
 	this.f = fl;
 	this.i = integer;
     }
 
+    /**
+     * @param type
+     * @return
+     */
     public static Comparator<RecordCSV> getComparator(Type type) {
 	switch (type) {
 	case STRING:

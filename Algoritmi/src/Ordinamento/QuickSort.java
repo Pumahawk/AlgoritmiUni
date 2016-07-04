@@ -6,18 +6,32 @@ import java.util.Comparator;
 public class QuickSort<T> {
     private Comparator<T> comparator;
 
+    /**
+     * @param comparator
+     */
     public QuickSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
+    /**
+     * @param a
+     */
     public void sort(ArrayList<T> a) {
 	quickSort(a);
     }
 
+    /**
+     * @param a
+     */
     public void quickSort(ArrayList<T> a) {
 	partition(a, 0, a.size() - 1);
     }
 
+    /**
+     * @param a
+     * @param start
+     * @param end
+     */
     public void partition(ArrayList<T> a, int start, int end) {
 	if (start < end) {
 	    int pivot = (start + end) / 2;
@@ -41,12 +55,21 @@ public class QuickSort<T> {
 
     }
 
+    /**
+     * @param a
+     * @param i
+     * @param j
+     */
     public void scambia(ArrayList<T> a, int i, int j) {
 	T temp = a.get(i);
 	a.set(i, a.get(j));
 	a.set(j, temp);
     }
 
+    /**
+     * @param a
+     * @return
+     */
     public boolean isSorted(ArrayList<T> a) {
 	for (int i = 1; i < a.size(); i++)
 	    if (comparator.compare(a.get(i - 1), a.get(i)) > 0)
@@ -54,12 +77,4 @@ public class QuickSort<T> {
 	return true;
     }
 
-    public static void main(String args[]) {
-	ArrayList<Integer> arr = new ArrayList<Integer>();
-	for (int i = 0; i < arr.size(); i++)
-	    arr.set(i, (int) (Math.random() * 100000 - 1000));
-	QuickSort<Integer> qs = new QuickSort<Integer>((Integer a, Integer b) -> (a < b) ? -1 : (a == b) ? 0 : 1);
-	qs.partition(arr, 0, arr.size() - 1);
-	return;
-    }
 }
