@@ -6,8 +6,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 /**
- * @author UMIT AHMED
- *
  * @param <K>
  * @param <V>
  * @param <T>

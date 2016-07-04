@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author UMIT AHMED
+ *
+ */
 public class Esercizio3 {
 
     public static void main(String args[]) {

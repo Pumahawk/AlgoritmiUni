@@ -16,10 +16,16 @@ public class Node {
 	this.adjacents = new ArrayList<Edge>();
     }
 
+    /**
+     * @return
+     */
     public ArrayList<Edge> getAdjacents() {
 	return this.adjacents;
     }
 
+    /**
+     * @param adj
+     */
     public void setAdjacents(ArrayList<Edge> adj) {
 	this.adjacents = adj;
     }
