@@ -46,6 +46,7 @@ public class FIleTest {
 		    arr.add(c2);
 		}
 		citta.link(c1, c2, Float.parseFloat(field[2]));
+		citta.link(c2, c1, Float.parseFloat(field[2]));
 	    } // end while
 	} catch (FileNotFoundException e) {
 	    e.printStackTrace();
@@ -60,7 +61,6 @@ public class FIleTest {
 		}
 	    }
 	} // end finally
-	    
 	citta.stampaPercorso("torino", "catania");
     }// end main
 
