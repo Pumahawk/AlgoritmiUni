@@ -1,7 +1,10 @@
 package Graphs;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+
+import Graphs.Vertex.Edge;
 
 public class Graph<V> {
 
@@ -32,13 +35,16 @@ public class Graph<V> {
     }
 
     private HashMap<V, Vertex<V>> vertex;
+    private HashMap<V, HashMap<Vertex<V>, Vertex<V>.Edge>> edge;
 
     public Graph() {
 	this.vertex = new HashMap<>();
+	this.edge = new HashMap<>();
     }
 
     public void addVertex(V vertex) {
-	this.vertex.put(vertex, new Vertex<V>(vertex));
+	this.edge.put(vertex, new HashMap<>());
+	this.vertex.put(vertex, new Vertex<V>(vertex, edge.get(vertex)));
     }
 
     public boolean containsVertex(V vertex) {
