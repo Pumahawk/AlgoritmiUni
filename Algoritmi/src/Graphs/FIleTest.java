@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FIleTest {
-    public static void main(String args[]){
+    public static Graph<String> getGraph(String pathFileCSV){
 	
 
 	Graph<String> citta = new Graph<>();
@@ -16,7 +16,7 @@ public class FIleTest {
 	
 	Scanner sc = new Scanner(System.in);
 	String csvLine = ""; // the string will contain a line of csv file
-	String csvFile = "C:\\Users\\Lorenzo Gandino\\Desktop\\italian_dist_graph.csv";
+	String csvFile = pathFileCSV;
 
 	BufferedReader br = null;
 	System.out.println("Attendere estrazione dati");
@@ -60,13 +60,8 @@ public class FIleTest {
 		    e.printStackTrace();
 		}
 	    }
-	} // end finally
-	citta.stampaPercorso("torino", "catania");
-    }// end main
-
-    // Function to convert from string to float
-    public static double convertInDouble(String s) {
-	return Double.valueOf(s.trim()).doubleValue();
+	}
+	return citta;
     }
 
     public static String retCitta(ArrayList<String> arr, String st){
