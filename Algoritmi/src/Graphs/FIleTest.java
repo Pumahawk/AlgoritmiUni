@@ -5,14 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class FIleTest {
+class FIleTest {
     public static Graph<String> getGraph(String pathFileCSV){
 	
 
 	Graph<String> citta = new Graph<>();
-	ArrayList<String> arr = new ArrayList<>();
+	HashMap<Integer,String> arr = new HashMap<>();
 	
 	Scanner sc = new Scanner(System.in);
 	String csvLine = ""; // the string will contain a line of csv file
@@ -32,18 +33,18 @@ public class FIleTest {
 		String[] field = csvLine.split(",");
 		
 		String c1,c2;
-		c1 = retCitta(arr, field[0]);
-		c2 = retCitta(arr, field[1]);
+		c1 = arr.get(field[0].hashCode());
+		c2 = arr.get(field[1].hashCode());
 		
 		if(c1 == null){
 		    c1 = field[0];
 		    citta.addVertex(c1);
-		    arr.add(c1);
+		    arr.put(c1.hashCode(), c1);
 		}
 		if(c2 == null){
 		    c2 = field[1];
 		    citta.addVertex(c2);
-		    arr.add(c2);
+		    arr.put(c2.hashCode(), c2);
 		}
 		citta.link(c1, c2, Float.parseFloat(field[2]));
 		citta.link(c2, c1, Float.parseFloat(field[2]));
