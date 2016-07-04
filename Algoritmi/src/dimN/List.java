@@ -3,25 +3,21 @@ package dimN;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- * Rappresenta una struttura dinamica in cui l'ultimo dato sara il primo ad
- * essere prelevato.
- * 
- * @author Lorenzo Gandino
- *
- * @param <T>
- *            Tipo di variabile memorizzata nella lista.
- */
 public class List<T> implements Iterable<T> {
-    /**
-     * @author Lorenzo Gandino
-     *
-     */
+
     private class PNode extends NodeList<T, PNode> {
+
+	/**
+	 * @param val
+	 */
 	public PNode(T val) {
 	    this(val, null);
 	}
 
+	/**
+	 * @param val
+	 * @param next
+	 */
 	public PNode(T val, PNode next) {
 	    super(val, next);
 	}
@@ -30,6 +26,9 @@ public class List<T> implements Iterable<T> {
     private class IteratorList implements Iterator<T> {
 	public PNode node;
 
+	/**
+	 * @param node
+	 */
 	public IteratorList(PNode node) {
 	    this.node = node;
 	}
@@ -60,13 +59,14 @@ public class List<T> implements Iterable<T> {
 	return new IteratorList(head);
     }
 
+    /**
+     * @param val
+     */
     public void put(T val) {
 	head = new PNode(val, head);
 	this.size++;
     }
 
-    // Aggiungere nella documentazione che in caso la lista sia vuota sara
-    // lanciato un null'pointer Exception
     public T pop() {
 	T ret = head.value();
 	head = head.next();
@@ -82,6 +82,9 @@ public class List<T> implements Iterable<T> {
 	return size;
     }
 
+    /**
+     * @param args
+     */
     public static void main(String args[]) {
 	List<String> list = new List<>();
 	list.put("1");

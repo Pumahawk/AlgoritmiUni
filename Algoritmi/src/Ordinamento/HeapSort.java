@@ -3,13 +3,24 @@ package Ordinamento;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * @param <T>
+ *            comparator
+ */
 public class HeapSort<T> {
     private Comparator<T> comparator;
 
+    /**
+     * @param comparator
+     */
     public HeapSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
+    /**
+     * @param array
+     * @param p
+     */
     private void makeHeap(ArrayList<T> array, int p) {
 	if (isFoglia(array, p))
 	    return;
@@ -20,6 +31,11 @@ public class HeapSort<T> {
 
     }
 
+    /**
+     * @param arr
+     * @param pos
+     * @return the position of max
+     */
     private int getMax(ArrayList<T> arr, int pos) {
 	if (isFoglia(arr, pos))
 	    return pos;
@@ -39,6 +55,11 @@ public class HeapSort<T> {
 	}
     }
 
+    /**
+     * @param arr
+     * @param pos
+     * @return true if the node is a leaf, else false.
+     */
     private boolean isFoglia(ArrayList<T> arr, int pos) {
 	int lungArr = arr.size();
 	if (pos * 2 + 1 >= lungArr)
@@ -47,12 +68,20 @@ public class HeapSort<T> {
 	    return false;
     }
 
+    /**
+     * @param array
+     * @param pos1
+     * @param pos2
+     */
     public void scambia(ArrayList<T> array, int pos1, int pos2) {
 	T p = array.get(pos1);
 	array.set(pos1, array.get(pos2));
 	array.set(pos2, p);
     }
 
+    /**
+     * @param arr
+     */
     private void sortHeap(ArrayList<T> arr) {
 	int p, max;
 	for (int i = arr.size() - 1; i > 0; i--) {
@@ -72,16 +101,25 @@ public class HeapSort<T> {
 	}
     }
 
+    /**
+     * @param arr
+     */
     public void sort(ArrayList<T> arr) {
 	makeHeap(arr);
 	sortHeap(arr);
     }
 
+    /**
+     * @param arr
+     */
     private void makeHeap(ArrayList<T> arr) {
 	makeHeap(arr, 0);
 
     }
 
+    /**
+     * @param arr
+     */
     public static void printArr(ArrayList<Integer> arr) {
 	for (int i = 0; i < arr.size(); i++)
 	    System.out.println(arr.get(i));

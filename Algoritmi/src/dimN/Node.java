@@ -1,8 +1,14 @@
 package dimN;
 
+/**
+ * @param <V>
+ */
 public class Node<V> {
     private V value;
 
+    /**
+     * @param val
+     */
     public Node(V val) {
 	setValue(val);
     }
@@ -11,10 +17,16 @@ public class Node<V> {
 	this(null);
     }
 
+    /**
+     * @return value
+     */
     public V value() {
 	return this.value;
     }
 
+    /**
+     * @param val
+     */
     public void setValue(V val) {
 	this.value = val;
     }

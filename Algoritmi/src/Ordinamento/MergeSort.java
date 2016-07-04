@@ -6,19 +6,34 @@ import java.util.Comparator;
 public class MergeSort<T> {
     private Comparator<T> comparator;
 
+    /**
+     * @param comparator
+     */
     public MergeSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
+    /**
+     * @param a
+     */
     void sort(ArrayList<T> a) {
 	msortBasicEcologic(a);
     }
 
+    /**
+     * @param a
+     */
     void msortBasicEcologic(ArrayList<T> a) {
 	ArrayList<T> old = (ArrayList<T>) a.clone();
 	msortBasic(a, 0, a.size() - 1, old);
     }
 
+    /**
+     * @param a
+     * @param start
+     * @param end
+     * @param old
+     */
     void msortBasic(ArrayList<T> a, int start, int end, ArrayList<T> old) {
 	if (start >= end)
 	    return;
@@ -28,6 +43,13 @@ public class MergeSort<T> {
 	mergeEcologic(a, start, middle, end, old);
     }
 
+    /**
+     * @param array
+     * @param first
+     * @param mid
+     * @param last
+     * @param c
+     */
     public void mergeEcologic(ArrayList<T> array, int first, int mid, int last, ArrayList<T> c) {
 	int i = first, j = mid + 1, k = first;
 	while (i <= mid && j <= last) {
@@ -51,6 +73,9 @@ public class MergeSort<T> {
 
     }
 
+    /**
+     * @param arr
+     */
     public void print(ArrayList<T> arr) {
 	for (int i = 0; i < arr.size(); i++)
 	    System.out.println(arr.get(i));
