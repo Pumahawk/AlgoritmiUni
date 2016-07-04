@@ -1,19 +1,17 @@
 package Graphs;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import Graphs.Vertex.Edge;
 
 public class Graph<V> {
 
     private class Tag {
 	public Vertex<V> vertex;
-	public int weight;
+	public float weight;
 	public Vertex<V> before;
 
-	public Tag(Vertex<V> vertex, int weight, Vertex<V> before) {
+	public Tag(Vertex<V> vertex, float weight, Vertex<V> before) {
 	    this.vertex = vertex;
 	    this.weight = weight;
 	    this.before = before;
@@ -26,16 +24,16 @@ public class Graph<V> {
 
     public class Path {
 	public V vertex;
-	public int weight;
+	public float weight;
 
-	public Path(V vertex, int weight) {
+	public Path(V vertex, float weight) {
 	    this.vertex = vertex;
 	    this.weight = weight;
 	}
     }
 
-    private HashMap<V, Vertex<V>> vertex;
-    private HashMap<V, HashMap<Vertex<V>, Vertex<V>.Edge>> edge;
+    public HashMap<V, Vertex<V>> vertex;
+    public HashMap<V, HashMap<Vertex<V>, Vertex<V>.Edge>> edge;
 
     public Graph() {
 	this.vertex = new HashMap<>();
@@ -51,7 +49,7 @@ public class Graph<V> {
 	return this.vertex.containsKey(vertex);
     }
 
-    public void link(V a, V b, int weight) {
+    public void link(V a, V b, float weight) {
 	this.vertex.get(a).setNeigthBor(this.vertex.get(b), weight);
     }
 

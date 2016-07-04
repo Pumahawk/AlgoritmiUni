@@ -5,16 +5,16 @@ import java.util.HashMap;
 public class Vertex<V> {
     public class Edge {
 	public Vertex<V> vertex;
-	public int weight;
+	public float weight;
 
-	public Edge(Vertex<V> vertex, int weight) {
+	public Edge(Vertex<V> vertex, float weight) {
 	    this.vertex = vertex;
 	    this.weight = weight;
 	}
     }
 
     private V value;
-    private HashMap<Vertex<V>, Edge> neightbor;
+    public HashMap<Vertex<V>, Edge> neightbor;
 
     public Vertex(V value, HashMap<Vertex<V>, Edge> edge) {
 	this.value = value;
@@ -29,7 +29,7 @@ public class Vertex<V> {
 	return this.neightbor.containsKey(neightbor);
     }
 
-    public int getWeight(Vertex<V> neightbor) {
+    public float getWeight(Vertex<V> neightbor) {
 	return this.neightbor.get(neightbor).weight;
     }
 
@@ -37,7 +37,7 @@ public class Vertex<V> {
 	this.neightbor.get(neightbor).weight = weight;
     }
 
-    public void setNeigthBor(Vertex<V> neightbor, int weight) {
+    public void setNeigthBor(Vertex<V> neightbor, float weight) {
 	if (this != neightbor)
 	    this.neightbor.put(neightbor, new Edge(neightbor, weight));
     }
