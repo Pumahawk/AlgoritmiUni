@@ -18,7 +18,10 @@ public class GraphTest {
 
     @Test
     public void test() {
-	citta.stampaPercorso("torino", "catania");
+	String torino = "torino";
+	String catania = "catania";
+	citta.stampaPercorso(torino, catania);
+	assertEquals(citta.distanzaMinima(torino, catania) == 1207680.2f, true);
     }
 
 }

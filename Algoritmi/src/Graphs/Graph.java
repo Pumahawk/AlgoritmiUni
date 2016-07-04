@@ -152,6 +152,14 @@ public class Graph<V> {
 	for (Path path : this.minPath(a, b))
 	    System.out.println("Citta: " + path.vertex + "\tDistanza: " + path.weight);
     }
+    
+    public float distanzaMinima(V a, V b){
+	float ret = 0;
+	for (Path path : this.minPath(a, b))
+	    ret = path.weight;
+	return ret;
+    
+    }
 
     public void disegnaGrafo() {
 	int i, j;
