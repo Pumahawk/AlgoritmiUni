@@ -21,6 +21,6 @@ class ContainerDictionary<K, V> {
     }
 
     static public <K2, V2> Comparator<ContainerDictionary<K2, V2>> getComparator(Comparator<K2> comp) {
-	return (ContainerDictionary<K2, V2> a, ContainerDictionary<K2, V2> b) -> comp.compare(a.key, b.key); // TODO
+	return (ContainerDictionary<K2, V2> a, ContainerDictionary<K2, V2> b) -> comp.compare(a.key, b.key);
     }
 }

@@ -266,12 +266,6 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    @Override
-    public V removeNode(ColoredNode<V> val) {
-	// TODO fare l'override
-	return null;
-    }
-
     private void leftRotate(ColoredNode<V> nodo) {
 	ColoredNode<V> padre = nodo.father();
 	nodo.right().setFather(nodo.father());
