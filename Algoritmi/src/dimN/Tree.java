@@ -1,5 +1,6 @@
 package dimN;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -16,15 +17,12 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     private class IterImpl implements Iterator<N> {
 	public N punt;
 	public N begin;
-	public List<Direction> direction;
+	public ArrayList<Direction> direction;
 
-	/**
-	 * @param punt
-	 */
 	public IterImpl(N punt) {
 	    this.punt = punt;
 	    this.begin = punt;
-	    this.direction = new List<>();
+	    this.direction = new ArrayList<>();
 
 	}
 
@@ -38,10 +36,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    N p = this.punt;
 
 	    if (this.punt.left() != null) {
-		this.direction.put(Direction.LEFT);
+		this.direction.add(0, Direction.LEFT);
 		this.punt = this.punt.left();
 	    } else if (this.punt.right() != null) {
-		this.direction.put(Direction.RIGHT);
+		this.direction.add(0, Direction.RIGHT);
 		this.punt = this.punt.right();
 	    } else {
 		top();
@@ -53,11 +51,11 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	}
 
 	private void top() {
-	    while (direction.hasNext()) {
-		Direction dir = direction.pop();
+	    while (direction.size() != 0) {
+		Direction dir = direction.remove(0);
 		this.punt = this.punt.father();
 		if (dir == Direction.LEFT && this.punt.right() != null) {
-		    this.direction.put(Direction.RIGHT);
+		    this.direction.add(0, Direction.RIGHT);
 		    this.punt = this.punt.right();
 		    break;
 		}
@@ -92,18 +90,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     protected N root = null;
     protected Comparator<V> comparator;
 
-    /**
-     * @param comp
-     */
     public Tree(Comparator<V> comp) {
 	this.comparator = comp;
     }
 
-    /**
-     * @param val
-     * @param punt
-     * @return
-     */
     protected N getNode(V val, N punt) {
 	if (punt != null)
 	    return (comparator.compare(punt.value(), val) == 0) ? punt
@@ -113,17 +103,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    return null;
     }
 
-    /**
-     * @param comparator
-     */
     public void setComparator(Comparator<V> comparator) {
 	this.comparator = comparator;
     }
 
-    /**
-     * @param arg0
-     * @return a value
-     */
     public V get(V arg0) {
 	return get(arg0, root);
     }
@@ -139,22 +122,12 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return new VIterImpl(root);
     }
 
-    /**
-     * @param val
-     */
     public abstract V put(V val);
 
-    /**
-     * @return the size
-     */
     public int size() {
 	return this.size;
     }
 
-    /**
-     * @param value
-     * @return the deleted value
-     */
     protected V remove(V value) {
 	V ret = null;
 	N node = getNode(value, root);
@@ -190,10 +163,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return ret;
     }
 
-    /**
-     * @param node
-     * @return the node
-     */
     protected N findMinOfMax(N node) {
 	N ret = node;
 	if (ret.right() != null) {
@@ -206,10 +175,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 
     }
 
-    /**
-     * @param node
-     * @return the value of the removed value
-     */
     protected V removeNode(N node) {
 	if (node != null) {
 	    N myNode = getNode(node.value(), this.root);
@@ -229,19 +194,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	    return null;
     }
 
-    /**
-     * @param node
-     * @return a node
-     */
     protected N leaveFather(N node) {
 	return leaveFather(node, null);
     }
 
-    /**
-     * @param node
-     * @param child
-     * @return a node
-     */
     protected N leaveFather(N node, N child) {
 	N father = node.father();
 	if (father != null)
@@ -252,9 +208,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return father;
     }
 
-    /**
-     * @param node
-     */
     protected void putNode(N node) {
 	if (node != null)
 	    if (this.root != null)
@@ -263,10 +216,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 		this.root = node;
     }
 
-    /**
-     * @param node
-     * @param root
-     */
     protected void putNode(N node, N root) {
 	if (comparator.compare(node.value(), root.value()) < 0)
 	    if (root.left() != null)
@@ -280,9 +229,6 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 
     }
 
-    /**
-     * @return true if root is null, else false
-     */
     public boolean isEmpty() {
 	return this.root == null;
     }

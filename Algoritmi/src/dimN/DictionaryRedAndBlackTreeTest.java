@@ -8,7 +8,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRoot() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -20,7 +20,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootOneLeftChild() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -32,7 +32,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootOneRightChild() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -44,7 +44,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootTwoChild() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -57,7 +57,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testInsertT() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 
 	rbt.put(4, "Test1");
@@ -72,7 +72,7 @@ public class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testSearchFound() {
-	DictionaryRedAndBlackTree<Integer, String> rbt = new DictionaryRedAndBlackTree<Integer, String>(
+	DictionaryTreeRedAndBlack<Integer, String> rbt = new DictionaryTreeRedAndBlack<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 
 	rbt.put(4, "Test1");

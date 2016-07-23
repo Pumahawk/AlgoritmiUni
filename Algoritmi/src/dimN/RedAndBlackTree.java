@@ -10,9 +10,6 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	ONE, TWO, THREE, FOUR, FIVE
     }
 
-    /**
-     * @param comp
-     */
     public RedAndBlackTree(Comparator<V> comp) {
 	super(comp);
     }
@@ -29,10 +26,6 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	return ret;
     }
 
-    /**
-     * @param node
-     * @return a Case witch can be ONE, TWO, THREE, FOUR, FIVE
-     */
     protected Case findCase(ColoredNode<V> node) {
 	if (node.father() == null)
 	    return Case.ONE;
@@ -52,10 +45,6 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    /**
-     * @param node
-     * @param caso
-     */
     protected void solveCasePut(ColoredNode<V> node, Case caso) {
 	switch (caso) {
 	case ONE:

@@ -10,84 +10,19 @@ import java.util.Iterator;
  * @param <V>
  * @param <T>
  */
-public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDictionary<K, V>, ColoredNode<ContainerDictionary<K, V>>>>
-	extends Dictionary<K, V> {
+public class DictionaryTreeRedAndBlack<K, V>
+	extends DictionaryTree<K, V, RedAndBlackTree<ContainerDictionary<K,V>>> {
 
-    private enum Direction {
-	LEFT, RIGHT;
-    }
-
-    private class KEnum implements Enumeration<K> {
-
-	public Iterator<ContainerDictionary<K, V>> it;
-
-	/**
-	 * @param tr
-	 */
-	public KEnum(T tr) {
-	    it = tr.iterator();
-	}
-
-	@Override
-	public K nextElement() {
-	    return it.next().key;
-	}
-
-	@Override
-	public boolean hasMoreElements() {
-	    return it.hasNext();
-	}
-
-    }
-
-    private class VEnum implements Enumeration<V> {
-
-	// public EnumNode en;
-
-	public Iterator<ContainerDictionary<K, V>> it;
-
-	/**
-	 * @param tr
-	 */
-	public VEnum(T tr) {
-	    it = tr.iterator();
-	}
-
-	@Override
-	public V nextElement() {
-	    return it.next().value;
-	}
-
-	@Override
-	public boolean hasMoreElements() {
-	    return it.hasNext();
-	}
-
-    }
-
-    protected T tree;
-
-    /**
-     * @param comp
-     */
     public DictionaryTreeRedAndBlack(Comparator<K> comp) {
+	this.tree = new RedAndBlackTree<>(ContainerDictionary.getComparator(comp));
     }
 
-    /**
-     * @param dictionary
-     * @param comp
-     */
     public DictionaryTreeRedAndBlack(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();
 	for (K key; keys.hasMoreElements();) {
 	    this.put(key = keys.nextElement(), dictionary.get(key));
 	}
-    }
-
-    @Override
-    public Enumeration<V> elements() {
-	return new VEnum(tree);
     }
 
     @Override
@@ -101,10 +36,6 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 	return tree.isEmpty();
     }
 
-    @Override
-    public Enumeration<K> keys() {
-	return new KEnum(tree);
-    }
 
     @Override
     public V put(K key, V val) {
@@ -121,11 +52,6 @@ public abstract class DictionaryTreeRedAndBlack<K, V, T extends Tree<ContainerDi
 	    return cont.value;
 	else
 	    return null;
-    }
-
-    private V remove(Object key, StaticBinaryNode<ContainerDictionary<K, V>> node) {
-	ContainerDictionary<K, V> ret = tree.remove(new ContainerDictionary<>((K) key, null));
-	return (ret != null) ? ret.value : null;
     }
 
     @Override

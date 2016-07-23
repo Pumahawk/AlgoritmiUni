@@ -1,36 +1,28 @@
 package dimN;
 
-/**
- * @param <V>
- * @param <P>
- */
-public class BinaryNode<V, P extends Node<V>> extends Node<V> {
+public abstract class BinaryNode<V, P extends BinaryNode<V, P>> {
+    private V value;
     private P father;
     private P left;
     private P right;
 
-    /**
-     * @param val
-     * @param father
-     * @param left
-     * @param right
-     */
     public BinaryNode(V val, P father, P left, P right) {
-	super(val);
-	setFather(father);
-	setLeft(left);
-	setRight(right);
+	this.value = val;
+	this.father = father;
+	this.left = left;
+	this.right = right;
     }
 
-    /**
-     * @param val
-     */
     public BinaryNode(V val) {
 	this(val, null, null, null);
     }
 
     public BinaryNode() {
 	this(null);
+    }
+
+    public V value() {
+	return this.value;
     }
 
     public P father() {
@@ -45,23 +37,18 @@ public class BinaryNode<V, P extends Node<V>> extends Node<V> {
 	return this.right;
     }
 
-    /**
-     * @param father
-     */
+    public void setValue(V value) {
+	this.value = value;
+    }
+
     public void setFather(P father) {
 	this.father = father;
     }
 
-    /**
-     * @param left
-     */
     public void setLeft(P left) {
 	this.left = left;
     }
 
-    /**
-     * @param right
-     */
     public void setRight(P right) {
 	this.right = right;
     }
