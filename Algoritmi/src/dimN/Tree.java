@@ -128,7 +128,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	return this.size;
     }
 
-    protected V remove(V value) {
+    public V remove(V value) {
 	V ret = null;
 	N node = getNode(value, root);
 	if (node != null) {
