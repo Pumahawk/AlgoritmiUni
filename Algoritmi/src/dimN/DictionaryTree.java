@@ -1,5 +1,6 @@
 package dimN;
 
+import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -47,6 +48,12 @@ public abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K,
 	}
 
     }
+
+    public DictionaryTree(Comparator<K> comp) {
+	this.tree = instanceTree(comp);
+    }
+
+    protected abstract T instanceTree(Comparator<K> comp);
 
     @Override
     public Enumeration<V> elements() {

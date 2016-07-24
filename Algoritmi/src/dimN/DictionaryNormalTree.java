@@ -7,7 +7,7 @@ import java.util.Enumeration;
 public class DictionaryNormalTree<K, V> extends DictionaryTree<K, V, NormalTree<ContainerDictionary<K, V>>> {
 
     public DictionaryNormalTree(Comparator<K> comp) {
-	this.tree = new NormalTree<>(ContainerDictionary.getComparator(comp));
+	super(comp);
     }
 
     public DictionaryNormalTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
@@ -16,6 +16,11 @@ public class DictionaryNormalTree<K, V> extends DictionaryTree<K, V, NormalTree<
 	for (K key; keys.hasMoreElements();) {
 	    this.put(key = keys.nextElement(), dictionary.get(key));
 	}
+    }
+
+    @Override
+    protected NormalTree<ContainerDictionary<K, V>> instanceTree(Comparator<K> comp) {
+	return new NormalTree<>(ContainerDictionary.getComparator(comp));
     }
 
 }

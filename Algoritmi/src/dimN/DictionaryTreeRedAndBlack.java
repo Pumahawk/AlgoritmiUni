@@ -12,7 +12,7 @@ import java.util.Enumeration;
 public class DictionaryTreeRedAndBlack<K, V> extends DictionaryTree<K, V, RedAndBlackTree<ContainerDictionary<K, V>>> {
 
     public DictionaryTreeRedAndBlack(Comparator<K> comp) {
-	this.tree = new RedAndBlackTree<>(ContainerDictionary.getComparator(comp));
+	super(comp);
     }
 
     public DictionaryTreeRedAndBlack(Dictionary<K, V> dictionary, Comparator<K> comp) {
@@ -21,6 +21,11 @@ public class DictionaryTreeRedAndBlack<K, V> extends DictionaryTree<K, V, RedAnd
 	for (K key; keys.hasMoreElements();) {
 	    this.put(key = keys.nextElement(), dictionary.get(key));
 	}
+    }
+
+    @Override
+    protected RedAndBlackTree<ContainerDictionary<K, V>> instanceTree(Comparator<K> comp) {
+	return new RedAndBlackTree<>(ContainerDictionary.getComparator(comp));
     }
 
 }
