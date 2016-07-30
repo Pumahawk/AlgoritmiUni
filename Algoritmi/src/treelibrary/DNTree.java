@@ -4,13 +4,13 @@ import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
-public class DictionaryNT<K, V> extends DictionaryTree<K, V, NormalTree<ContainerDictionary<K, V>>> {
+public class DNTree<K, V> extends DTree<K, V, NormalTree<ContainerDictionary<K, V>>> {
 
-    public DictionaryNT(Comparator<K> comp) {
+    public DNTree(Comparator<K> comp) {
 	super(comp);
     }
 
-    public DictionaryNT(Dictionary<K, V> dictionary, Comparator<K> comp) {
+    public DNTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();
 	for (K key; keys.hasMoreElements();) {

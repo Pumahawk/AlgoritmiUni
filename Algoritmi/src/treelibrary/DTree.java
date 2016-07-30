@@ -5,7 +5,7 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V> {
+abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V> {
 
     protected T tree;
 
@@ -49,7 +49,7 @@ abstract class DictionaryTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>
 
     }
 
-    public DictionaryTree(Comparator<K> comp) {
+    public DTree(Comparator<K> comp) {
 	this.tree = instanceTree(comp);
     }
 

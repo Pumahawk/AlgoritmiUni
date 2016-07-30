@@ -8,7 +8,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRoot() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -20,7 +20,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootOneLeftChild() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -32,7 +32,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootOneRightChild() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -44,7 +44,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testRemoveRootTwoChild() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 	rbt.put(4, "Test1");
 	rbt.put(5, "Test2");
@@ -57,7 +57,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testInsertT() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 
 	rbt.put(4, "Test1");
@@ -72,7 +72,7 @@ class DictionaryRedAndBlackTreeTest {
 
     @Test
     public void testSearchFound() {
-	DictionaryTreeRB<Integer, String> rbt = new DictionaryTreeRB<Integer, String>(
+	DRBTree<Integer, String> rbt = new DRBTree<Integer, String>(
 		(Integer a, Integer b) -> a.compareTo(b));
 
 	rbt.put(4, "Test1");

@@ -9,13 +9,13 @@ import java.util.Enumeration;
  * @param <V>
  * @param <T>
  */
-public class DictionaryTreeRB<K, V> extends DictionaryTree<K, V, RBTree<ContainerDictionary<K, V>>> {
+public class DRBTree<K, V> extends DTree<K, V, RBTree<ContainerDictionary<K, V>>> {
 
-    public DictionaryTreeRB(Comparator<K> comp) {
+    public DRBTree(Comparator<K> comp) {
 	super(comp);
     }
 
-    public DictionaryTreeRB(Dictionary<K, V> dictionary, Comparator<K> comp) {
+    public DRBTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();
 	for (K key; keys.hasMoreElements();) {
