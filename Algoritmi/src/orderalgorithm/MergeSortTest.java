@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 import org.junit.Test;
 
-class MergeSortTest {
+public class MergeSortTest {
     private static class IntegerComparator implements Comparator<Integer> {
 	@Override
 	public int compare(Integer i1, Integer i2) {

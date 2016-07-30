@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import orderalgorithm.RecordCSV.Type;
 
-class SortTest {
+public class SortTest {
     public static ReadCSV cvs;
     public static ArrayList<RecordCSV> cvsInsertionSort;
     public static ArrayList<RecordCSV> cvsHeapSort;

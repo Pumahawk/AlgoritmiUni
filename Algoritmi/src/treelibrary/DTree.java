@@ -5,49 +5,27 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V> {
+abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V>
+	implements Iterable<V> {
+
+    @Override
+    public Iterator<V> iterator() {
+	Enumeration<V> en = this.elements();
+	return new Iterator<V>() {
+	    @Override
+	    public boolean hasNext() {
+		return en.hasMoreElements();
+	    }
+
+	    @Override
+	    public V next() {
+		return en.nextElement();
+	    }
+
+	};
+    }
 
     protected T tree;
-
-    private class KEnum implements Enumeration<K> {
-
-	public Iterator<ContainerDictionary<K, V>> it;
-
-	public KEnum(T tr) {
-	    it = tr.iterator();
-	}
-
-	@Override
-	public K nextElement() {
-	    return it.next().key;
-	}
-
-	@Override
-	public boolean hasMoreElements() {
-	    return it.hasNext();
-	}
-
-    }
-
-    private class VEnum implements Enumeration<V> {
-
-	public Iterator<ContainerDictionary<K, V>> it;
-
-	public VEnum(T tr) {
-	    it = tr.iterator();
-	}
-
-	@Override
-	public V nextElement() {
-	    return it.next().value;
-	}
-
-	@Override
-	public boolean hasMoreElements() {
-	    return it.hasNext();
-	}
-
-    }
 
     public DTree(Comparator<K> comp) {
 	this.tree = instanceTree(comp);
@@ -57,12 +35,38 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
 
     @Override
     public Enumeration<V> elements() {
-	return new VEnum(tree);
+	return new Enumeration<V>() {
+	    public Iterator<ContainerDictionary<K, V>> it = tree.iterator();
+
+	    @Override
+	    public V nextElement() {
+		return it.next().value;
+	    }
+
+	    @Override
+	    public boolean hasMoreElements() {
+		return it.hasNext();
+	    }
+
+	};
     }
 
     @Override
     public Enumeration<K> keys() {
-	return new KEnum(tree);
+	return new Enumeration<K>() {
+	    public Iterator<ContainerDictionary<K, V>> it = tree.iterator();
+
+	    @Override
+	    public K nextElement() {
+		return it.next().key;
+	    }
+
+	    @Override
+	    public boolean hasMoreElements() {
+		return it.hasNext();
+	    }
+
+	};
     }
 
     @Override

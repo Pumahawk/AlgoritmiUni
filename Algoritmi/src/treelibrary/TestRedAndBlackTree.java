@@ -2,7 +2,7 @@ package treelibrary;
 
 import org.junit.Test;
 
-class TestRedAndBlackTree {
+public class TestRedAndBlackTree {
 
     public RBTree<Integer> getTreeForTest() {
 	RBTree<Integer> tree = new RBTree<Integer>((Integer a, Integer b) -> a.compareTo(b));

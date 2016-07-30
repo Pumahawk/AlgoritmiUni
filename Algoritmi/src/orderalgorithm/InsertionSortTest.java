@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 import org.junit.Test;
 
-class InsertionSortTest {
+public class InsertionSortTest {
 
     private class IntegerComparator implements Comparator<Integer> {
 	@Override

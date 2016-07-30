@@ -7,7 +7,7 @@ import java.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-class GraphTest {
+public class GraphTest {
 
     static Graph<String> citta;
 
