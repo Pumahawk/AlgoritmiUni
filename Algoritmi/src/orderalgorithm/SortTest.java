@@ -17,6 +17,7 @@ public class SortTest {
     public static ArrayList<RecordCSV> cvsQuickSort;
     public static ArrayList<RecordCSV> cvsMergeSort;
 
+    @SuppressWarnings("unchecked")
     @BeforeClass
     public static void loadCVS() throws FileNotFoundException {
 	System.out.println("Caricamento file:");
