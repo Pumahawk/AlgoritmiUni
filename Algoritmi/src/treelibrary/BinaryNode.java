@@ -1,4 +1,4 @@
-package dimN;
+package treelibrary;
 
 /**
  * BinaryNode rappresenta un generico nodo di un generico albero. E' costituito
@@ -11,7 +11,7 @@ package dimN;
  * @param <P>
  *            Il tipo di nodo del padre e dei figlio.
  */
-public abstract class BinaryNode<V, P extends BinaryNode<V, P>> {
+abstract class BinaryNode<V, P extends BinaryNode<V, P>> {
 
     /**
      * Oggetto memorizzato nel nodo.

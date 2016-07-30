@@ -1,22 +1,22 @@
-package dimN;
+package treelibrary;
 
-public class ColoredNode<T> extends BinaryNode<T, ColoredNode<T>> {
+class NodeRBTree<T> extends BinaryNode<T, NodeRBTree<T>> {
     public enum Color {
 	RED, BLACK
     }
 
     private Color color;
 
-    public ColoredNode(T val, Color color, ColoredNode<T> father, ColoredNode<T> left, ColoredNode<T> right) {
+    public NodeRBTree(T val, Color color, NodeRBTree<T> father, NodeRBTree<T> left, NodeRBTree<T> right) {
 	super(val, father, left, right);
 	this.color = color;
     }
 
-    public ColoredNode(T val, Color color) {
+    public NodeRBTree(T val, Color color) {
 	this(val, color, null, null, null);
     }
 
-    public ColoredNode(T val) {
+    public NodeRBTree(T val) {
 	this(val, Color.RED);
     }
 

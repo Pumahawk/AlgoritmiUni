@@ -1,4 +1,4 @@
-package dimN;
+package treelibrary;
 
 import java.util.ArrayList;
 import java.util.Comparator;

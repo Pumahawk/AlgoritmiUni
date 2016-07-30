@@ -1,23 +1,23 @@
-package dimN;
+package treelibrary;
 
 import java.util.Comparator;
 
-import dimN.ColoredNode.Color;
+import treelibrary.NodeRBTree.Color;
 
-public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
+public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 
     public enum Case {
 	ONE, TWO, THREE, FOUR, FIVE
     }
 
-    public RedAndBlackTree(Comparator<V> comp) {
+    public RBTree(Comparator<V> comp) {
 	super(comp);
     }
 
     @Override
     public V put(V val) {
 	V ret = null;
-	ColoredNode<V> node = getNodeForValue(val);
+	NodeRBTree<V> node = getNodeForValue(val);
 	if (node.value() != null)
 	    ret = node.value();
 	node.setValue(val);
@@ -26,13 +26,13 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	return ret;
     }
 
-    protected Case findCase(ColoredNode<V> node) {
+    protected Case findCase(NodeRBTree<V> node) {
 	if (node.father() == null)
 	    return Case.ONE;
 	else if (node.father().getColor() == Color.BLACK)
 	    return Case.TWO;
 	else {
-	    ColoredNode<V> father, uncle;
+	    NodeRBTree<V> father, uncle;
 	    father = node.father();
 	    uncle = (father.father().left() != father) ? father.father().left() : father.father().right();
 	    if (uncle != null && uncle.getColor() == Color.RED)
@@ -45,7 +45,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    protected void solveCasePut(ColoredNode<V> node, Case caso) {
+    protected void solveCasePut(NodeRBTree<V> node, Case caso) {
 	switch (caso) {
 	case ONE:
 	    solveCaseOne(node);
@@ -65,16 +65,16 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    protected void solveCaseOne(ColoredNode<V> node) {
+    protected void solveCaseOne(NodeRBTree<V> node) {
 	this.root.setColor(Color.BLACK);
     }
 
-    protected void solveCaseTwo(ColoredNode<V> node) {
+    protected void solveCaseTwo(NodeRBTree<V> node) {
 	return;
     }
 
-    protected void solveCaseThree(ColoredNode<V> node) {
-	ColoredNode<V> gParent = node.father().father();
+    protected void solveCaseThree(NodeRBTree<V> node) {
+	NodeRBTree<V> gParent = node.father().father();
 	gParent.setColor(Color.RED);
 	gParent.left().setColor(Color.BLACK);
 	gParent.right().setColor(Color.BLACK);
@@ -83,7 +83,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 
     }
 
-    protected void solveCaseFour(ColoredNode<V> node) {
+    protected void solveCaseFour(NodeRBTree<V> node) {
 	if (node == node.father().right() && node.father() == node.father().father().left()) {
 	    leftRotate(node.father());
 	    node = node.left();
@@ -94,7 +94,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	solveCaseFive(node);
     }
 
-    protected void solveCaseFive(ColoredNode<V> node) {
+    protected void solveCaseFive(NodeRBTree<V> node) {
 	node.father().setColor(Color.BLACK);
 	node.father().father().setColor(Color.RED);
 	if (node == node.father().left() && node.father() == node.father().father().left())
@@ -103,35 +103,35 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	    leftRotate(node.father().father());
     }
 
-    protected ColoredNode<V> getNodeForValue(V value) {
+    protected NodeRBTree<V> getNodeForValue(V value) {
 	if (root == null) {
-	    root = new ColoredNode<>(null, Color.RED);
+	    root = new NodeRBTree<>(null, Color.RED);
 	    return root;
 	} else
 	    return getNodeForValue(value, root);
     }
 
-    protected ColoredNode<V> getNodeForValue(V value, ColoredNode<V> node) {
+    protected NodeRBTree<V> getNodeForValue(V value, NodeRBTree<V> node) {
 	if (comparator.compare(value, node.value()) == 0)
 	    return node;
 	else if (comparator.compare(value, node.value()) < 0)
 	    if (node.left() != null)
 		return getNodeForValue(value, node.left());
 	    else {
-		node.setLeft(new ColoredNode<>(null, Color.RED, node, null, null));
+		node.setLeft(new NodeRBTree<>(null, Color.RED, node, null, null));
 		return node.left();
 	    }
 	else if (node.right() != null)
 	    return getNodeForValue(value, node.right());
 	else {
-	    node.setRight(new ColoredNode<>(null, Color.RED, node, null, null));
+	    node.setRight(new NodeRBTree<>(null, Color.RED, node, null, null));
 	    return node.right();
 	}
     }
 
     @Override
     public V remove(V value) {
-	ColoredNode<V> node = getNode(value, root);
+	NodeRBTree<V> node = getNode(value, root);
 	V ret = null;
 	if (node != null) {
 	    ret = node.value();
@@ -140,7 +140,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	    else if (node.right() == null)
 		removeOneChild(node, node.left());
 	    else {
-		ColoredNode<V> minOfMax = findMinOfMax(node);
+		NodeRBTree<V> minOfMax = findMinOfMax(node);
 		if (minOfMax == node)
 		    minOfMaxIsNode(node);
 		else
@@ -150,7 +150,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	return ret;
     }
 
-    private void removeOneChild(ColoredNode<V> node, ColoredNode<V> child) {
+    private void removeOneChild(NodeRBTree<V> node, NodeRBTree<V> child) {
 	if (child != null) {
 	    child.setValue(root.value());
 	    if (node == root)
@@ -179,14 +179,14 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 
     }
 
-    private void minOfMaxIsNode(ColoredNode<V> node) {
+    private void minOfMaxIsNode(NodeRBTree<V> node) {
 	if (node == root)
 	    root = null;
 	else
 	    leaveFather(node);
     }
 
-    private void minOfMaxIsNotNode(ColoredNode<V> node, ColoredNode<V> minOfMax) {
+    private void minOfMaxIsNotNode(NodeRBTree<V> node, NodeRBTree<V> minOfMax) {
 	node.setValue(minOfMax.value());
 	if (minOfMax.right() != null)
 	    removeOneChild(minOfMax, minOfMax.right());
@@ -196,18 +196,18 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	    leaveFather(minOfMax);
     }
 
-    ColoredNode<V> brother(ColoredNode<V> node) {
+    NodeRBTree<V> brother(NodeRBTree<V> node) {
 	return (node.father().left() != node) ? node.father().left() : node.father().right();
     }
 
-    private void solveCaseOneRemove(ColoredNode<V> node) {
+    private void solveCaseOneRemove(NodeRBTree<V> node) {
 	if (node.father() == null)
 	    return;
 	else
 	    solveCaseTwoRemove(node);
     }
 
-    private void solveCaseTwoRemove(ColoredNode<V> node) {
+    private void solveCaseTwoRemove(NodeRBTree<V> node) {
 	if (brother(node).getColor() == Color.RED) {
 	    node.father().setColor(Color.RED);
 	    brother(node).setColor(Color.BLACK);
@@ -219,7 +219,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	solveCaseThreeRemove(node);
     }
 
-    private void solveCaseThreeRemove(ColoredNode<V> node) {
+    private void solveCaseThreeRemove(NodeRBTree<V> node) {
 
 	if (node.father().getColor() == Color.BLACK && brother(node).getColor() == Color.BLACK
 		&& brother(node).left().getColor() == Color.BLACK && brother(node).right().getColor() == Color.BLACK) {
@@ -230,7 +230,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 
     }
 
-    private void solveCaseFourRemove(ColoredNode<V> node) {
+    private void solveCaseFourRemove(NodeRBTree<V> node) {
 	if (node.father().getColor() == Color.RED && brother(node).getColor() == Color.BLACK
 		&& brother(node).left().getColor() == Color.BLACK && brother(node).right().getColor() == Color.BLACK) {
 	    brother(node).setColor(Color.RED);
@@ -239,7 +239,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	    solveCaseFiveRemove(node);
     }
 
-    private void solveCaseFiveRemove(ColoredNode<V> node) {
+    private void solveCaseFiveRemove(NodeRBTree<V> node) {
 	if (node == node.father().left() && brother(node).getColor() == Color.BLACK
 		&& brother(node).left().getColor() == Color.RED && brother(node).right().getColor() == Color.BLACK) {
 	    brother(node).setColor(Color.RED);
@@ -254,7 +254,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	solveCaseSixRemove(node);
     }
 
-    private void solveCaseSixRemove(ColoredNode<V> node) {
+    private void solveCaseSixRemove(NodeRBTree<V> node) {
 	brother(node).setColor(node.father().getColor());
 	node.father().setColor(Color.BLACK);
 	if (node == node.father().left()) {
@@ -266,8 +266,8 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 	}
     }
 
-    private void leftRotate(ColoredNode<V> nodo) {
-	ColoredNode<V> padre = nodo.father();
+    private void leftRotate(NodeRBTree<V> nodo) {
+	NodeRBTree<V> padre = nodo.father();
 	nodo.right().setFather(nodo.father());
 	nodo.setFather(nodo.right());
 	if (nodo.right().left() != null)
@@ -280,14 +280,14 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 		padre.setRight(nodo.right());
 	else
 	    this.root = nodo.right();
-	ColoredNode<V> p = nodo.right().left();
+	NodeRBTree<V> p = nodo.right().left();
 	nodo.right().setLeft(nodo);
 	nodo.setRight(p);
 
     }
 
-    private void rightRotate(ColoredNode<V> nodo) {
-	ColoredNode<V> padre = nodo.father();
+    private void rightRotate(NodeRBTree<V> nodo) {
+	NodeRBTree<V> padre = nodo.father();
 	nodo.left().setFather(nodo.father());
 	nodo.setFather(nodo.left());
 	if (nodo.left().right() != null)
@@ -300,7 +300,7 @@ public class RedAndBlackTree<V> extends Tree<V, ColoredNode<V>> {
 		padre.setRight(nodo.left());
 	else
 	    this.root = nodo.left();
-	ColoredNode<V> p = nodo.left().right();
+	NodeRBTree<V> p = nodo.left().right();
 	nodo.left().setRight(nodo);
 	nodo.setLeft(p);
     }
