@@ -71,6 +71,7 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
 
     @Override
     public V get(Object arg0) {
+	@SuppressWarnings("unchecked")
 	ContainerDictionary<K, V> c = tree.get(new ContainerDictionary<K, V>((K) arg0, null));
 	return (c != null) ? c.value : null;
     }
@@ -87,6 +88,7 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
 
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public V remove(Object key) {
 	ContainerDictionary<K, V> cont = null;
