@@ -1,4 +1,4 @@
-package Graphs;
+package graphs;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-class FIleTest {
-    public static Graph<String> getGraph(String pathFileCSV){
-	
+class FileTest {
+    public static Graph<String> getGraph(String pathFileCSV) {
 
 	Graph<String> citta = new Graph<>();
-	HashMap<Integer,String> arr = new HashMap<>();
-	
-	Scanner sc = new Scanner(System.in);
+	HashMap<Integer, String> arr = new HashMap<>();
+
 	String csvLine = ""; // the string will contain a line of csv file
 	String csvFile = pathFileCSV;
 
@@ -31,17 +29,17 @@ class FIleTest {
 		    System.out.println(c);
 		}
 		String[] field = csvLine.split(",");
-		
-		String c1,c2;
+
+		String c1, c2;
 		c1 = arr.get(field[0].hashCode());
 		c2 = arr.get(field[1].hashCode());
-		
-		if(c1 == null){
+
+		if (c1 == null) {
 		    c1 = field[0];
 		    citta.addVertex(c1);
 		    arr.put(c1.hashCode(), c1);
 		}
-		if(c2 == null){
+		if (c2 == null) {
 		    c2 = field[1];
 		    citta.addVertex(c2);
 		    arr.put(c2.hashCode(), c2);
@@ -65,9 +63,9 @@ class FIleTest {
 	return citta;
     }
 
-    public static String retCitta(ArrayList<String> arr, String st){
-	for(String c : arr)
-	    if(c.compareTo(st) == 0)
+    public static String retCitta(ArrayList<String> arr, String st) {
+	for (String c : arr)
+	    if (c.compareTo(st) == 0)
 		return c;
 	return null;
     }
