@@ -13,7 +13,7 @@ public class GraphTest {
 
     @BeforeClass
     public static void setUpBeforeClass() {
-	GraphTest.citta = FileTest.getGraph("Data" + File.separator + "italian_dist_graph.csv");
+	GraphTest.citta = ReadCSV.getGraph("Data" + File.separator + "italian_dist_graph.csv");
     }
 
     @Test

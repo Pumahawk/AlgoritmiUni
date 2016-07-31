@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-class FileTest {
+class ReadCSV {
     public static Graph<String> getGraph(String pathFileCSV) {
 
 	Graph<String> citta = new Graph<>();
