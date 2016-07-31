@@ -3,21 +3,28 @@ package treelibrary;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
+
 /**
  * Rappresenta un albero generico di cui non si conosce il loro tipo di nodi.
  *
- * @param <V> Tipo di oggetto all'interno dell'albero
- * @param <N> Tipo del nodo
+ * @param <V>
+ *            Tipo di oggetto all'interno dell'albero
+ * @param <N>
+ *            Tipo del nodo
  */
 public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V> {
-
+    /**
+     * Enumerazione che permette di tenere traccia del percorso fatto
+     * dall'iteratore per muoversi all'interno dell'albero
+     *
+     */
     private enum Direction {
 	LEFT, RIGHT;
     }
 
     protected int size = 0;
     protected N root = null;
-    
+
     /**
      * Permette di comparare i nodi tra loro.
      */
@@ -27,6 +34,10 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	this.comparator = comp;
     }
 
+    /**
+     * Restituisce il nodo contenente l'oggetto val nell'albero che ha come
+     * radice il nodo punt
+     */
     protected N getNode(V val, N punt) {
 	if (punt != null)
 	    return (comparator.compare(punt.value(), val) == 0) ? punt
@@ -53,66 +64,70 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
     @Override
     public Iterator<V> iterator() {
 	return new Iterator<V>() {
-		public Iterator<N> it = new Iterator<N>() {
-			public N punt = root;
-			public N begin = root;
-			public ArrayList<Direction> direction = new ArrayList<>();
-
-			@Override
-			public boolean hasNext() {
-			    return punt != null;
-			}
-
-			@Override
-			public N next() {
-			    N p = this.punt;
-
-			    if (this.punt.left() != null) {
-				this.direction.add(0, Direction.LEFT);
-				this.punt = this.punt.left();
-			    } else if (this.punt.right() != null) {
-				this.direction.add(0, Direction.RIGHT);
-				this.punt = this.punt.right();
-			    } else {
-				top();
-				if (this.punt == this.begin)
-				    this.punt = null;
-			    }
-
-			    return p;
-			}
-
-			private void top() {
-			    while (direction.size() != 0) {
-				Direction dir = direction.remove(0);
-				this.punt = this.punt.father();
-				if (dir == Direction.LEFT && this.punt.right() != null) {
-				    this.direction.add(0, Direction.RIGHT);
-				    this.punt = this.punt.right();
-				    break;
-				}
-			    }
-			}
-
-		    };
+	    public Iterator<N> it = new Iterator<N>() {
+		public N punt = root;
+		public N begin = root;
+		public ArrayList<Direction> direction = new ArrayList<>();
 
 		@Override
 		public boolean hasNext() {
-		    return it.hasNext();
+		    return punt != null;
 		}
 
 		@Override
-		public V next() {
-		    return it.next().value();
+		public N next() {
+		    N p = this.punt;
+
+		    if (this.punt.left() != null) {
+			this.direction.add(0, Direction.LEFT);
+			this.punt = this.punt.left();
+		    } else if (this.punt.right() != null) {
+			this.direction.add(0, Direction.RIGHT);
+			this.punt = this.punt.right();
+		    } else {
+			top();
+			if (this.punt == this.begin)
+			    this.punt = null;
+		    }
+
+		    return p;
+		}
+
+		private void top() {
+		    while (direction.size() != 0) {
+			Direction dir = direction.remove(0);
+			this.punt = this.punt.father();
+			if (dir == Direction.LEFT && this.punt.right() != null) {
+			    this.direction.add(0, Direction.RIGHT);
+			    this.punt = this.punt.right();
+			    break;
+			}
+		    }
 		}
 
 	    };
+
+	    @Override
+	    public boolean hasNext() {
+		return it.hasNext();
+	    }
+
+	    @Override
+	    public V next() {
+		return it.next().value();
+	    }
+
+	};
     }
-/**
- * Inserisce un oggetto di tipo V all'interno dell'albero
- * @param val oggetto da inserire nell'albero.
- * @return Il nodo che esisteva precedentemente<br> null altrimenti
- */
+
+    /**
+     * Inserisce un oggetto di tipo V all'interno dell'albero
+     * 
+     * @param val
+     *            oggetto da inserire nell'albero.
+     * @return Il nodo che esisteva precedentemente<br>
+     *         null altrimenti
+     */
     public abstract V put(V val);
 
     public int size() {

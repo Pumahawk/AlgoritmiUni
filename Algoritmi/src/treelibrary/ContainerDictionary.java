@@ -2,6 +2,15 @@ package treelibrary;
 
 import java.util.Comparator;
 
+/**
+ * Classe utilizzata per racchiudere al suo interno una coppia di oggetti
+ * utilizzati come chiave e valore nella struttura a dizionario
+ * 
+ * @author Lorenzo Gandino
+ *
+ * @param <K>
+ * @param <V>
+ */
 class ContainerDictionary<K, V> {
     public K key;
     public V value;
@@ -19,7 +28,11 @@ class ContainerDictionary<K, V> {
     public String toString() {
 	return "[" + key + "](" + value + ")";
     }
-
+/**
+ * converte un comparatore di sole chiavi un un comparatore di ContainerDictionary
+ * @param comp
+ * @return
+ */
     static public <K2, V2> Comparator<ContainerDictionary<K2, V2>> getComparator(Comparator<K2> comp) {
 	return (ContainerDictionary<K2, V2> a, ContainerDictionary<K2, V2> b) -> comp.compare(a.key, b.key);
     }

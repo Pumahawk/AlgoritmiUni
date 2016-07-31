@@ -4,13 +4,19 @@ import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
+
 /**
- * Rappresenta la classe generica di un dizionario con al suo interno una struttura ad albero
+ * Rappresenta la classe generica di un dizionario con al suo interno una
+ * struttura ad albero
+ * 
  * @author Lorenzo Gandino
  *
- * @param <K> Tipo di chiave
- * @param <V> Tipo di valore
- * @param <T> Tipo di albero utilizzato
+ * @param <K>
+ *            Tipo di chiave
+ * @param <V>
+ *            Tipo di valore
+ * @param <T>
+ *            Tipo di albero utilizzato
  */
 abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V>
 	implements Iterable<V> {
@@ -32,12 +38,23 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
 	};
     }
 
+    /**
+     * Oggetto incaricato di contenere e gestire gli elementi inseriti nel
+     * dizionario
+     */
     protected T tree;
 
     public DTree(Comparator<K> comp) {
 	this.tree = instanceTree(comp);
     }
 
+    /**
+     * Metodo che va istanziato per permettere costringere il programmatore ad
+     * istanziare l'albero della sua sottoclasse
+     * 
+     * @param comparatore
+     * @return istanza dell'albero utilizzata dalla sottoclasse
+     */
     protected abstract T instanceTree(Comparator<K> comp);
 
     @Override

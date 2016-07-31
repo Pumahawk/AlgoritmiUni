@@ -28,6 +28,8 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	node.setValue(val);
 	if (ret == null)
 	    solveCasePut(node, findCase(node));
+	if(ret != null)
+	    size++;
 	return ret;
     }
 
@@ -159,6 +161,8 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 		    minOfMaxIsNotNode(node, minOfMax);
 	    }
 	}
+	if(ret != null)
+	    size--;
 	return ret;
     }
 
