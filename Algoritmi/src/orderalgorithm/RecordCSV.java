@@ -2,7 +2,7 @@ package orderalgorithm;
 
 import java.util.Comparator;
 
-class RecordCSV {
+public class RecordCSV {
     public String s;
     public Integer i;
     public Float f;
