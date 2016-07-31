@@ -2,6 +2,11 @@ package treelibrary;
 
 import java.util.Comparator;
 
+/**
+ * Prappresenta un albero normale
+ *
+ * @param <V> Il tipo dell'oggetto contenuto dentro i singoli nodi dell'albero
+ */
 public class NormalTree<V> extends Tree<V, NodeNormalTree<V>> {
 
     public NormalTree(Comparator<V> comp) {

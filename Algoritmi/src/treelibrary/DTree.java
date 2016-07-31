@@ -4,7 +4,14 @@ import java.util.Comparator;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.Iterator;
-
+/**
+ * Rappresenta la classe generica di un dizionario con al suo interno una struttura ad albero
+ * @author Lorenzo Gandino
+ *
+ * @param <K> Tipo di chiave
+ * @param <V> Tipo di valore
+ * @param <T> Tipo di albero utilizzato
+ */
 abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends Dictionary<K, V>
 	implements Iterable<V> {
 

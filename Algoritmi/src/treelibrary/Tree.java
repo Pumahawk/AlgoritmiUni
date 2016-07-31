@@ -108,7 +108,11 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 
 	    };
     }
-
+/**
+ * Inserisce un oggetto di tipo V all'interno dell'albero
+ * @param val oggetto da inserire nell'albero.
+ * @return Il nodo che esisteva precedentemente<br> null altrimenti
+ */
     public abstract V put(V val);
 
     public int size() {

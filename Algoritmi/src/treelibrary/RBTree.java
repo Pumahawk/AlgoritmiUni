@@ -4,6 +4,12 @@ import java.util.Comparator;
 
 import treelibrary.NodeRBTree.Color;
 
+/**
+ * Rappresenta un albero rosso e nero
+ *
+ * @param <V>
+ *            tipo di valore dell'oggetto contenuto nei singoli nodi
+ */
 public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 
     public enum Case {
@@ -13,11 +19,10 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
     public RBTree(Comparator<V> comp) {
 	super(comp);
     }
-
     @Override
     public V put(V val) {
 	V ret = null;
-	NodeRBTree<V> node = getNodeForValue(val);
+	NodeRBTree<V> node = getNodeByValue(val);
 	if (node.value() != null)
 	    ret = node.value();
 	node.setValue(val);
@@ -26,6 +31,13 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	return ret;
     }
 
+    /**
+     * Permette di trovare capire in che caso ci si trova dopo l'inserimento del
+     * nodo per riformattare l'albero
+     * 
+     * @param node
+     * @return
+     */
     protected Case findCase(NodeRBTree<V> node) {
 	if (node.father() == null)
 	    return Case.ONE;
@@ -103,26 +115,26 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	    leftRotate(node.father().father());
     }
 
-    protected NodeRBTree<V> getNodeForValue(V value) {
+    protected NodeRBTree<V> getNodeByValue(V value) {
 	if (root == null) {
 	    root = new NodeRBTree<>(null, Color.RED);
 	    return root;
 	} else
-	    return getNodeForValue(value, root);
+	    return getNodeByValue(value, root);
     }
 
-    protected NodeRBTree<V> getNodeForValue(V value, NodeRBTree<V> node) {
+    protected NodeRBTree<V> getNodeByValue(V value, NodeRBTree<V> node) {
 	if (comparator.compare(value, node.value()) == 0)
 	    return node;
 	else if (comparator.compare(value, node.value()) < 0)
 	    if (node.left() != null)
-		return getNodeForValue(value, node.left());
+		return getNodeByValue(value, node.left());
 	    else {
 		node.setLeft(new NodeRBTree<>(null, Color.RED, node, null, null));
 		return node.left();
 	    }
 	else if (node.right() != null)
-	    return getNodeForValue(value, node.right());
+	    return getNodeByValue(value, node.right());
 	else {
 	    node.setRight(new NodeRBTree<>(null, Color.RED, node, null, null));
 	    return node.right();
@@ -178,7 +190,6 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	    leaveFather(node);
 
     }
-
     private void minOfMaxIsNode(NodeRBTree<V> node) {
 	if (node == root)
 	    root = null;
