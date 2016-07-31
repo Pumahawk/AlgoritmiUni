@@ -21,15 +21,15 @@ public class SortTest {
     @BeforeClass
     public static void loadCVS() throws FileNotFoundException {
 	System.out.println("Caricamento file:");
-	cvs = new ReadCSV(0, 20000);
+	ArrayList<RecordCSV> arr = ReadCSV.getTable(0, 12000);
 	System.out.println("Copia dati per InsertionSort.");
-	cvsInsertionSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
+	cvsInsertionSort = (ArrayList<RecordCSV>) arr.clone();
 	System.out.println("Copia dati per HeapSort.");
-	cvsHeapSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
+	cvsHeapSort = (ArrayList<RecordCSV>) arr.clone();
 	System.out.println("Copia dati per QuickSort.");
-	cvsQuickSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
+	cvsQuickSort = (ArrayList<RecordCSV>) arr.clone();
 	System.out.println("Copia dati per MergeSort.");
-	cvsMergeSort = (ArrayList<RecordCSV>) cvs.getTable().clone();
+	cvsMergeSort = (ArrayList<RecordCSV>) arr.clone();
 	System.out.println("File caricato.");
     }
 
