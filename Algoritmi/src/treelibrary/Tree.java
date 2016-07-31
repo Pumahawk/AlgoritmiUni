@@ -14,77 +14,7 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	LEFT, RIGHT;
     }
 
-    private class IterImpl implements Iterator<N> {
-	public N punt;
-	public N begin;
-	public ArrayList<Direction> direction;
-
-	public IterImpl(N punt) {
-	    this.punt = punt;
-	    this.begin = punt;
-	    this.direction = new ArrayList<>();
-
-	}
-
-	@Override
-	public boolean hasNext() {
-	    return punt != null;
-	}
-
-	@Override
-	public N next() {
-	    N p = this.punt;
-
-	    if (this.punt.left() != null) {
-		this.direction.add(0, Direction.LEFT);
-		this.punt = this.punt.left();
-	    } else if (this.punt.right() != null) {
-		this.direction.add(0, Direction.RIGHT);
-		this.punt = this.punt.right();
-	    } else {
-		top();
-		if (this.punt == this.begin)
-		    this.punt = null;
-	    }
-
-	    return p;
-	}
-
-	private void top() {
-	    while (direction.size() != 0) {
-		Direction dir = direction.remove(0);
-		this.punt = this.punt.father();
-		if (dir == Direction.LEFT && this.punt.right() != null) {
-		    this.direction.add(0, Direction.RIGHT);
-		    this.punt = this.punt.right();
-		    break;
-		}
-	    }
-	}
-
-    }
-
-    private class VIterImpl implements Iterator<V> {
-	public Iterator<N> it;
-
-	/**
-	 * @param root
-	 */
-	public VIterImpl(N root) {
-	    it = new IterImpl(root);
-	}
-
-	@Override
-	public boolean hasNext() {
-	    return it.hasNext();
-	}
-
-	@Override
-	public V next() {
-	    return it.next().value();
-	}
-
-    }
+    
 
     protected int size = 0;
     protected N root = null;
@@ -119,7 +49,61 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 
     @Override
     public Iterator<V> iterator() {
-	return new VIterImpl(root);
+	return new Iterator<V>() {
+		public Iterator<N> it = new Iterator<N>() {
+			public N punt = root;
+			public N begin = root;
+			public ArrayList<Direction> direction = new ArrayList<>();
+
+			@Override
+			public boolean hasNext() {
+			    return punt != null;
+			}
+
+			@Override
+			public N next() {
+			    N p = this.punt;
+
+			    if (this.punt.left() != null) {
+				this.direction.add(0, Direction.LEFT);
+				this.punt = this.punt.left();
+			    } else if (this.punt.right() != null) {
+				this.direction.add(0, Direction.RIGHT);
+				this.punt = this.punt.right();
+			    } else {
+				top();
+				if (this.punt == this.begin)
+				    this.punt = null;
+			    }
+
+			    return p;
+			}
+
+			private void top() {
+			    while (direction.size() != 0) {
+				Direction dir = direction.remove(0);
+				this.punt = this.punt.father();
+				if (dir == Direction.LEFT && this.punt.right() != null) {
+				    this.direction.add(0, Direction.RIGHT);
+				    this.punt = this.punt.right();
+				    break;
+				}
+			    }
+			}
+
+		    };
+
+		@Override
+		public boolean hasNext() {
+		    return it.hasNext();
+		}
+
+		@Override
+		public V next() {
+		    return it.next().value();
+		}
+
+	    };
     }
 
     public abstract V put(V val);
