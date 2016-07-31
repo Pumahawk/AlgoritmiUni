@@ -17,19 +17,8 @@ abstract class BinaryNode<V, P extends BinaryNode<V, P>> {
      * Oggetto memorizzato nel nodo.
      */
     private V value;
-    /**
-     * Nodo padre del nodo.
-     */
     private P father;
-
-    /**
-     * Nodo figlio sinistro del nodo.
-     */
     private P left;
-
-    /**
-     * Nodo figlio destro del nodo.
-     */
     private P right;
 
     /**
@@ -73,30 +62,18 @@ abstract class BinaryNode<V, P extends BinaryNode<V, P>> {
 	this(null);
     }
 
-    /**
-     * @return Consiste nell'oggetto contenuto nel nodo.
-     */
     public V value() {
 	return this.value;
     }
 
-    /**
-     * @return Consiste nel padre del nodo.
-     */
     public P father() {
 	return this.father;
     }
 
-    /**
-     * @return Consiste nel figlio sinistro del nodo.
-     */
     public P left() {
 	return this.left;
     }
 
-    /**
-     * @return Consiste nel figlio destro del nodo.
-     */
     public P right() {
 	return this.right;
     }

@@ -1,7 +1,11 @@
 package treelibrary;
 
+/**
+ * Rappresenta il nodo di un albero rosso e nero. Rispetto ad un nodo normale
+ * contiene il colore. Di default il loro colore è il rosso.
+ */
 class NodeRBTree<T> extends BinaryNode<T, NodeRBTree<T>> {
-    public enum Color {
+    protected enum Color {
 	RED, BLACK
     }
 
@@ -19,7 +23,6 @@ class NodeRBTree<T> extends BinaryNode<T, NodeRBTree<T>> {
     public NodeRBTree(T val) {
 	this(val, Color.RED);
     }
-
     public void setColor(Color color) {
 	this.color = color;
     }

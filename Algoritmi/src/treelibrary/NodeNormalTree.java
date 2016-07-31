@@ -1,7 +1,10 @@
 package treelibrary;
 
+/**
+ * Rappresenta il nodo di un albero binario normale
+ */
 class NodeNormalTree<V> extends BinaryNode<V, NodeNormalTree<V>> {
-
+    
     public NodeNormalTree(V val, NodeNormalTree<V> father, NodeNormalTree<V> left, NodeNormalTree<V> right) {
 	super(val, father, left, right);
     }

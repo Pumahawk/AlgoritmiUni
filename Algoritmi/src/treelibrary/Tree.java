@@ -3,10 +3,11 @@ package treelibrary;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
-
 /**
- * @param <V>
- * @param <N>
+ * Rappresenta un albero generico di cui non si conosce il loro tipo di nodi.
+ *
+ * @param <V> Tipo di oggetto all'interno dell'albero
+ * @param <N> Tipo del nodo
  */
 public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V> {
 
@@ -14,10 +15,12 @@ public abstract class Tree<V, N extends BinaryNode<V, N>> implements Iterable<V>
 	LEFT, RIGHT;
     }
 
-    
-
     protected int size = 0;
     protected N root = null;
+    
+    /**
+     * Permette di comparare i nodi tra loro.
+     */
     protected Comparator<V> comparator;
 
     public Tree(Comparator<V> comp) {
