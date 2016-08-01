@@ -7,6 +7,7 @@ import java.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/** Test del grafo applicato al file csv consegnato dal professore */
 public class GraphTest {
 
     static Graph<String> citta;

@@ -1,5 +1,9 @@
 package graphs;
 
+/**
+ * Tag utilizzato per memorizzare il nodo prima di ogni nodo dirante la ricerca
+ * del camino minimo
+ */
 class Tag<V> {
     public Vertex<V> vertex;
     public float weight;

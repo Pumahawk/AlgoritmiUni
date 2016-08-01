@@ -3,39 +3,92 @@ package graphs;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * Implementazione del grafo. Il grafo consiste in una classe contenente un
+ * elenco di nodi e un elenco di tutti gli archi che collegano i nodi
+ * all'interno del grafo
+ * 
+ *
+ * @param <V>
+ */
 public class Graph<V> {
 
-    public HashMap<V, Vertex<V>> vertex;
-    public HashMap<V, HashMap<Vertex<V>, Edge<V>>> edge;
+    protected HashMap<V, Vertex<V>> vertex;
+    protected HashMap<V, HashMap<Vertex<V>, Edge<V>>> edge;
 
     public Graph() {
 	this.vertex = new HashMap<>();
 	this.edge = new HashMap<>();
     }
 
+    /**
+     * Aggiunge un nodo al grafo
+     * 
+     * @param vertex
+     */
     public void addVertex(V vertex) {
 	this.edge.put(vertex, new HashMap<>());
 	this.vertex.put(vertex, new Vertex<V>(vertex, edge.get(vertex)));
     }
 
+    /**
+     * Controlla se quel nodo era presente nel grafo
+     * 
+     * @param vertex
+     *            nodo da cercare
+     * @return true se è presente. False altrimenti.
+     */
     public boolean containsVertex(V vertex) {
 	return this.vertex.containsKey(vertex);
     }
 
+    /**
+     * Collega 2 nodi per mezzo di un arco
+     * 
+     * @param a
+     *            primo nodo
+     * @param b
+     *            secondo nodo
+     * @param weight
+     *            il peso
+     */
     public void link(V a, V b, float weight) {
 	this.vertex.get(a).setNeigthBor(this.vertex.get(b), weight);
     }
 
+    /**
+     * Scollega 2 nodi prima collegati
+     * 
+     * @param a
+     *            primo nodo
+     * @param b
+     *            secondo nodo
+     */
     public void unlink(V a, V b) {
 	this.vertex.get(a).getNeightbor().remove(this.vertex.get(b));
     }
 
+    /**
+     * Rimuove un nodo dal grafo
+     * 
+     * @param vertex
+     *            nodo da rimuovere
+     */
     public void remove(V vertex) {
 	for (Vertex<V> vert : this.vertex.values())
 	    unlink(vert.getValue(), vertex);
 	this.vertex.remove(vertex);
     }
 
+    /**
+     * Cerca il percorso minimo tra 2 nodi
+     * 
+     * @param a
+     *            primo nodo
+     * @param b
+     *            secondo nodo
+     * @return una lista di percorsi
+     */
     public LinkedList<Path<V>> minPath(V a, V b) {
 	HashMap<Vertex<V>, Tag<V>> visitati = new HashMap<>();
 	HashMap<Vertex<V>, Tag<V>> daVisitare = new HashMap<>();
@@ -64,6 +117,9 @@ public class Graph<V> {
 	return ret;
     }
 
+    /**
+     * Cerca il tag con il peso minore tra tutti i propri vicini
+     */
     public Tag<V> minTag(HashMap<Vertex<V>, Tag<V>> tagList) {
 	Tag<V> min = null;
 	for (Tag<V> tag : tagList.values()) {
@@ -120,6 +176,7 @@ public class Graph<V> {
 	citta.disegnaGrafo();
     }
 
+    /*-------METODI UTILIZZZATI PER I TEST-------*/
     public void stampaPercorso(V a, V b) {
 	System.out.println(a + " -> " + b);
 	for (Path<V> path : this.minPath(a, b))

@@ -2,8 +2,13 @@ package graphs;
 
 import java.util.HashMap;
 
+/**
+ * Vertice del grafo
+ * 
+ * @param <V>
+ *            tipo di valore
+ */
 class Vertex<V> {
-
 
     private V value;
     public HashMap<Vertex<V>, Edge<V>> neightbor;
@@ -17,6 +22,9 @@ class Vertex<V> {
 	return this.value;
     }
 
+    /**
+     * Controlla se ha un nodo come vicino
+     */
     public boolean hasNeightbor(Vertex<V> neightbor) {
 	return this.neightbor.containsKey(neightbor);
     }

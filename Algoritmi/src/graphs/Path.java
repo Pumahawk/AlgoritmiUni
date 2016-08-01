@@ -1,5 +1,8 @@
 package graphs;
 
+/**
+ * Percorso che collega 2 nodi
+ */
 class Path<V> {
     public V vertex;
     public float weight;

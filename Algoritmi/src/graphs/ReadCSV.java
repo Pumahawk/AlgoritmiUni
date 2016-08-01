@@ -7,6 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Classe che estrae i dati dal file csv dati dal professore
+ * 
+ * @author Lorenzo Gandino
+ *
+ */
+
 class ReadCSV {
     public static Graph<String> getGraph(String pathFileCSV) {
 
