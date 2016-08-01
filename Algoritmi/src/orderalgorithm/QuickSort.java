@@ -3,31 +3,35 @@ package orderalgorithm;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * classe in grado di ordinare un array con il metodo del quicksort
+ * 
+ * @author Lorenzo Gandino
+ *
+ * @param <T>
+ */
 public class QuickSort<T> {
     private Comparator<T> comparator;
 
-    /**
-     * @param comparator
-     */
     public QuickSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
     /**
-     * @param a
+     * Metodo incaricato di ordinare l'array
      */
     public void sort(ArrayList<T> a) {
 	quickSort(a);
     }
 
-    /**
-     * @param a
-     */
     public void quickSort(ArrayList<T> a) {
 	partition(a, 0, a.size() - 1);
     }
 
     /**
+     * divide in 2 l'array a composto incluso da start a end e applica
+     * l'algoritmo di quicksort
+     * 
      * @param a
      * @param start
      * @param end
@@ -56,9 +60,7 @@ public class QuickSort<T> {
     }
 
     /**
-     * @param a
-     * @param i
-     * @param j
+     * Scambia 2 elementi nell' array
      */
     public void scambia(ArrayList<T> a, int i, int j) {
 	T temp = a.get(i);
@@ -67,8 +69,7 @@ public class QuickSort<T> {
     }
 
     /**
-     * @param a
-     * @return
+     * Controlla se un array è ordinato
      */
     public boolean isSorted(ArrayList<T> a) {
 	for (int i = 1; i < a.size(); i++)

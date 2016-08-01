@@ -4,22 +4,20 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * @param <T>
- *            comparator
+ * Classe incaricata di ordinare gli elementi di tipo T
  */
 public class HeapSort<T> {
+    /**
+     * Comparatore che compara li oggetti di tipo T
+     */
     private Comparator<T> comparator;
 
-    /**
-     * @param comparator
-     */
     public HeapSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
     /**
-     * @param array
-     * @param p
+     * Crea l'heap
      */
     private void makeHeap(ArrayList<T> array, int p) {
 	if (isFoglia(array, p))
@@ -32,9 +30,8 @@ public class HeapSort<T> {
     }
 
     /**
-     * @param arr
-     * @param pos
-     * @return the position of max
+     * restituisce la posizioe del valore maggiore nel sottoalbero di posizione
+     * pos
      */
     private int getMax(ArrayList<T> arr, int pos) {
 	if (isFoglia(arr, pos))
@@ -56,9 +53,7 @@ public class HeapSort<T> {
     }
 
     /**
-     * @param arr
-     * @param pos
-     * @return true if the node is a leaf, else false.
+     * Controlla se l'elemento nella posizione pos è una voglia
      */
     private boolean isFoglia(ArrayList<T> arr, int pos) {
 	int lungArr = arr.size();
@@ -69,9 +64,8 @@ public class HeapSort<T> {
     }
 
     /**
-     * @param array
-     * @param pos1
-     * @param pos2
+     * scambia 2 elementi dell'array
+     * 
      */
     public void scambia(ArrayList<T> array, int pos1, int pos2) {
 	T p = array.get(pos1);
@@ -80,6 +74,8 @@ public class HeapSort<T> {
     }
 
     /**
+     * Ordina l'heap
+     * 
      * @param arr
      */
     private void sortHeap(ArrayList<T> arr) {
@@ -102,6 +98,8 @@ public class HeapSort<T> {
     }
 
     /**
+     * Metodo dedicato all'ordinamento dell'array
+     * 
      * @param arr
      */
     public void sort(ArrayList<T> arr) {
@@ -109,17 +107,11 @@ public class HeapSort<T> {
 	sortHeap(arr);
     }
 
-    /**
-     * @param arr
-     */
     private void makeHeap(ArrayList<T> arr) {
 	makeHeap(arr, 0);
 
     }
 
-    /**
-     * @param arr
-     */
     public static void printArr(ArrayList<Integer> arr) {
 	for (int i = 0; i < arr.size(); i++)
 	    System.out.println(arr.get(i));

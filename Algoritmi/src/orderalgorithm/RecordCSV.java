@@ -2,6 +2,10 @@ package orderalgorithm;
 
 import java.util.Comparator;
 
+/**
+ * Classe contenente la riga di un file csv
+ *
+ */
 public class RecordCSV {
     public String s;
     public Integer i;
@@ -11,11 +15,6 @@ public class RecordCSV {
 	STRING, INTEGER, FLOAT
     }
 
-    /**
-     * @param string
-     * @param integer
-     * @param fl
-     */
     public RecordCSV(String string, Integer integer, Float fl) {
 	this.s = string;
 	this.f = fl;
@@ -23,6 +22,9 @@ public class RecordCSV {
     }
 
     /**
+     * Rstituisce un comparatore in grado di comparare i recordcsv in base al
+     * parametro type
+     * 
      * @param type
      * @return
      */
@@ -37,4 +39,5 @@ public class RecordCSV {
 	}
 	return null;
     }
+
 }

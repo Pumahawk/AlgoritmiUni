@@ -3,19 +3,22 @@ package orderalgorithm;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * Classe dedicata all'ridinamento di un arrai con il metodo dell'insertionSort
+ * 
+ */
 public class InsertionSort<T> {
-
+    /**
+     * Comparatore che confronta gli oggetti
+     */
     private Comparator<T> comparator;
 
-    /**
-     * @param comparator
-     */
     public InsertionSort(Comparator<T> comparator) {
 	this.comparator = comparator;
     }
 
     /**
-     * @param arr
+     * Algoritmo di ordinamento
      */
     public void sort(ArrayList<T> arr) {
 	for (int i = 1; i < arr.size(); i++) {
@@ -37,8 +40,7 @@ public class InsertionSort<T> {
     }
 
     /**
-     * @param a
-     * @return true if the parameter a is sorte, else false
+     * Controlla se un array è ordinato
      */
     public static <T extends Comparable<? super T>> boolean isSorted(ArrayList<T> a) {
 	for (int i = 1; i < a.size(); i++) {

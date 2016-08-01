@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
+/**
+ * Classe contenente tutti i metodi di ordinamento
+ *
+ */
 public class Sort {
     /**
-     * @param iter
-     * @param comp
-     * @return true if the elements is sorted, else false
+     * Controlla se una struttura iterabile è ordinata
      */
     public static <T> boolean isSorted(Iterator<T> iter, Comparator<T> comp) {
 	T c1, c2;
@@ -25,32 +27,28 @@ public class Sort {
     }
 
     /**
-     * @param arr
-     * @param comp
+     * Applica l'algoritmo di insertion sort
      */
     public static <T> void sortInsertionSort(ArrayList<T> arr, Comparator<T> comp) {
 	new InsertionSort<T>(comp).sort(arr);
     }
 
     /**
-     * @param arr
-     * @param comp
+     * Applica l'algoritmo di HeapSort
      */
     public static <T> void sortHeapSort(ArrayList<T> arr, Comparator<T> comp) {
 	new HeapSort<T>(comp).sort(arr);
     }
 
     /**
-     * @param arr
-     * @param comp
+     * applica l'algoritmo di quickSort
      */
     public static <T> void sortQuickSort(ArrayList<T> arr, Comparator<T> comp) {
 	new QuickSort<T>(comp).sort(arr);
     }
 
     /**
-     * @param arr
-     * @param comp
+     * applica l'algoritmo di mergeSort
      */
     public static <T> void sortMergeSort(ArrayList<T> arr, Comparator<T> comp) {
 	new MergeSort<T>(comp).sort(arr);
