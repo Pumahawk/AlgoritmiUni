@@ -47,7 +47,15 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
     public DTree(Comparator<K> comp) {
 	this.tree = instanceTree(comp);
     }
-    
+
+    /**
+     * Costruttore che permette di creare un dizionario partendo da un'altro
+     * 
+     * @param dictionary
+     *            dizionario di partenza
+     * @param comp
+     *            comparatore da inserire nell'albero
+     */
     public DTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
 	this(comp);
 	Enumeration<K> keys = dictionary.keys();

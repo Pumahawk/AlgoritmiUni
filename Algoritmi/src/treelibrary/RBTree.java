@@ -19,6 +19,7 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
     public RBTree(Comparator<V> comp) {
 	super(comp);
     }
+
     @Override
     public V put(V val) {
 	V ret = null;
@@ -28,7 +29,7 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	node.setValue(val);
 	if (ret == null)
 	    solveCasePut(node, findCase(node));
-	if(ret != null)
+	if (ret != null)
 	    size++;
 	return ret;
     }
@@ -59,6 +60,7 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	}
     }
 
+    /* -------- INZIO METODI SOLVE CASE ---------- */
     protected void solveCasePut(NodeRBTree<V> node, Case caso) {
 	switch (caso) {
 	case ONE:
@@ -116,7 +118,15 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	else
 	    leftRotate(node.father().father());
     }
+    /*------------Fine metodi solve case--------------*/
 
+    /**
+     * Restituisce il nodo dell'albero contente quel valore
+     * 
+     * @param value
+     *            valore da cercare
+     * @return il nodo contentente quel valore, null altrimenti
+     */
     protected NodeRBTree<V> getNodeByValue(V value) {
 	if (root == null) {
 	    root = new NodeRBTree<>(null, Color.RED);
@@ -161,7 +171,7 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 		    minOfMaxIsNotNode(node, minOfMax);
 	    }
 	}
-	if(ret != null)
+	if (ret != null)
 	    size--;
 	return ret;
     }
@@ -194,6 +204,12 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	    leaveFather(node);
 
     }
+
+    /**
+     * Elimina il nodo piu piccolo dei piu grandi.
+     * 
+     * @param node
+     */
     private void minOfMaxIsNode(NodeRBTree<V> node) {
 	if (node == root)
 	    root = null;
@@ -215,6 +231,11 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	return (node.father().left() != node) ? node.father().left() : node.father().right();
     }
 
+    /**
+     * Inizio metodi di ricompattazione dell'albero in caso di eliminazione
+     * 
+     * @param node
+     */
     private void solveCaseOneRemove(NodeRBTree<V> node) {
 	if (node.father() == null)
 	    return;
@@ -281,6 +302,16 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 	}
     }
 
+    /*
+     * ---------Fine metodi di ricompatazione albero in caso di rimozione
+     * --------
+     */
+    /**
+     * Rotazione sinistra
+     * 
+     * @param nodo
+     *            Nodo su cui viene applicata la rotazione
+     */
     private void leftRotate(NodeRBTree<V> nodo) {
 	NodeRBTree<V> padre = nodo.father();
 	nodo.right().setFather(nodo.father());
@@ -301,6 +332,12 @@ public class RBTree<V> extends Tree<V, NodeRBTree<V>> {
 
     }
 
+    /**
+     * Rotazione destra
+     * 
+     * @param nodo
+     *            Nodo su cui viene applicata la rotazione destra
+     */
     private void rightRotate(NodeRBTree<V> nodo) {
 	NodeRBTree<V> padre = nodo.father();
 	nodo.left().setFather(nodo.father());

@@ -5,9 +5,13 @@ import java.util.Dictionary;
 import java.util.Enumeration;
 
 /**
+ * Implementazione di un dizionario che utilizza una struttura di una labero
+ * roso e nero
+ * 
  * @param <K>
+ *            Tipo di chiave
  * @param <V>
- * @param <T>
+ *            Tipo di valore
  */
 public class DRBTree<K, V> extends DTree<K, V, RBTree<ContainerDictionary<K, V>>> {
 
