@@ -47,6 +47,14 @@ abstract class DTree<K, V, T extends Tree<ContainerDictionary<K, V>, ?>> extends
     public DTree(Comparator<K> comp) {
 	this.tree = instanceTree(comp);
     }
+    
+    public DTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
+	this(comp);
+	Enumeration<K> keys = dictionary.keys();
+	for (K key; keys.hasMoreElements();) {
+	    this.put(key = keys.nextElement(), dictionary.get(key));
+	}
+    }
 
     /**
      * Metodo che va istanziato per permettere costringere il programmatore ad
