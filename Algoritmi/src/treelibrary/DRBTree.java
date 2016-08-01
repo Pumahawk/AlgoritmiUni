@@ -16,11 +16,7 @@ public class DRBTree<K, V> extends DTree<K, V, RBTree<ContainerDictionary<K, V>>
     }
 
     public DRBTree(Dictionary<K, V> dictionary, Comparator<K> comp) {
-	this(comp);
-	Enumeration<K> keys = dictionary.keys();
-	for (K key; keys.hasMoreElements();) {
-	    this.put(key = keys.nextElement(), dictionary.get(key));
-	}
+	super(dictionary, comp);
     }
 
     @Override
