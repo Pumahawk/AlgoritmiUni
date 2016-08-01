@@ -9,7 +9,9 @@ import java.util.Comparator;
  * @author Lorenzo Gandino
  *
  * @param <K>
+ *            Tipo di chiave
  * @param <V>
+ *            Tipo di valore
  */
 class ContainerDictionary<K, V> {
     public K key;
@@ -28,11 +30,14 @@ class ContainerDictionary<K, V> {
     public String toString() {
 	return "[" + key + "](" + value + ")";
     }
-/**
- * converte un comparatore di sole chiavi un un comparatore di ContainerDictionary
- * @param comp
- * @return
- */
+
+    /**
+     * converte un comparatore di sole chiavi un un comparatore di
+     * ContainerDictionary
+     * 
+     * @param il comparatore di chiavi da convertire
+     * @return un comparatore di container
+     */
     static public <K2, V2> Comparator<ContainerDictionary<K2, V2>> getComparator(Comparator<K2> comp) {
 	return (ContainerDictionary<K2, V2> a, ContainerDictionary<K2, V2> b) -> comp.compare(a.key, b.key);
     }
